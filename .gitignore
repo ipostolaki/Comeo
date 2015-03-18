@@ -2,5 +2,6 @@
 .idea/
 .DS_Store
 
-# Byte-compiled / optimized / DLL files
 __pycache__/
+*.sublime-project
+*.sublime-workspace
