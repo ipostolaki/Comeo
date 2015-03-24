@@ -1,3 +1,17 @@
+.asteriskField {
+    display:none;
+}
+
+.help-block {
+    font-size: 9pt;
+}
+/*
+.vertical-center-row{
+    display: table-cell;
+    vertical-align: middle;
+}
+*/
+
 /*.navbar {
     background: rgba(0,0,0,0);
     background-color: yellow;

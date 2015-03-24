@@ -1,0 +1,71 @@
+{% extends 'comeo_app/base.html' %}
+{% block content %}
+<h3 class="text-center">Sign Up</h3>
+<hr>
+
+    {% if registered %}
+    <strong>Welcome {{ sign_up_form.username.value }}</strong>
+    {% else %}
+
+        <form action="/signup/" class="form-horizontal" method="post">
+            {% csrf_token %}
+            <div class="form-group {% if sign_up_form.email.errors %}has-error{% endif %}">
+                <label for="email" class="col-sm-5 control-label">{{ sign_up_form.email.label }}</label>
+                <div class="col-sm-3">
+                    <input class="form-control" type="text" name="email" id="email" value="{{ sign_up_form.email.value }}">
+                    {% for error in sign_up_form.email.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group {% if sign_up_form.password.errors %}has-error{% endif %}">
+                <label for="password" class="col-sm-5 control-label">{{ sign_up_form.password.label }}</label>
+                <div class="col-sm-3">
+                    <input class="form-control" type="password" name="password" id="password" value="{{ sign_up_form.password.value }}">
+                    {% for error in sign_up_form.password.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group {% if sign_up_form.username.errors %}has-error{% endif %}">
+                <label for="username" class="col-sm-5 control-label">{{ sign_up_form.username.label }}</label>
+                <div class="col-sm-3">
+                    <input class="form-control" type="text" name="username" id="username" value="{{ sign_up_form.username.value }}">
+                    {% for error in sign_up_form.username.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group {% if sign_up_form.first_name.errors %}has-error{% endif %}">
+                <label for="first_name" class="col-sm-5 control-label">{{ sign_up_form.first_name.label }}</label>
+                <div class="col-sm-3">
+                    <input class="form-control" type="text" name="first_name" id="first_name" value="{{ sign_up_form.first_name.value }}">
+                    {% for error in sign_up_form.first_name.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group {% if sign_up_form.last_name.errors %}has-error{% endif %}">
+                <label for="last_name" class="col-sm-5 control-label">{{ sign_up_form.last_name.label }}</label>
+                <div class="col-sm-3">
+                    <input class="form-control" type="text" name="last_name" id="last_name" value="{{ sign_up_form.last_name.value }}">
+                    {% for error in sign_up_form.last_name.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-3">
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </div>
+            </div>
+        </form>
+
+    {% endif %}
+{% endblock %}

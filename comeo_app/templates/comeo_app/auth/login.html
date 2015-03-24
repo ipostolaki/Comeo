@@ -1,0 +1,25 @@
+{% extends 'comeo_app/base.html' %}
+{% load bootstrap %}
+{% block content %}
+
+<h3 class="text-center">Login</h3>
+<hr>
+
+<div class="center-block" style="width:250px;">
+
+    <form action="{% url 'comeo_app:login' %}" method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+	<br>
+    <small><a href="{% url 'comeo_app:password_reset' %}">Forgot pass</a></small>
+
+
+</div>
+
+
+
+
+
+{% endblock %}

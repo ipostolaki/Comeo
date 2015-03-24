@@ -1,0 +1,8 @@
+{% extends 'comeo_app/base.html' %}
+{% block content %}
+
+<h6>Hello {{user.username}}</h6>
+<a href="{% url 'comeo_app:profile_edit' %}">Edit Profile</a>
+
+
+{% endblock %}
