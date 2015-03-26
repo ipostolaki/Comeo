@@ -25,14 +25,18 @@ def signup(request):
             user = sign_up_form.save()
             user.set_password(user.password)
             user.save()
-            # TODO is this syntax ok ?
-            signed_up_user = authenticate(username=request.POST['username'], password=request.POST['password'])
-            if signed_up_user is not None:
-                login(request, signed_up_user)
 
             registered = True
+
+            # TODO is authenticate needed?
+
+            signed_up_user = authenticate(email=sign_up_form.cleaned_data['email'], password=sign_up_form.cleaned_data['password'])
+
+            if signed_up_user is not None:
+                login(request, signed_up_user)
     else:
-        sign_up_form = SignUpForm()
+        # sign_up_form = SignUpForm(initial={'first_name': '', 'email': '', 'last_name': '', 'password': ''})
+        sign_up_form = SignUpForm(initial={'first_name': '', 'email': '', 'last_name': '', 'password': ''})
 
     context = {'sign_up_form': sign_up_form, 'registered': registered}
 

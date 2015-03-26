@@ -93,6 +93,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 LOGIN_REDIRECT_URL = '/profile/'
 
+AUTH_USER_MODEL = 'comeo_app.ComeoUser'
+
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = 'email-dummy/'

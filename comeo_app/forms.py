@@ -3,6 +3,9 @@ from django.forms import ModelForm
 
 from comeo_app.models import *
 
+from django.contrib.auth import get_user_model
+
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 # TODO email as username
 # TODO credentials match error text
@@ -16,11 +19,8 @@ class UserProfileForm(ModelForm):
         labels = {'info': 'Info'}
 
 
-class SignUpForm(ModelForm):
+class FormSignUpForm(forms.Form):
 
-    # Overriding fields of User model - providing details needed for custom form layout
-
-    username = forms.CharField(initial='', label='Username')
     first_name = forms.CharField(initial='', label='First name')
     last_name = forms.CharField(initial='', label='Last name')
 
@@ -29,12 +29,57 @@ class SignUpForm(ModelForm):
 
     error_messages_password = {'required': 'You definetly need a password.', 'max_length': 'max_length',
                       'min_length is 5': 'min_length'}
-    password = forms.CharField(initial='', label='Password', max_length=100, min_length=5, error_messages=error_messages_password)
+
+    password = forms.CharField(initial='', label='Password',
+                               max_length=100, min_length=5, error_messages=error_messages_password)
+
+class SignUpForm(ModelForm):
+
+    last_name = forms.CharField(required=True)
+    password = forms.CharField(min_length=5)
 
     class Meta:
-        model = User # form based on standard Django user model
-        # only necessary fields prepared for rendering
-        fields = ['username', 'first_name', 'last_name', 'email', 'password']
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email', 'password']
+
+    # def __init__(self, *args, **kwargs):
+    # super(MyModelForm, self).__init__(*args, **kwargs)
+    # # Making name required
+    # self.fields['name'].required = True
+    # self.fields['age'].required = True
+    # self.fields['bio'].required = True
+    # self.fields['profession'].required = True
+
+
+# ----------------- Admin user management Forms
+
+class CustomUserCreationForm(UserCreationForm):
+
+    def __init__(self, *args, **kargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kargs)
+        del self.fields['username']
+
+    class Meta:
+        model = ComeoUser
+        fields = '__all__'
+
+
+class CustomUserChangeForm(UserChangeForm):
+
+    def __init__(self, *args, **kargs):
+        super(CustomUserChangeForm, self).__init__(*args, **kargs)
+        del self.fields['username']
+
+    class Meta:
+        model = ComeoUser
+        fields = '__all__'
+
+# END ----------------- Admin user management Forms
+
+
+
+
+
 
 
 # class ProfileEditForm(SignUpForm):
