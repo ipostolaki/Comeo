@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+from django.conf import global_settings
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -40,6 +42,7 @@ INSTALLED_APPS = (
     'comeo_app',
     'crispy_forms',
     'bootstrapform',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,6 +93,8 @@ LOGIN_URL = '/login/'
 
 # Custom
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ('django.core.context_processors.request',)
 
 LOGIN_REDIRECT_URL = '/profile/'
 

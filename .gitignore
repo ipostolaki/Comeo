@@ -6,3 +6,4 @@ __pycache__/
 *.sublime-project
 *.sublime-workspace
 email-dummy/
+*.ipynb

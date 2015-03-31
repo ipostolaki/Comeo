@@ -6,8 +6,9 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    info = models.TextField(max_length=1000, blank=True)
+
+    bank_account = models.CharField(max_length=300, blank=True)
+    buletin_number = models.CharField(max_length=50, blank=True)
 
 
 class CustomUserManager(BaseUserManager):
@@ -19,7 +20,7 @@ class CustomUserManager(BaseUserManager):
         """
         now = timezone.now()
         if not email:
-            raise ValueError('Email is required')
+            raise ValueError('Email must be set')
 
         email = self.normalize_email(email)
         user = self.model(email=email,
@@ -47,6 +48,8 @@ class ComeoUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField('staff status', default=False)
     is_active = models.BooleanField('active', default=True)
     date_joined = models.DateTimeField('date joined', default=timezone.now)
+
+    profile = models.OneToOneField(Profile, null=True)
 
     objects = CustomUserManager()
 

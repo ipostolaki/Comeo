@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import ModelForm
 
 from comeo_app.models import *
 
@@ -10,33 +9,19 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 # TODO email as username
 # TODO credentials match error text
 
-class UserProfileForm(ModelForm):
+# class UserProfileForm(ModelForm):
+#
+#     class Meta:
+#         model = Profile
+#         fields = ['info']
+#         # labels = {'info': 'Info'}
 
-    class Meta:
-        model = Profile
-        fields = ['info']
 
-        labels = {'info': 'Info'}
-
-
-class FormSignUpForm(forms.Form):
-
-    first_name = forms.CharField(initial='', label='First name')
-    last_name = forms.CharField(initial='', label='Last name')
-
-    error_messages_email = {'required': 'You definetly need an email.', 'invalid': 'Bad Email!'}
-    email = forms.EmailField(initial='', label='Email', error_messages=error_messages_email)
-
-    error_messages_password = {'required': 'You definetly need a password.', 'max_length': 'max_length',
-                      'min_length is 5': 'min_length'}
-
-    password = forms.CharField(initial='', label='Password',
-                               max_length=100, min_length=5, error_messages=error_messages_password)
-
-class SignUpForm(ModelForm):
+class SignUpForm(forms.ModelForm):
 
     last_name = forms.CharField(required=True)
     password = forms.CharField(min_length=5)
+    # TODO pass length check at: reset, change, login?
 
     class Meta:
         model = get_user_model()
@@ -49,6 +34,25 @@ class SignUpForm(ModelForm):
     # self.fields['age'].required = True
     # self.fields['bio'].required = True
     # self.fields['profession'].required = True
+
+
+class EditProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email']
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+# class EditProfileForm(forms.Form):
+#
+#     email = forms.EmailField()
+#     first_name = forms.CharField()
+#     last_name = forms.CharField()
+#     info = forms.CharField(widget=forms.Textarea)
 
 
 # ----------------- Admin user management Forms
@@ -134,3 +138,19 @@ from crispy_forms.bootstrap import StrictButton
 #     class Meta:
 #         model = UserProfile
 #         fields = ('text', 'photo')
+
+
+
+# class FormSignUpForm(forms.Form):
+#
+#
+#     first_name = forms.CharField(initial='', label='First name')
+#     last_name = forms.CharField(initial='', label='Last name')
+#     error_messages_email = {'required': 'You definetly need an email.', 'invalid': 'Bad Email!'}
+#     email = forms.EmailField(initial='', label='Email', error_messages=error_messages_email)
+#
+#     error_messages_password = {'required': 'You definetly need a password.', 'max_length': 'max_length',
+#                       'min_length is 5': 'min_length'}
+#
+#     password = forms.CharField(initial='', label='Password',
+#                                max_length=100, min_length=5, error_messages=error_messages_password)

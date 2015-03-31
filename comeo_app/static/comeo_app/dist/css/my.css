@@ -1,3 +1,16 @@
+.panel-default > .panel-heading {
+  background-color: #eff0f2;
+}
+
+.panel-body {
+    font-size: 79%;
+    font-weight: 300;
+}
+
+.panel-title {
+    font-weight: 400;
+}
+
 .asteriskField {
     display:none;
 }

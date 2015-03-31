@@ -6,14 +6,16 @@ urlpatterns = patterns('',
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^profile/edit/$', views.profile_edit, name='profile_edit'),
+    url(r'^profile/faq/$', views.faq, name='faq'),
+    url(r'^profile/about/$', views.about, name='about'),
 
-    # auth
+    # Auth
 
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'comeo_app/auth/login.html'}, name='login'),
 
-    url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'comeo_app/auth/logout.html'}, name='logout'),
 
-    url(r'^password_change/$', 'django.contrib.auth.views.password_change',
+    url(r'^password-change/$', 'django.contrib.auth.views.password_change',
         {'template_name': 'comeo_app/auth/password_change.html', 'post_change_redirect': 'comeo_app:password_change_done'},
         name='password_change'),
 

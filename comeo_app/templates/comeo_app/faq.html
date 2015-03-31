@@ -1,0 +1,70 @@
+{% extends 'comeo_app/base.html' %}
+{% block activenav %}class="active"{% endblock %}
+{% block content %}
+
+<div style="padding-left:5px; padding-top:25px">
+    <p class="lead text-center">FAQ</p>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+    <div class="panel">
+        <div class="panel-heading" role="tab" id="q1">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ1" aria-expanded="true" aria-controls="collapseQ1">
+                    Как добавить на сайт свою идею и начать сбор денег?
+                </a>
+            </h4>
+        </div>
+        <div id="collapseQ1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="q1">
+            <div class="panel-body">
+                <ul>
+                    <li>Зарегистрироваться на сайте</li>
+                    <li>Заполнить общий профиль автора проекта</li>
+                    <li>Создать проект и заполнить форму с его описанием</li>
+            </div>
+        </div>
+    </div>
+
+<div class="panel">
+        <div class="panel-heading" role="tab" id="q4">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ4" aria-expanded="true" aria-controls="collapseQ4">
+                    Как я смогу получить деньги, которые соберет мой проект?
+                </a>
+            </h4>
+        </div>
+        <div id="collapseQ4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="q4">
+            <div class="panel-body">
+                Деньги можно будет перевести на банковский счет.
+                Для этого нужно указать реквизиты в настройках профиля.
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="panel">
+        <div class="panel-heading" role="tab" id="q3">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseQ3" aria-expanded="true" aria-controls="collapseQ3">
+                    Если у меня еще нет банковского счета, смогу ли я создать проект и собирать деньги?
+                </a>
+            </h4>
+        </div>
+        <div id="collapseQ3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="q3">
+            <div class="panel-body">
+                Если проект собирает сумму меньше X лей, тогда автор проекта может получить деньги наличными.
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    </div>
+
+
+{% endblock %}

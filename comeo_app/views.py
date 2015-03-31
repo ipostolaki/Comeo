@@ -12,6 +12,13 @@ def home(request):
     return render(request, 'comeo_app/index.html')
 
 
+def faq(request):
+    return render(request, 'comeo_app/faq.html')
+
+def about(request):
+    return render(request, 'comeo_app/about.html')
+
+
 def signup(request):
 
     registered = False
@@ -19,23 +26,18 @@ def signup(request):
     if request.method == 'POST':
         sign_up_form = SignUpForm(request.POST)
 
-        # TODO check for double email, the Django way
         if sign_up_form.is_valid():
 
             user = sign_up_form.save()
             user.set_password(user.password)
             user.save()
-
             registered = True
 
-            # TODO is authenticate needed?
+            authenticated_user = authenticate(email=sign_up_form.cleaned_data['email'], password=sign_up_form.cleaned_data['password'])
 
-            signed_up_user = authenticate(email=sign_up_form.cleaned_data['email'], password=sign_up_form.cleaned_data['password'])
-
-            if signed_up_user is not None:
-                login(request, signed_up_user)
+            if authenticated_user:
+                login(request, authenticated_user)
     else:
-        # sign_up_form = SignUpForm(initial={'first_name': '', 'email': '', 'last_name': '', 'password': ''})
         sign_up_form = SignUpForm(initial={'first_name': '', 'email': '', 'last_name': '', 'password': ''})
 
     context = {'sign_up_form': sign_up_form, 'registered': registered}
@@ -52,39 +54,8 @@ def signup(request):
 
 # TODO custom User model with email instead of username ?
 
-# def login_view(request):
-#
-#     if request.method == 'POST':
-#         login_form = LoginForm(request.POST)
-#
-#         if login_form.is_valid():
-#             username = request.POST['username']
-#             password = request.POST['password']
-#
-#             user = authenticate(username=username, password=password)
-#
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#
-#                     return HttpResponseRedirect('/profile/')
-#
-#                 else:
-#                     return HttpResponse('Activation needed')
-#             else:
-#                 # TODO check what is wrong - pass / username
-#                 login_form.add_error(field=None, error="Hey, password and username does not match. Are you registered?")
-#     else:
-#         login_form = LoginForm()
-#
-#     return render(request, 'comeo_app/login.html', {'login_form': login_form})
-# # TODO next hidden input in forms
+# TODO next hidden input in forms
 
-
-def user_logout(request):
-
-    logout(request)
-    return HttpResponseRedirect('/')
 
 @login_required
 def profile(request):
@@ -94,17 +65,28 @@ def profile(request):
 @login_required
 def profile_edit(request):
 
+    profile = request.user.profile
+
     if request.method == 'POST':
-        profile_form = UserProfileForm(request.POST)
-        user_form = SignUpForm(request.POST)
 
-        # profile_form.save()
+        user_form = EditProfileForm(instance=request.user, data=request.POST)
+        profile_form = ProfileForm(instance=profile, data=request.POST)
 
-        if profile_form.is_valid() and user_form.is_valid():
-            print('OK')
+        if user_form.is_valid() and profile_form.is_valid():
+
+            saved_profile = profile_form.save()
+            print(saved_profile.bank_account)
+            saved_user = user_form.save(commit=False)
+            saved_user.profile = saved_profile
+            saved_user.save()
+
+
+            # TODO: 'profile saved' notification message in template
+            # TODO: confirm email change through token link
+
     else:
-        profile_form = UserProfileForm()
-        user_form = SignUpForm(instance=request.user)
+        profile_form = ProfileForm(instance=profile)
+        user_form = EditProfileForm(instance=request.user)
 
     # user = User.objects.get(profile=request.user.profile)
 

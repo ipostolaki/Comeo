@@ -2,16 +2,21 @@
 {% load bootstrap %}
 {% block content %}
 
-<h5 class="text-center">Profile edit</h5>
+<p style="padding-top:25px" class="lead text-center" class="text-center">Profile edit</p>
 <hr>
+
+<div class="col-sm-4 col-sm-offset-4">
 
 <form action="{% url 'comeo_app:profile_edit' %}" method="post">
     {% csrf_token %}
-    {{ profile_form|bootstrap }}
     {{ user_form|bootstrap }}
-    <div class="text-center">
-    <button type="submit" class="btn btn-primary">Save</button>
-</div>
+    {{ profile_form|bootstrap }}
+    <a href="{% url 'comeo_app:password_change' %}">Change password</a>
+    <p></p>
+    <p><button type="submit" class="btn btn-primary">Save</button></p>
+
 </form>
+
+</div>
 
 {% endblock %}
