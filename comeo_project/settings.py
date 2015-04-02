@@ -87,7 +87,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/home/comeo_env/comeo_project/comeo_app/static/comeo_app/'
 
 LOGIN_URL = '/login/'
 
