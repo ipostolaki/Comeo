@@ -85,7 +85,7 @@ USE_TZ = True
 
 # non Default
 
-STATIC_URL = '/static/'
+STATIC_URL = '/home/comeo_env/comeo_project/comeo_app/static/comeo_app/'
 
 LOGIN_URL = '/login/'
 
