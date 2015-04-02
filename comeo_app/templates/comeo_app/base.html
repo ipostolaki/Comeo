@@ -46,6 +46,7 @@
 
                 {% if user.is_authenticated %}
                 <li {% nav_active request 'comeo_app:profile comeo_app:profile_edit'%}"><a href="{% url 'comeo_app:profile' %}">Profile</a></li>
+                <!--<li><img src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></img></li>-->
                 <li><a href="{% url 'comeo_app:logout' %}">Logout ({{ user.first_name }})</a></li>
                 {% else %}
                 <li {% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">Sign Up</a></li>
@@ -58,9 +59,7 @@
 
 <div class="container" style="padding-top:60px">
   <div class="row">
-      <div class="col-lg-12">
       {% block content %}{% endblock %}
-      </div>
   </div>
 </div>
 

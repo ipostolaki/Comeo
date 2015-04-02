@@ -7,7 +7,7 @@
 
 <div class="col-sm-4 col-sm-offset-4">
 
-<form action="{% url 'comeo_app:profile_edit' %}" method="post">
+<form action="{% url 'comeo_app:profile_edit' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ user_form|bootstrap }}
     {{ profile_form|bootstrap }}

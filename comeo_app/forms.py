@@ -17,6 +17,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 #         # labels = {'info': 'Info'}
 
 
+
+
 class SignUpForm(forms.ModelForm):
 
     last_name = forms.CharField(required=True)
@@ -36,8 +38,7 @@ class SignUpForm(forms.ModelForm):
     # self.fields['profession'].required = True
 
 
-class EditProfileForm(forms.ModelForm):
-
+class EditUserForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ['first_name', 'last_name', 'email']

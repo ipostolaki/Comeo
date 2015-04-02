@@ -83,16 +83,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# non Default
 
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/login/'
-
-# Custom
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ('django.core.context_processors.request',)
 
@@ -100,6 +95,14 @@ LOGIN_REDIRECT_URL = '/profile/'
 
 AUTH_USER_MODEL = 'comeo_app.ComeoUser'
 
+MEDIA_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/media'
+MEDIA_URL = '/uploaded/'
+
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = 'email-dummy/'
+
+
+# Custom non django
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

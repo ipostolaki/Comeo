@@ -1,3 +1,17 @@
+.project {
+    padding-bottom:30px;
+}
+
+.c {
+    padding-right: 260px;
+    padding-left: 60px;
+    background-color:aquamarine;
+}
+
+.thinText {
+    font-weight: 400;
+}
+
 .panel-default > .panel-heading {
   background-color: #eff0f2;
 }
