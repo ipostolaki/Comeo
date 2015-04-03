@@ -7,3 +7,5 @@ __pycache__/
 *.sublime-workspace
 email-dummy/
 *.ipynb
+media
+db.sqlite3
