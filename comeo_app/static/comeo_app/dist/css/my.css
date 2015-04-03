@@ -25,6 +25,10 @@
     font-weight: 400;
 }
 
+.thintext {
+    font-weight: 400;
+}
+
 .asteriskField {
     display:none;
 }
