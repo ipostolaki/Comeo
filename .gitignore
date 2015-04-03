@@ -8,4 +8,4 @@ __pycache__/
 email-dummy/
 *.ipynb
 media
-db.sqlite3
+*.sqlite3
