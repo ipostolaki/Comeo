@@ -1,3 +1,21 @@
+
+/* Carousel */
+
+#theCarousel {
+    border-radius: 4px;
+    background-color: #ecf0f1;
+}
+
+.carousel-control.left, .carousel-control.right{
+	background-image: none;
+	display:none;
+}
+
+/* END Carousel */
+
+
+/* Project index page */
+
 .project {
     padding-bottom:30px;
 }
@@ -8,7 +26,7 @@
     background-color:aquamarine;
 }
 
-.thinText {
+.thintext {
     font-weight: 400;
 }
 
@@ -25,17 +43,8 @@
     font-weight: 400;
 }
 
-.thintext {
-    font-weight: 400;
-}
+/* END Project index page */
 
-.asteriskField {
-    display:none;
-}
-
-.help-block {
-    font-size: 9pt;
-}
 /*
 .vertical-center-row{
     display: table-cell;

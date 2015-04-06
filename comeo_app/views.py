@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from comeo_app.forms import *
 from django.core.mail import send_mail
+from django.utils.translation import ugettext
 
 
 from django.contrib.auth import authenticate, login, logout

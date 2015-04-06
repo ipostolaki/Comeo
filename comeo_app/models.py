@@ -4,12 +4,13 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+from django.utils.translation import ugettext_lazy as _
 
 class Profile(models.Model):
 
-    bank_account = models.CharField(max_length=300, blank=True)
-    buletin_number = models.CharField(max_length=50, blank=True)
-    photo = models.FileField(blank=True, upload_to='users_photos')
+    bank_account = models.CharField(verbose_name=_('bank account'), max_length=300, blank=True)
+    buletin_number = models.CharField(verbose_name=_('buletin number'), max_length=50, blank=True)
+    photo = models.FileField(_(name='photo'), blank=True, upload_to='users_photos')
 
 
 class CustomUserManager(BaseUserManager):
@@ -43,14 +44,14 @@ class CustomUserManager(BaseUserManager):
 
 class ComeoUser(AbstractBaseUser, PermissionsMixin):
 
-    email = models.EmailField('email address', max_length=254, unique=True)
-    first_name = models.CharField('first name', max_length=30, blank=False)
-    last_name = models.CharField('last name', max_length=30, blank=True)
-    is_staff = models.BooleanField('staff status', default=False)
-    is_active = models.BooleanField('active', default=True)
-    date_joined = models.DateTimeField('date joined', default=timezone.now)
+    email = models.EmailField(_('Email'), max_length=254, unique=True)
+    first_name = models.CharField(_('first name'), max_length=30, blank=False)
+    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    is_staff = models.BooleanField(_('staff status'), default=False)
+    is_active = models.BooleanField(_('active'), default=True)
+    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
-    profile = models.OneToOneField(Profile, null=True)
+    profile = models.OneToOneField(Profile, null=True, verbose_name=_('user profile'))
 
     objects = CustomUserManager()
 
@@ -58,8 +59,8 @@ class ComeoUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     class Meta:
-        verbose_name = 'user'
-        verbose_name_plural = 'users'
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
 
 
     def get_full_name(self):

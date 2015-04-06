@@ -1,8 +1,9 @@
 {% extends 'comeo_app/base.html' %}
 {% load bootstrap %}
+{% load i18n %}
 {% block content %}
 
-<p style="padding-top:25px" class="lead text-center" class="text-center">Profile edit</p>
+<p style="padding-top:25px" class="lead text-center" class="text-center">{% trans 'Profile edit' %}</p>
 <hr>
 
 <div class="col-sm-4 col-sm-offset-4">
@@ -11,9 +12,9 @@
     {% csrf_token %}
     {{ user_form|bootstrap }}
     {{ profile_form|bootstrap }}
-    <a href="{% url 'comeo_app:password_change' %}">Change password</a>
+    <a href="{% url 'comeo_app:password_change' %}">{% trans 'Change password' %}</a>
     <p></p>
-    <p><button type="submit" class="btn btn-primary">Save</button></p>
+    <p><button type="submit" class="btn btn-primary">{% trans 'Save' %}</button></p>
 
 </form>
 

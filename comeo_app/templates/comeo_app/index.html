@@ -1,16 +1,97 @@
 {% extends 'comeo_app/base.html' %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% block headpart %}
+    <script src="modernizr.min.js"></script>
+    <link href="{% static 'comeo_app/kickdrop/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 
 <div style="padding:20px;">
 
-<div class="alert alert-warning" style="margin-top:50px;">
-        <p class="lead text-center">Under Construction</p>
+    <p class="lead text-center">Краудфандинг платформа для локальных проектов и событий</p>
+
+<div id="theCarousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="4000" style="width:1132px; margin-left:0px;">
+
+    <ol class="carousel-indicators">
+        <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#theCarousel" data-slide-to="1"></li>
+        <li data-target="#theCarousel" data-slide-to="2"></li>
+        <li data-target="#theCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+
+        <div class="item active">
+            <div class="col-sm-3">
+                <div class="icon lightbulb"></div>
+            </div>
+            <div class="col-sm-8">
+                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Есть хорошая идея?</h2>
+            </div>
+        </div>
+
+
+        <div class="item">
+            <div class="col-sm-3">
+                <div class="icon bullseye"></div>
+            </div>
+            <div class="col-sm-8">
+                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Опиши и определи цель</h2>
+            </div>
+        </div>
+
+
+        <div class="item">
+            <div class="col-sm-3">
+                <div class="icon chat"></div>
+            </div>
+            <div class="col-sm-8">
+                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Поделись с друзьями</h2>
+            </div>
+        </div>
+
+
+        <div class="item">
+            <div class="col-sm-3">
+                <div class="icon piggybank"></div>
+            </div>
+            <div class="col-sm-8">
+                <h2 style="display:inline-block; padding-top:60px; margin-left:70px;">Собирай деньги!</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Prev</span>
+    </a>
+
+    <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+
 </div>
 
-<div class="jumbotron">
-    <h5 >Краудфандинг платформа для локальных проектов и событий</h5>
-    <p>Comeo это простой способ собрать деньги для реализации интересной идеи</p>
+<div class="alert alert-danger alert-dismissible fade in" role="alert" style="margin-top:50px;">
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <p class="lead text-center">Сайт в разработке</p>
+
 </div>
+
+
+    <br>
+
+
+
 
 <div class="row">
 

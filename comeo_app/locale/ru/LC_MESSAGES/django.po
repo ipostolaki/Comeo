@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-05 19:05+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: forms.py:25 forms.py:37
+msgid "Password"
+msgstr "Пароль"
+
+#: forms.py:36 models.py:49
+msgid "last name"
+msgstr "Фамилия"
+
+#: models.py:11
+msgid "bank account"
+msgstr "Банковский счет"
+
+#: models.py:12
+msgid "buletin number"
+msgstr "Номер паспорта"
+
+#: models.py:13
+msgid "photo"
+msgstr "Фото"
+
+#: models.py:47
+msgid "Email"
+msgstr "Email"
+
+#: models.py:48
+msgid "first name"
+msgstr "Имя"
+
+#: models.py:50
+msgid "staff status"
+msgstr ""
+
+#: models.py:51
+msgid "active"
+msgstr ""
+
+#: models.py:52
+msgid "date joined"
+msgstr ""
+
+#: models.py:54
+msgid "user profile"
+msgstr "профиль пользователя"
+
+#: models.py:62
+msgid "user"
+msgstr "пользователь"
+
+#: models.py:63
+msgid "users"
+msgstr "пользователи"
+
+#: templates/comeo_app/auth/login.html:6
+#: templates/comeo_app/auth/login.html:14 templates/comeo_app/base.html:56
+msgid "Login"
+msgstr "Логин"
+
+#: templates/comeo_app/auth/login.html:17
+msgid "Forgot pass?"
+msgstr "Забытый пароль?"
+
+#: templates/comeo_app/auth/password_change.html:7
+msgid "Pass change"
+msgstr "Изменение пароля"
+
+#: templates/comeo_app/auth/password_change.html:15
+#: templates/comeo_app/profile_edit.html:17
+msgid "Save"
+msgstr "Сохранить"
+
+#: templates/comeo_app/auth/password_reset.html:16
+#: templates/comeo_app/signup.html:67
+msgid "submit"
+msgstr "Отправить"
+
+#: templates/comeo_app/base.html:45
+msgid "About"
+msgstr "О нас"
+
+#: templates/comeo_app/base.html:46
+msgid "FAQ"
+msgstr "Справка"
+
+#: templates/comeo_app/base.html:51
+msgid "Profile"
+msgstr "Профиль"
+
+#: templates/comeo_app/base.html:53
+msgid "Logout"
+msgstr "Выйти"
+
+#: templates/comeo_app/base.html:55 templates/comeo_app/signup.html:4
+msgid "sign up"
+msgstr "Регистрация"
+
+#: templates/comeo_app/profile.html:6
+msgid "edit profile"
+msgstr "Изменить профиль"
+
+#: templates/comeo_app/profile_edit.html:6
+msgid "Profile edit"
+msgstr "Изменение профиля"
+
+#: templates/comeo_app/profile_edit.html:15
+msgid "Change password"
+msgstr "Изменить пароль"

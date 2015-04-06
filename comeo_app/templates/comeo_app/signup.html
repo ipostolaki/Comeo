@@ -1,6 +1,7 @@
 {% extends 'comeo_app/base.html' %}
 {% block content %}
-<p style="padding-top:25px" class="lead text-center" class="text-center">Sign Up</p>
+{% load i18n %}
+<p style="padding-top:25px" class="lead text-center">{% trans 'sign up' %}</p>
 <hr>
     {% if registered %}
     <strong>Welcome {{ user.get_full_name }}</strong>
@@ -63,7 +64,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-3">
-                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    <button type="submit" class="btn btn-primary btn-block">{% trans 'submit' %}</button>
                 </div>
             </div>
         </form>
