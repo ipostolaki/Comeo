@@ -10,7 +10,7 @@ class Profile(models.Model):
 
     bank_account = models.CharField(verbose_name=_('bank account'), max_length=300, blank=True)
     buletin_number = models.CharField(verbose_name=_('buletin number'), max_length=50, blank=True)
-    photo = models.FileField(_(name='photo'), blank=True, upload_to='users_photos')
+    photo = models.FileField(verbose_name=_('photo'), blank=True, upload_to='users_photos')
 
 
 class CustomUserManager(BaseUserManager):
