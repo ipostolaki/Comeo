@@ -1,20 +1,20 @@
 {% extends 'comeo_app/base.html' %}
 {% load bootstrap %}
+{% load i18n %}
 {% block content %}
 
-<h4 class="text-center">Login</h4>
+<p style="padding-top:25px" class="lead text-center" class="text-center">{% trans 'Login' %}</p>
 <hr>
-<p class="lead text-center">{{ urlname }}</p>
 
 <div class="center-block" style="width:250px;">
 
     <form action="{% url 'comeo_app:login' %}" method="post">
         {% csrf_token %}
         {{ form|bootstrap }}
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <button type="submit" class="btn btn-primary btn-block">{% trans 'Login' %}</button>
     </form>
 	<br>
-    <small><a href="{% url 'comeo_app:password_reset' %}">Forgot pass</a></small>
+    <small><a href="{% url 'comeo_app:password_reset' %}">{% trans 'Forgot pass?' %}</a></small>
 
 
 </div>

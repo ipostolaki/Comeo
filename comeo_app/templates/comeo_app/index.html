@@ -1,52 +1,105 @@
 {% extends 'comeo_app/base.html' %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% block headpart %}
+    <script src="modernizr.min.js"></script>
+    <link href="{% static 'comeo_app/kickdrop/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 
-<div style="padding-left:5px;">
+<div style="padding:20px;">
 
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <p class="lead text-center">Краудфандинг платформа для локальных проектов и событий</p>
 
+<div id="theCarousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="4000" style="width:1132px; margin-left:0px;">
 
+    <ol class="carousel-indicators">
+        <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#theCarousel" data-slide-to="1"></li>
+        <li data-target="#theCarousel" data-slide-to="2"></li>
+        <li data-target="#theCarousel" data-slide-to="3"></li>
+    </ol>
 
-    <h2 class="text-center">Hello World</h2>
+    <div class="carousel-inner" role="listbox">
 
-
-
-    <!--<div class="tile panel-default">-->
-        <!--<div class="panel-heading" role="tab" id="q1">-->
-            <!--<h3 class="tile-title thinText">-->
-                <!--<a data-toggle="collapse" data-parent="#accordion" href="#collapseQ1" aria-expanded="true" aria-controls="collapseQ1">-->
-                    <!--<span>Как добавить на сайт свою идею и начать сбор денег?</span>-->
-                <!--</a>-->
-            <!--</h3>-->
-        <!--</div>-->
-        <!--<div id="collapseQ1" class="panel-collapse collapse text-left" role="tabpanel" aria-labelledby="q1">-->
-            <!--<div class="panel-body">-->
-                <!--<ul>-->
-                    <!--<li>Зарегистрироваться на сайте</li>-->
-                    <!--<li>Заполнить общий профиль автора проекта</li>-->
-                    <!--<li>Создать проект и заполнить форму с его описанием (промо материалы, необходимая сумма, длительность сбора и др.)</li>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+        <div class="item active">
+            <div class="col-sm-3">
+                <div class="icon lightbulb"></div>
+            </div>
+            <div class="col-sm-8">
+                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Есть хорошая идея?</h2>
+            </div>
+        </div>
 
 
+        <div class="item">
+            <div class="col-sm-3">
+                <div class="icon bullseye"></div>
+            </div>
+            <div class="col-sm-8">
+                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Опиши и определи цель</h2>
+            </div>
+        </div>
 
 
-    <!--<div class="tile">-->
-            <!--<h4 class="tile-title thinText text-left">-->
-                <!--<a data-toggle="collapse" data-parent="#accordion" href="#collapseQ2" aria-expanded="true" aria-controls="collapseQ2">-->
-                    <!--Как я смогу получить деньги, которые соберет мой проект?</a>-->
-            <!--</h4>-->
-        <!--<div id="collapseQ2" class="panel-collapse in" aria-labelledby="q2">-->
-            <!--<p class="text-left">-->
-                <!--Деньги можно будет перевести на банковский счет.-->
-                <!--Для этого нужно указать реквизиты в настройках профиля.-->
-            <!--</p>-->
-        <!--</div>-->
-    <!--</div>-->
+        <div class="item">
+            <div class="col-sm-3">
+                <div class="icon chat"></div>
+            </div>
+            <div class="col-sm-8">
+                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Поделись с друзьями</h2>
+            </div>
+        </div>
 
+
+        <div class="item">
+            <div class="col-sm-3">
+                <div class="icon piggybank"></div>
+            </div>
+            <div class="col-sm-8">
+                <h2 style="display:inline-block; padding-top:60px; margin-left:70px;">Собирай деньги!</h2>
+            </div>
+        </div>
 
     </div>
 
+    <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Prev</span>
+    </a>
+
+    <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+
+</div>
+
+<div class="alert alert-danger alert-dismissible fade in" role="alert" style="margin-top:50px;">
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <p class="lead text-center">Сайт в разработке</p>
+
+</div>
+
+
+    <br>
+
+
+
+
+<div class="row">
+
+{% include 'comeo_app/project_template.html' %}
+{% include 'comeo_app/project_template.html' %}
+{% include 'comeo_app/project_template.html' %}
+{% include 'comeo_app/project_template.html' %}
+
+</div>
 
 {% endblock %}

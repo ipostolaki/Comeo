@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, url
 from comeo_app import views
+from comeo_app import forms
+from django.contrib.auth.forms import PasswordResetForm
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='home'),
@@ -11,7 +13,8 @@ urlpatterns = patterns('',
 
     # Auth
 
-    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'comeo_app/auth/login.html'}, name='login'),
+    url(r'^login/$', 'django.contrib.auth.views.login',
+        {'template_name': 'comeo_app/auth/login.html', 'authentication_form': forms.LoginForm}, name='login'),
 
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'comeo_app/auth/logout.html'}, name='logout'),
 

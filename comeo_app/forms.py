@@ -4,7 +4,9 @@ from comeo_app.models import *
 
 from django.contrib.auth import get_user_model
 
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
+
+from django.utils.translation import ugettext_lazy as _
 
 # TODO email as username
 # TODO credentials match error text
@@ -17,10 +19,22 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 #         # labels = {'info': 'Info'}
 
 
+# TODO: need to be subclassed to localize ??
+class LoginForm(AuthenticationForm):
+    username = forms.EmailField(max_length=254)
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+
+    # error_messages = {
+    #     'invalid_login': _("Please enter a correct %(username)s and password. "
+    #                        "Note that both fields may be case-sensitive."),
+    #     'inactive': _("This account is inactive."),
+    # }
+
+
 class SignUpForm(forms.ModelForm):
 
-    last_name = forms.CharField(required=True)
-    password = forms.CharField(min_length=5)
+    last_name = forms.CharField(required=True, label=_('last name'))
+    password = forms.CharField(min_length=5, label=_('Password'))
     # TODO pass length check at: reset, change, login?
 
     class Meta:
@@ -36,8 +50,7 @@ class SignUpForm(forms.ModelForm):
     # self.fields['profession'].required = True
 
 
-class EditProfileForm(forms.ModelForm):
-
+class EditUserForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ['first_name', 'last_name', 'email']
@@ -45,7 +58,7 @@ class EditProfileForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = '__all__'
+        exclude = ('photo',)
 
 # class EditProfileForm(forms.Form):
 #
@@ -119,10 +132,6 @@ from crispy_forms.bootstrap import StrictButton
 #         )
 
 
-# class LoginForm(forms.Form):
-#     username = forms.CharField(initial='', label='Username:', error_messages={'required': 'Username?'})
-#     password = forms.CharField(initial='', widget=forms.PasswordInput(render_value=True), label='Password:',
-#                                max_length=100, min_length=5, error_messages={'required': 'Password?'})
 
 
 

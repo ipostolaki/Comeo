@@ -1,0 +1,101 @@
+@-webkit-keyframes icon-animate {
+  from {
+    background-position: center top; }
+
+  to {
+    background-position: center -9400px; } }
+
+@-moz-keyframes icon-animate {
+  from {
+    background-position: center top; }
+
+  to {
+    background-position: center -9400px; } }
+
+@keyframes icon-animate {
+  from {
+    background-position: center top; }
+
+  to {
+    background-position: center -9400px; } }
+
+
+.icon {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: inline-block;
+  background-size: 200px 9600px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  margin: 15px;
+  margin-top: 25px;
+  background-color: white;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  }
+
+
+.icon {
+  -webkit-animation: icon-animate 1.7s steps(47);
+  -moz-animation: icon-animate 1.7s steps(47) infinite;
+  animation: icon-animate 1.7s steps(47) infinite;
+}
+
+
+.icon.bullseye {
+    background-image: url(bullseye.png);
+    background-color: #ef736f;
+}
+
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+    .icon.bullseye {
+        background-image: url("../images/bullseye@2x.png");
+    }
+}
+
+
+.icon.lightbulb {
+    background-image: url(lightbulb.png);
+    background-color: #5daee9;
+    }
+
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  .icon.lightbulb {
+    background-image: url("../images/lightbulb@2x.png");
+    }
+}
+
+
+.icon.chat {
+    background-image: url(chat.png);
+    background-color: #f8c665;
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  .icon.chat {
+    background-image: url("../images/chat@2x.png");
+    }
+}
+
+
+.icon.piggybank {
+    -webkit-animation: icon-animate 1s steps(47) infinite;
+    background-image: url(piggybank.png);
+    background-color: #71d9bf;
+    }
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  .icon.piggybank {
+    background-image: url("../images/piggybank@2x.png");
+    }
+}
+
+.icon.cogs {
+    -webkit-animation: icon-animate 1s steps(47) infinite;
+    background-image: url(cogs.png);
+    background-color: white;
+    }
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  .icon.cogs {
+    background-image: url("../images/cogs@2x.png");
+    }
+}

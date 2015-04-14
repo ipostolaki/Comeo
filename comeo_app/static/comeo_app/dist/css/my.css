@@ -1,3 +1,35 @@
+
+/* Carousel */
+
+#theCarousel {
+    border-radius: 4px;
+    background-color: #ecf0f1;
+}
+
+.carousel-control.left, .carousel-control.right{
+	background-image: none;
+	display:none;
+}
+
+/* END Carousel */
+
+
+/* Project index page */
+
+.project {
+    padding-bottom:30px;
+}
+
+.c {
+    padding-right: 260px;
+    padding-left: 60px;
+    background-color:aquamarine;
+}
+
+.thintext {
+    font-weight: 400;
+}
+
 .panel-default > .panel-heading {
   background-color: #eff0f2;
 }
@@ -11,13 +43,8 @@
     font-weight: 400;
 }
 
-.asteriskField {
-    display:none;
-}
+/* END Project index page */
 
-.help-block {
-    font-size: 9pt;
-}
 /*
 .vertical-center-row{
     display: table-cell;

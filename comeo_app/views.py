@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from comeo_app.forms import *
 from django.core.mail import send_mail
+from django.utils.translation import ugettext
 
 
 from django.contrib.auth import authenticate, login, logout
@@ -14,6 +15,7 @@ def home(request):
 
 def faq(request):
     return render(request, 'comeo_app/faq.html')
+
 
 def about(request):
     return render(request, 'comeo_app/about.html')
@@ -54,7 +56,7 @@ def signup(request):
 
 # TODO custom User model with email instead of username ?
 
-# TODO next hidden input in forms
+# TODO next hidden input in forms for redirect
 
 
 @login_required
@@ -69,13 +71,15 @@ def profile_edit(request):
 
     if request.method == 'POST':
 
-        user_form = EditProfileForm(instance=request.user, data=request.POST)
-        profile_form = ProfileForm(instance=profile, data=request.POST)
+        # print(request.FILES['photo'])
 
+        user_form = EditUserForm(instance=request.user, data=request.POST)
+
+        # TODO Model Factory instead
+        profile_form = ProfileForm(instance=profile, data=request.POST, files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
 
             saved_profile = profile_form.save()
-            print(saved_profile.bank_account)
             saved_user = user_form.save(commit=False)
             saved_user.profile = saved_profile
             saved_user.save()
@@ -86,7 +90,7 @@ def profile_edit(request):
 
     else:
         profile_form = ProfileForm(instance=profile)
-        user_form = EditProfileForm(instance=request.user)
+        user_form = EditUserForm(instance=request.user)
 
     # user = User.objects.get(profile=request.user.profile)
 
