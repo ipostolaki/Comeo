@@ -49,7 +49,7 @@
                 <div class="icon chat"></div>
             </div>
             <div class="col-sm-8">
-                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Поделись с друзьями</h2>
+                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Поделись с сообществом</h2>
             </div>
         </div>
 
@@ -77,29 +77,74 @@
 
 </div>
 
-<div class="alert alert-danger alert-dismissible fade in" role="alert" style="margin-top:50px;">
-
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-
-    <p class="lead text-center">Сайт в разработке</p>
-
-</div>
-
-
     <br>
+
+
+    <div class="row">
+
+            <div class="text-center" style="padding:10px">
+                <img src="{% static 'comeo_app/process.png' %}" style="width:auto; height:58px;"></img>&nbsp;&nbsp;&nbsp;&nbsp;Идет разработка. Запуск скоро, следите за нами.<br>
+
+
+
+                <!--<img src="{% static 'comeo_app/fb.png' %}"></img><br><br>-->
+
+
+                <!--<div class="form-group form-inline">-->
+                    <!--<img src="{% static 'comeo_app/mail.png' %}" style="width:auto; height:42px;"></img>&nbsp;-->
+                    <!--<input type="text" class="form-control" placeholder="email рассылка" style="width:250px">-->
+                    <!--<button type="submit" class="btn btn-primary">OK</button>-->
+                <!--</div>-->
+
+            </div>
+
+    </div>
+
+
+
+
+
+
+
+
 
 
 
 
 <div class="row">
 
-{% include 'comeo_app/project_template.html' %}
-{% include 'comeo_app/project_template.html' %}
-{% include 'comeo_app/project_template.html' %}
-{% include 'comeo_app/project_template.html' %}
+    <div style="padding-left:5px; padding-top:25px">
+    <p class="lead text-center">Справка</p>
+        {% include 'comeo_app/faq_include.html' %}
+    </div>
 
 </div>
+
+<!--<div class="alert alert-danger alert-dismissible fade in" role="alert" style="margin-top:50px;">-->
+
+    <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+      <!--<span aria-hidden="true">&times;</span>-->
+    <!--</button>-->
+
+    <!--<p class="lead text-center">Сайт в разработке</p>-->
+
+<!--</div>-->
+
+
+<div class="row">
+
+<!--{% include 'comeo_app/project_template.html' %}-->
+
+</div>
+
+
+    <br>
+<div class="text-center">
+    <h6>Хочешь добавить проект заранее? Будем рады пообщаться.<h6> <br>
+    <a href="mailto:contact@comeo.org.md">
+        <img src="{% static 'comeo_app/mail.png' %}" style="width:auto; height:42px;"></img> <br> <p class="lead" style="margin-top:10px">contact@comeo.org.md</p>
+    </a>
+</div>
+    <br>
 
 {% endblock %}

@@ -3,7 +3,10 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head profile="http://www.w3.org/2005/10/profile">
+    <!--TODO: favicon the right way-->
+    <link rel="shortcut icon" type="image/png" href="{% static 'comeo_app/favicon.ico' %}"/>
+
     <meta charset="utf-8">
     <title>{% block title %}COMEO{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +26,9 @@
     <![endif]-->
       {% block headpart %}
       {% endblock %}
+
+
+
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -43,7 +49,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="#"></a></li>
                 <li {% nav_active request 'comeo_app:about'%}><a href="{% url 'comeo_app:about' %}">{% trans 'About' %}</a></li>
-                <li {% nav_active request 'comeo_app:faq'%}><a href="{% url 'comeo_app:faq' %}">{% trans 'FAQ' %}</a></li>
+                <!--<li {% nav_active request 'comeo_app:about'%}><a href="{% url 'comeo_app:about' %}">{% trans 'Contacts' %}</a></li>-->
+                <!--<li {% nav_active request 'comeo_app:faq'%}><a href="{% url 'comeo_app:faq' %}">{% trans 'FAQ' %}</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
@@ -52,8 +59,8 @@
                 <!--<li><img src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></img></li>-->
                 <li><a href="{% url 'comeo_app:logout' %}">{% trans 'Logout' %}</a></li>
                 {% else %}
-                <li {% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'sign up' %}</a></li>
-                <li {% nav_active request 'comeo_app:login' %}><a href="{% url 'comeo_app:login' %}">{% trans 'Login' %}</a></li>
+                <!--<li {% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'sign up' %}</a></li>-->
+                <!--<li {% nav_active request 'comeo_app:login' %}><a href="{% url 'comeo_app:login' %}">{% trans 'Login' %}</a></li>-->
                 {% endif %}
           </ul>
         </div><!-- /.navbar-collapse -->
