@@ -97,3 +97,7 @@ def profile_edit(request):
     context = {'profile_form': profile_form, 'user_form': user_form}
 
     return render(request, 'comeo_app/profile_edit.html', context)
+
+
+def ro(request):
+    return render(request, 'comeo_app/ro.html', {'lang': 'ro'})
