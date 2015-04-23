@@ -1,0 +1,30 @@
+{% extends 'comeo_app/base.html' %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% block headpart %}
+    <script src="modernizr.min.js"></script>
+    <link href="{% static 'comeo_app/kickdrop/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div style="padding:20px;">
+
+    <p class="lead text-center">Crowdfunding platforma pentru proiecte și evenimente locale</p>
+
+    <div class="row">
+            <div class="text-center" style="padding:10px">
+                <img src="{% static 'comeo_app/process.png' %}" style="width:auto; height:58px;"></img>&nbsp;&nbsp;&nbsp;&nbsp;Dezvoltare și traducere sunt în progress. Lansare în curând.<br>
+            </div>
+
+    </div>
+
+<div class="text-center" style="margin-top:15px">
+    <a href="mailto:contact@comeo.org.md">
+        <img src="{% static 'comeo_app/mail.png' %}" style="width:auto; height:42px;"></img> <br> <p class="lead" style="margin-top:10px">contact@comeo.org.md</p>
+    </a>
+</div>
+    <br>
+
+{% endblock %}

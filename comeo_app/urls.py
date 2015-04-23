@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^profile/edit/$', views.profile_edit, name='profile_edit'),
     url(r'^profile/faq/$', views.faq, name='faq'),
     url(r'^profile/about/$', views.about, name='about'),
+    url(r'^ro/$', views.ro, name='ro'),
 
     # Auth
 

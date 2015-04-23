@@ -28,12 +28,13 @@
       {% endblock %}
 
 
-
   </head>
+
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
+
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#the-navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -48,10 +49,11 @@
         <div class="collapse navbar-collapse" id="the-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#"></a></li>
-                <li {% nav_active request 'comeo_app:about'%}><a href="{% url 'comeo_app:about' %}">{% trans 'About' %}</a></li>
+                <li {% nav_active request 'comeo_app:about'%}><a href="{% url 'comeo_app:about' %}">{% if lang == "ro" %}Despre Noi{% else %}{% trans 'About' %}{%endif%}</a></li>
                 <!--<li {% nav_active request 'comeo_app:about'%}><a href="{% url 'comeo_app:about' %}">{% trans 'Contacts' %}</a></li>-->
                 <!--<li {% nav_active request 'comeo_app:faq'%}><a href="{% url 'comeo_app:faq' %}">{% trans 'FAQ' %}</a></li>-->
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
 
                 {% if user.is_authenticated %}
@@ -62,15 +64,48 @@
                 <!--<li {% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'sign up' %}</a></li>-->
                 <!--<li {% nav_active request 'comeo_app:login' %}><a href="{% url 'comeo_app:login' %}">{% trans 'Login' %}</a></li>-->
                 {% endif %}
+
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
+
 <div class="container" style="padding-top:60px">
-  <div class="row">
-      {% block content %}{% endblock %}
-  </div>
+
+    <!-- language selector -->
+
+    <div class="row text-right">
+        <div style="margin-right:20px;">
+            <div class="radio-inline" style="margin-right:-20px;">
+                <label class="radio" onclick="changeLang('ru')">
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio" {% if lang != "ro" %} checked="" {% endif %} class="custom-radio">
+                        <span class="icons">
+                            <span class="icon-unchecked"></span>
+                            <span class="icon-checked"></span>
+                        </span>
+                        Ru
+                </label>
+            </div>
+
+            <div class="radio-inline">
+                <label class="radio" onclick="changeLang('ro')">
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" data-toggle="radio" {% if lang == "ro" %} checked="" {% endif %} class="custom-radio">
+                        <span class="icons">
+                            <span class="icon-unchecked"></span>
+                            <span class="icon-checked"></span>
+                        </span>
+                        Ro
+                </label>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- language selector end -->
+
+    {% block content %}{% endblock %}
+
 </div>
 
     <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
@@ -79,5 +114,51 @@
     <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
     <!-- livereload development server -->
     <script src="http://127.0.0.1:35729/livereload.js?snipver=1"></script>
+
+    <script>
+    // language selector ui: make all radio button area behave like a link on click
+    function changeLang(lang) {
+        if (lang == 'ru') {
+            window.location.assign("{% url 'comeo_app:home'%}")
+        }else{
+            window.location.assign("{% url 'comeo_app:ro'%}")
+        }
+    }
+    </script>
+
   </body>
+
 </html>
+
+
+<!--DRAFTS-->
+
+<!--<div class="row text-right" style="margin-right:-140px">-->
+        <!--Ru | Ro-->
+    <!--</div>-->
+
+    <!--<ul class="nav navbar-nav" style="margin-left:-15px"><li {% if lang != "ro" %}class="active"{% endif %} style="margin-right:-30px">-->
+                    <!--<a href="{% url 'comeo_app:home'%}">Ru</a>-->
+                <!--</li>-->
+                <!--<li style="margin-right:-30px">-->
+                    <!--<a href="#">|</a>-->
+                <!--</li>-->
+                <!--<li {% if lang == "ro" %}class="active"{% endif %}  style="">-->
+                    <!--<a href="{% url 'comeo_app:ro'%}">Ro</a>-->
+                <!--</li></ul>-->
+
+
+
+
+
+
+
+<!--<li {% if lang != "ro" %}class="active"{% endif %} style="margin-right:-30px;">-->
+                    <!--<a href="{% url 'comeo_app:home'%}">ру</a>-->
+                <!--</li>-->
+                    <!--<li style="margin-right:-30px">-->
+                        <!--<a href="#">|</a>-->
+                    <!--</li>-->
+                <!--<li {% if lang == "ro" %}class="active"{% endif %}  style="">-->
+                    <!--<a href="{% url 'comeo_app:ro'%}">ro</a>-->
+                <!--</li>-->
