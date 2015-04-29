@@ -79,3 +79,9 @@ class ComeoUser(AbstractBaseUser, PermissionsMixin):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+class EmailSub(models.Model):
+
+    source = models.CharField(verbose_name=_('source'), max_length=300, blank=True)
+    email = models.EmailField(_('Email'), max_length=254)

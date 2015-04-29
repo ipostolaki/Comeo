@@ -11,6 +11,10 @@ urlpatterns = patterns('',
     url(r'^profile/faq/$', views.faq, name='faq'),
     url(r'^profile/about/$', views.about, name='about'),
     url(r'^ro/$', views.ro, name='ro'),
+    url(r'^mail/$', views.send_email, name='mail'),
+    url(r'^email-subscribe/$', views.email_subscribe, name='email_subscribe'),
+    url(r'^email-subscribe/success/$', views.email_subscribe_success, name='email_subscribe_success'),
+
 
     # Auth
 
