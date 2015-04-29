@@ -80,21 +80,26 @@
     <br>
 
 
+
+
+
     <div class="row">
 
-            <div class="text-center" style="padding:10px">
-                <img src="{% static 'comeo_app/process.png' %}" style="width:auto; height:58px;"></img>&nbsp;&nbsp;&nbsp;&nbsp;Идет разработка. Запуск скоро, следите за нами.<br>
 
 
+            <div class="row text-center" style="padding:10px">
 
-                <!--<img src="{% static 'comeo_app/fb.png' %}"></img><br><br>-->
+                <div><img src="{% static 'comeo_app/process.png' %}" style="width:auto; height:58px;"></img>&nbsp;&nbsp;&nbsp;&nbsp;Идет разработка, запуск скоро</div>
+                <div style="margin-left:-7px; margin-top:15px;"><a href="https://www.facebook.com/comeomd/" target="_blank"><img style="margin-right:15px" src="{% static 'comeo_app/fb.png' %}" style="width:auto; height:50px;"></img></a>Подпишитесь на обновления</div>
 
-
-                <!--<div class="form-group form-inline">-->
-                    <!--<img src="{% static 'comeo_app/mail.png' %}" style="width:auto; height:42px;"></img>&nbsp;-->
-                    <!--<input type="text" class="form-control" placeholder="email рассылка" style="width:250px">-->
-                    <!--<button type="submit" class="btn btn-primary">OK</button>-->
-                <!--</div>-->
+                <div class="form-group form-inline" style="padding-top:15px">
+                    <form action="{% url 'comeo_app:email_subscribe' %}" method="post">
+                        {% csrf_token %}
+                    <img src="{% static 'comeo_app/mail.png' %}" style="width:58px; height:58px; margin-left:37px;"></img>&nbsp;
+                        <input type="email" class="form-control" placeholder="email рассылка" name="email" style="width:240px; margin-left:0px">
+                        <button type="submit" class="btn btn-primary">OK</button>
+                    </form>
+                </div>
 
             </div>
 
@@ -130,9 +135,11 @@
 
     <br>
 <div class="text-center">
-    <h6>Хочешь добавить проект заранее? Будем рады пообщаться.<h6> <br>
+    <h6>Хочешь добавить проект заранее? Будем рады пообщаться.<h6>
+        <p class="lead">+ 373 79 201 406</p>
     <a href="mailto:contact@comeo.org.md">
-        <img src="{% static 'comeo_app/mail.png' %}" style="width:auto; height:42px;"></img> <br> <p class="lead" style="margin-top:10px">contact@comeo.org.md</p>
+        <!--<img src="{% static 'comeo_app/mail.png' %}" style="width:auto; height:42px;"></img>-->
+        <p class="lead" style="margin-top:-25px">contact@comeo.org.md</p>
     </a>
 </div>
     <br>

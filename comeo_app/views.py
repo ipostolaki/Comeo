@@ -1,8 +1,13 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from comeo_app.forms import *
-from django.core.mail import send_mail
 from django.utils.translation import ugettext
+
+from comeo_app.models import *
+
+#import smtplib
+#from email.mime.text import MIMEText
+
 
 
 from django.contrib.auth import authenticate, login, logout
@@ -20,6 +25,33 @@ def faq(request):
 def about(request):
     return render(request, 'comeo_app/about.html')
 
+# experimental
+def send_email(request):
+    print('sent')
+    # send_mail('Subject here', 'Here is the message.', 'contact@comeo.org.md',['ilia.ravemd@gmail.com'], fail_silently=False)
+    return HttpResponseRedirect('http://comeo.cf')
+
+def email_subscribe(request):
+
+    if request.method == 'POST':
+        subscribe_form = SubscribeForm(request.POST)
+
+        if request.POST['email']:
+
+            email = request.POST['email']
+
+            print(email)
+            sub = EmailSub(email=request.POST['email'], source="comeo")
+            sub.save(force_insert=True)
+
+            return HttpResponseRedirect('/email-subscribe/success')
+
+    return render(request, 'comeo_app/index.html')
+
+
+
+def email_subscribe_success(request):
+    return render(request, 'comeo_app/email_subscribe_success.html')
 
 def signup(request):
 

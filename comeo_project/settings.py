@@ -109,9 +109,22 @@ LANGUAGES = (
 
 LANGUAGE_CODE = 'ru'
 
-if DEBUG:
+DEFAULT_FROM_EMAIL = 'contact@comeo.org.md'
+SERVER_EMAIL = 'contact@comeo.org.md'
+
+
+DEBUG_EMAIL = False
+
+if DEBUG_EMAIL:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = 'email-dummy/'
+else:
+    # custom email backend which support ssl connection supported by zoho
+    EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+    EMAIL_HOST = 'smtp.zoho.com'
+    EMAIL_PORT = 465
+    EMAIL_HOST_USER = 'contact@comeo.org.md'
+    EMAIL_HOST_PASSWORD = 'Definepass1'
 
 
 # Custom non django

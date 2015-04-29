@@ -19,6 +19,9 @@ from django.utils.translation import ugettext_lazy as _
 #         # labels = {'info': 'Info'}
 
 
+class SubscribeForm(forms.Form):
+    email = forms.EmailField(max_length=254)
+
 # TODO: need to be subclassed to localize ??
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(max_length=254)
