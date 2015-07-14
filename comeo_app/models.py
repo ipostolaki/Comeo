@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 from django.utils.translation import ugettext_lazy as _
 
+
 class Profile(models.Model):
 
     bank_account = models.CharField(verbose_name=_('bank account'), max_length=300, blank=True)
@@ -85,3 +86,45 @@ class EmailSub(models.Model):
 
     source = models.CharField(verbose_name=_('source'), max_length=300, blank=True)
     email = models.EmailField(_('Email'), max_length=254)
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Campaign(models.Model):
+
+    #### state choices
+
+    STATE_DRAFT = 'draft'
+    STATE_PUBLIC = 'public'
+    STATE_COMPLETE = 'complete'
+
+    STATES = (
+        (STATE_DRAFT, 'draft'),
+        (STATE_PUBLIC, 'public'),
+        (STATE_COMPLETE, 'complete'),
+    )
+
+    #### funding choices
+
+    FUND_CONDITIONAL = 'conditional'
+    FUND_UNCONDITIONAL = 'unconditional'
+
+    FUND_TYPES = (
+        (FUND_CONDITIONAL, 'conditional'),
+        (FUND_UNCONDITIONAL, 'unconditional'),
+    )
+
+    desc_headline = models.CharField(_('Headline'), max_length=300)
+    desc_preview = models.TextField(_('Short description'), max_length=400)
+    summ_goal = models.PositiveIntegerField()
+    duration = models.PositiveSmallIntegerField()
+    image_main = models.ImageField(verbose_name=_('Campaign image'), blank=True, upload_to='campaigns_images')
+    desc_main = models.TextField(_('Description'))
+    collected_summ = models.PositiveIntegerField(blank=True, default=0)
+    owner = models.ManyToManyField(ComeoUser, verbose_name=_('campaign owner'))
+    state = models.CharField(_('State'), max_length=50, choices=STATES, default=STATE_DRAFT)
+    tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
+    funding_type = models.CharField(verbose_name=_('Funding type'), max_length=50, choices=FUND_TYPES, default=FUND_UNCONDITIONAL)
+    start_date = models.DateTimeField(_('start date'))

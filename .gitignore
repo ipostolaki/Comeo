@@ -9,3 +9,4 @@ email-dummy/
 *.ipynb
 media
 *.sqlite3
+secret.py

@@ -1,0 +1,17 @@
+{% extends 'comeo_app/profile/base_profile.html' %}
+{% load i18n %}
+
+{% block section %}
+<p class="lead"><a href="{% url 'comeo_app:campaign_create' %}">{% trans 'Create campaign' %}</a></p>
+
+{% if campaigns %}
+    {% for campaign in campaigns %}
+        <a href="{% url 'comeo_app:campaign_edit' campaign.id %}">
+            {{ campaign.desc_headline }}
+        </a>
+        <br>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+

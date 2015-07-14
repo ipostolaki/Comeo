@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from comeo_app.models import ComeoUser, Profile, EmailSub
+from comeo_app.models import *
 from comeo_app.forms import CustomUserChangeForm, CustomUserCreationForm
 
 
@@ -35,3 +35,4 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(ComeoUser, CustomUserAdmin)
 admin.site.register(Profile)
 admin.site.register(EmailSub)
+admin.site.register(Campaign)

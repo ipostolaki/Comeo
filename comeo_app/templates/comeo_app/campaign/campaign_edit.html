@@ -1,0 +1,24 @@
+{% extends 'comeo_app/base.html' %}
+{% load bootstrap %}
+{% load i18n %}
+{% block content %}
+
+<p style="padding-top:25px" class="lead text-center">{% trans 'Edit campaign' %}</p>
+<hr>
+
+<div class="col-sm-5">
+
+<form action="{% url 'comeo_app:campaign_edit' campaign.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ campaign_form|bootstrap }}
+
+    <p>
+        <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+        <button type="submit" class="btn btn-danger" name="delete" value=" ">{% trans 'Delete' %}</button>
+    </p>
+
+</form>
+
+</div>
+
+{% endblock %}

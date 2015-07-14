@@ -9,6 +9,7 @@ def nav_active(request, urls):
         return 'class="active"'
     return ''
 
+
 @register.simple_tag
 def url_name(request):
     return resolve(request.path).url_name

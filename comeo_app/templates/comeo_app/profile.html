@@ -1,8 +1,0 @@
-{% extends 'comeo_app/base.html' %}
-{% load i18n %}
-{% block content %}
-<div style="padding-left:20px; padding-top:25px">
-    <p class="lead">{{user.get_full_name}}</p>
-    <a href="{% url 'comeo_app:profile_edit' %}">{% trans 'edit profile' %}</a>
-</div>
-{% endblock %}

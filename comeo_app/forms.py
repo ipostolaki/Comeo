@@ -61,7 +61,7 @@ class EditUserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ('photo',)
+        fields = '__all__'
 
 # class EditProfileForm(forms.Form):
 #
@@ -70,6 +70,11 @@ class ProfileForm(forms.ModelForm):
 #     last_name = forms.CharField()
 #     info = forms.CharField(widget=forms.Textarea)
 
+
+class CampaignForm(forms.ModelForm):
+    class Meta:
+        model = Campaign
+        exclude = ('collected_summ','owner', 'tags', 'funding_type', 'start_date')
 
 # ----------------- Admin user management Forms
 

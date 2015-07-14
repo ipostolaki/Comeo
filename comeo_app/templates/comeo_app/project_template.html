@@ -1,16 +1,32 @@
+{% load staticfiles %}
 <div class="col-md-3">
-    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-    class="img-responsive">
-    <h5>A Project with loooong headline <br><small>01.04.15 – 30.04.15</small></h5>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
-        sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud</p>
+    <div class="camp-headline" style="min-height:52px">
+        <h6>{{ campaign.desc_headline }}</h6>
+    </div>
+
+    <div class="camp-image"  style="min-height:192px">
+        {% if campaign.image_main %}
+        <img src="{{ campaign.image_main.url }}" class="img-responsive">
+        {% else %}
+            <img src="{% static 'comeo_app/placeholder.png' %}" class="img-responsive">
+        {% endif %}
+    </div>
+
+    <h6><small>00.00.15 – 00.00.15</small></h6>
+
+    <div class="camp-desc" style="min-height:150px">
+    <p>{{ campaign.desc_main }}</p>
+    </div>
+
     <div class="progress">
         <div class="progress-bar" role="progressbar" style="width: 60%;">60%</div>
     </div>
 
-    <p>20 000 MDL</p>
+    <p>{{ campaign.summ_goal }} MDL</p>
 
     <a class="btn btn-sm btn-primary">Check out</a>
+
+    <br>
+    <br>
 </div>
