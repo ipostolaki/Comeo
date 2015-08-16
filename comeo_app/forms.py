@@ -74,7 +74,7 @@ class ProfileForm(forms.ModelForm):
 class CampaignForm(forms.ModelForm):
     class Meta:
         model = Campaign
-        exclude = ('collected_summ','owner', 'tags', 'funding_type', 'start_date')
+        exclude = ('collected_summ', 'owner', 'tags', 'funding_type', 'date_start', 'date_finish', 'date_created', 'views_count')
 
 # ----------------- Admin user management Forms
 
@@ -102,7 +102,17 @@ class CustomUserChangeForm(UserChangeForm):
 # END ----------------- Admin user management Forms
 
 
+# class FormDonate(forms.Form):
+#     amount = forms.CharField(label=_('Amount'))
+#     payment_processor_type = forms.ChoiceField(label=_('Payment method'), choices=[('card', _('Bank card'),), ('terminal', _('Terminal'),)])
+#     agree_check = forms.BooleanField(label='Я прочитал пользовательское соглашение и согласен с правилами')
 
+class FormDonate(forms.ModelForm):
+    agree_check = forms.BooleanField(label='Я согласен с правилами')
+
+    class Meta:
+        model = Transaction
+        fields = ['amount', 'method', 'agree_check']
 
 
 
@@ -171,3 +181,4 @@ from crispy_forms.bootstrap import StrictButton
 #
 #     password = forms.CharField(initial='', label='Password',
 #                                max_length=100, min_length=5, error_messages=error_messages_password)
+

@@ -14,7 +14,18 @@
 
     <p>
         <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
-        <button type="submit" class="btn btn-danger" name="delete" value=" ">{% trans 'Delete' %}</button>
+        {% if campaign %}
+            {# do not show these buttons when form is showed for campaign create view #}
+
+            {% if campaign.state == "draft" %}
+                <button type="submit" class="btn btn-success" name="publish" value=" ">{% trans 'Publish' %}</button>
+            {% endif %}
+
+            <br><br>
+            <button type="submit" class="btn btn-danger" name="delete" value=" ">{% trans 'Delete' %}</button>
+        {% endif %}
+
+
     </p>
 
 </form>

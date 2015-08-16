@@ -1,8 +1,6 @@
-import os
+from django.conf import settings
 
-OUTSIDE = os.environ.get('OUTSIDE', None)
-
-beta = (OUTSIDE == 'development')
+beta = (settings.OUTSIDE == 'development')
 
 def custom_processor(request):
     to_context = {'beta': beta}

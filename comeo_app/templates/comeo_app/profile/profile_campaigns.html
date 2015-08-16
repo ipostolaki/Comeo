@@ -1,5 +1,6 @@
 {% extends 'comeo_app/profile/base_profile.html' %}
 {% load i18n %}
+{% load some_tags %}
 
 {% block section %}
 <p class="lead"><a href="{% url 'comeo_app:campaign_create' %}">{% trans 'Create campaign' %}</a></p>
@@ -7,7 +8,13 @@
 {% if campaigns %}
     {% for campaign in campaigns %}
         <a href="{% url 'comeo_app:campaign_edit' campaign.id %}">
-            {{ campaign.desc_headline }}
+            {{ campaign.desc_headline }} <br>
+            <small>{{ campaign.state }} | {{ campaign.date_start }} |
+                   {{ campaign.date_finish }} | {{ campaign.days_to_finish|days_ru }} |
+                    {{ campaign.owner }}
+            </small>
+            <br>
+
         </a>
         <br>
     {% endfor %}

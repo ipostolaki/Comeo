@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'bootstrapform',
     'django_extensions',
+    'django.contrib.humanize',
 )
 
 MIDDLEWARE_CLASSES = (

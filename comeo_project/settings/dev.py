@@ -21,3 +21,11 @@ INSTALLED_APPS += ('debug_toolbar','debug_panel',)
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'email-dummy/'
+
+
+# SHELL_PLUS_PRE_IMPORTS = (
+#     ('module.submodule1', ('class1', 'function2')),
+#     ('module.submodule2', 'function3'),
+#     ('module.submodule3', '*'),
+#     'module.submodule4'
+# )ƒ

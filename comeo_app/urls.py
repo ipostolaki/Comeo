@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, url
 from comeo_app import views
 from comeo_app import forms
-from django.contrib.auth.forms import PasswordResetForm
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='home'),
@@ -9,6 +8,9 @@ urlpatterns = patterns('',
     url(r'^about/$', views.about, name='about'),
     url(r'^ro/$', views.ro, name='ro'),
     url(r'^campaigns/$', views.campaigns_public, name='campaigns_public'),
+    url(r'^campaigns/(?P<pk>\d+)/$', views.campaign_details, name='campaign_details'),
+    url(r'^campaigns/donate/(?P<pk>\d+)/$', views.campaign_donate, name='campaign_donate'),
+    url(r'^campaigns/donate_instruction/transaction_pk=(?P<transaction_pk>\d+)&campaign_pk=(?P<campaign_pk>\d+)/$', views.donate_instruction, name='donate_instruction'),
 
 
     url(r'^mail/$', views.send_email, name='mail'),
@@ -18,6 +20,7 @@ urlpatterns = patterns('',
     # Profile
 
     url(r'^profile/campaigns/create$', views.campaign_create, name='campaign_create'),
+    url(r'^profile/campaigns/publish$/(?P<pk>\d+)/', views.campaign_edit, {'publish_act': 'publish'}, name='campaign_create'),
     url(r'^profile/campaigns$', views.profile_campaigns, name='profile_campaigns'),
     url(r'^profile/campaigns/(?P<pk>\d+)/$', views.campaign_edit, name='campaign_edit'),
     url(r'^profile/$', views.profile, name='profile'),
@@ -39,7 +42,7 @@ urlpatterns = patterns('',
     url(r'^password_change/done/$', 'django.contrib.auth.views.password_change_done',
         {'template_name': 'comeo_app/auth/password_change_done.html'},
         name='password_change_done'),
-\
+
     url(r'^password_reset/$', 'django.contrib.auth.views.password_reset',
         {'template_name': 'comeo_app/auth/password_reset.html',
          'post_reset_redirect': 'comeo_app:password_reset_done',
@@ -63,4 +66,6 @@ urlpatterns = patterns('',
     url(r'^test$', views.test, name='test'),
 
     )
+from django.contrib.auth.forms import PasswordResetForm
+
 

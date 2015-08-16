@@ -116,15 +116,71 @@ class Campaign(models.Model):
         (FUND_UNCONDITIONAL, 'unconditional'),
     )
 
+    #### Duration range for choices
+    DURATION_CHOICES = zip( range(1, 31), range(1, 31) )
+
     desc_headline = models.CharField(_('Headline'), max_length=300)
     desc_preview = models.TextField(_('Short description'), max_length=400)
     summ_goal = models.PositiveIntegerField()
-    duration = models.PositiveSmallIntegerField()
+    duration = models.PositiveSmallIntegerField(choices=DURATION_CHOICES)
     image_main = models.ImageField(verbose_name=_('Campaign image'), blank=True, upload_to='campaigns_images')
     desc_main = models.TextField(_('Description'))
     collected_summ = models.PositiveIntegerField(blank=True, default=0)
-    owner = models.ManyToManyField(ComeoUser, verbose_name=_('campaign owner'))
+    editors = models.ManyToManyField(ComeoUser, related_name='campaign_editors', verbose_name=_('campaign editors'))
+    owner = models.ForeignKey(ComeoUser, verbose_name=_('campaign owner'), null=True)
     state = models.CharField(_('State'), max_length=50, choices=STATES, default=STATE_DRAFT)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
     funding_type = models.CharField(verbose_name=_('Funding type'), max_length=50, choices=FUND_TYPES, default=FUND_UNCONDITIONAL)
-    start_date = models.DateTimeField(_('start date'))
+    date_start = models.DateField(_('start date'), null=True)
+    date_finish = models.DateField(_('finish date'), null=True)
+    date_created = models.DateTimeField(_('creation date'), default=timezone.now)
+    views_count = models.PositiveIntegerField(_('view count'), default=0)
+
+
+
+
+    def income_transaction(self, transaction):
+
+        # TODO: campaign sum can be incremented by the same transaction twice.
+        # TEST neded: ope campaign recieves the same transaction twice, summ shoul not be incresead in this case,
+        #  it shoudl be equal to summ saved before transaction sent to campaign second time
+
+
+        self.collected_summ += transaction.amount
+        self.save()
+
+    # def get_progress_percents(self):
+    #     percents = (self.collected_summ*100)/self.summ_goal
+    #     return int(round(percents))
+
+    def days_to_finish(self):
+        now = timezone.now().date()
+        if self.date_finish:
+            days_left = self.date_finish - now
+            return days_left.days
+
+
+class Transaction(models.Model):
+
+    METHOD_CARD = 'METHOD_CARD'
+    METHOD_TERMINAL = 'METHOD_TERMINAL'
+
+    PAYMENT_METHODS = (
+        (METHOD_CARD, 'Bank card'),
+        (METHOD_TERMINAL, 'Terminal'),
+    )
+
+    amount = models.PositiveSmallIntegerField()
+    method = models.CharField(choices=PAYMENT_METHODS, default=METHOD_CARD, max_length=40)
+    campaign = models.ForeignKey(Campaign)
+    payer = models.ForeignKey(ComeoUser)
+    external_id = models.CharField(max_length=150, null=True)
+    date_created = models.DateTimeField(default=timezone.now)
+    confirmed = models.BooleanField(default=False) # transaction is confirmed by successful callback from payment partner
+    date_confirmed = models.DateTimeField(null=True)
+
+    def confirm(self):
+        self.campaign.income_transaction(self)
+        self.date_confirmed = timezone.now()
+        self.confirmed = True
+        self.save()

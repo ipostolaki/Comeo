@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head profile="http://www.w3.org/2005/10/profile">
+  <head profile="http://www.w3.org/2005/10/profile">
     <!--TODO: favicon the right way-->
     <link rel="shortcut icon" type="image/png" href="{% static 'comeo_app/favicon.ico' %}"/>
 
@@ -59,7 +60,7 @@
             <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 {% if user.profile.photo %}
-                <li><img src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></img></li>
+                <li><img class='image' src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></img></li>
                 {% endif %}
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}<span class="caret"></span></a>
@@ -127,8 +128,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
     <!-- livereload development server -->
-    <script src="http://127.0.0.1:35729/livereload.js?snipver=1"></script>
-
+    <script src="127.0.0.1:35729/livereload.js?snipver=1"></script>
     <!--language selector ui: make all radio button area behave like a link on click-->
     <script>
     function changeLang(lang) {
@@ -152,8 +152,8 @@
 </script>
 
 </body>
-
 </html>
+
 
 
 <!--DRAFTS-->

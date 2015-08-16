@@ -1,22 +1,20 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from comeo_app.forms import *
 from django.utils.translation import ugettext
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Q
+from django.utils import timezone
+from comeo_app.logic import *
 
 from comeo_app.models import *
 
-# check
 import datetime
-from django.utils import dateformat
-from django.utils import timezone
-# check
 
 #import smtplib
 #from email.mime.text import MIMEText
-
 
 
 from django.contrib.auth import authenticate, login
@@ -64,7 +62,7 @@ def email_subscribe(request):
             sub = EmailSub(email=request.POST['email'], source="comeo")
             sub.save(force_insert=True)
 
-            return HttpResponseRedirect('/email-subscribe/success')
+            return HttpResponseRedirect('/email-subscribe/success') # TODO: redirect shortcut instead
 
     return render(request, 'comeo_app/index.html')
 
@@ -124,8 +122,6 @@ def profile_edit(request):
 
     if request.method == 'POST':
 
-        # print(request.FILES['photo'])
-
         user_form = EditUserForm(instance=request.user, data=request.POST)
 
         # TODO Model Factory instead
@@ -139,14 +135,11 @@ def profile_edit(request):
 
             messages.success(request, _('profile updated'))
 
-            # TODO: 'profile saved' notification message in template
             # TODO: confirm email change through token link
 
     else:
         profile_form = ProfileForm(instance=profile)
         user_form = EditUserForm(instance=request.user)
-
-    # user = User.objects.get(profile=request.user.profile)
 
     context = {'profile_form': profile_form, 'user_form': user_form}
 
@@ -156,7 +149,7 @@ def profile_edit(request):
 def ro(request):
     return render(request, 'comeo_app/ro.html', {'lang': 'ro'})
 
-
+@login_required
 def campaign_create(request):
 
     if request.method == 'POST':
@@ -165,11 +158,12 @@ def campaign_create(request):
         if campaign_form.is_valid():
 
             created_campaign = campaign_form.save(commit=False)
-            created_campaign.start_date = '2015-07-03' # YYYY-MM-DD HH:MM
             created_campaign.save()
 
-            created_campaign.owner.add(request.user)
+            created_campaign.owner = request.user
+            created_campaign.editors.add(request.user)
             created_campaign.save()
+
             return HttpResponseRedirect(reverse('comeo_app:profile_campaigns'))
 
     else:
@@ -180,22 +174,28 @@ def campaign_create(request):
     return render(request, 'comeo_app/campaign/campaign_create.html', context)
 
 
+@login_required
 def profile_campaigns(request):
 
-    # campaigns = request.user.campaign_set.all()
-    campaigns = Campaign.objects.filter(owner=request.user)
+    campaigns = Campaign.objects.filter(editors=request.user)
+    # TODO: now all owners are editors by default(should not be?) May need refactoring - distinct should work properly on PSQL not sqlite
+    # campaigns = Campaign.objects.filter(Q(owner=request.user) | Q(editors=request.user)).distinct()
 
     context = {'campaigns': campaigns}
     return render(request, 'comeo_app/profile/profile_campaigns.html', context)
 
 
+@login_required
 def campaign_edit(request, pk):
 
     campaign = Campaign.objects.get(pk=pk)
 
+    campaign.days_to_finish()
+
     if request.method == 'GET':
         campaign_form = CampaignForm(instance=campaign)
-        context = {'campaign_form': campaign_form, 'campaign': campaign}
+        published = (campaign.state==campaign.STATE_PUBLIC)
+        context = {'campaign_form': campaign_form, 'campaign': campaign, 'published': published}
         return render(request, 'comeo_app/campaign/campaign_edit.html', context)
 
     elif request.method == 'POST':
@@ -203,17 +203,86 @@ def campaign_edit(request, pk):
         if request.POST.get("delete", False):
             campaign.delete()
         else:
-            # save
+            # save edited
             campaign_form = CampaignForm(instance=campaign, data=request.POST, files=request.FILES)
-            if campaign_form.is_valid(): campaign_form.save()
+
+            if campaign_form.is_valid():
+
+                # publish if needed
+                if request.POST.get("publish", False):
+                    campaign.state = campaign.STATE_PUBLIC
+                    start = timezone.now()
+                    campaign.date_start = start
+                    finish = start + datetime.timedelta(days=campaign.duration)
+                    campaign.date_finish = finish
+
+                campaign_form.save()
 
         return HttpResponseRedirect(reverse('comeo_app:profile_campaigns'))
 
 
 def campaigns_public(request):
 
-    campaigns = Campaign.objects.all()
+    campaigns = Campaign.objects.filter(state=Campaign.STATE_PUBLIC)
 
     context = {'campaigns': campaigns}
 
     return render(request, 'comeo_app/campaigns_public.html', context)
+
+
+def campaign_details(request, pk):
+
+    # TODO: restrict viewing unpublished campaigns
+
+    campaign = Campaign.objects.get(pk=pk)
+
+    backers_count = Transaction.objects.filter(campaign=campaign, confirmed=True).count()
+
+    context = {'campaign': campaign, 'backers_count': backers_count}
+
+    return render(request, 'comeo_app/campaign_details.html', context)
+
+
+def campaign_donate(request, pk):
+
+    campaign = Campaign.objects.get(pk=pk)
+
+    donate_form = FormDonate(request.POST or None)
+
+    if donate_form.is_valid():
+        transaction = donate_form.save(commit=False)
+        transaction.payer = request.user
+        transaction.campaign = campaign
+        transaction.save()
+        # TODO refactor? crete trans in next view, send just amount/method (session)
+
+
+        #messages.success(request, _('Thanks for your donation!'))
+        # TODO refactor shortcut
+        #return HttpResponseRedirect(reverse('comeo_app:campaign_details', kwargs={'pk': pk}))
+
+        # redirect to partners page with payment instructions
+        return HttpResponseRedirect(reverse('comeo_app:donate_instruction', kwargs={'transaction_pk': transaction.pk, 'campaign_pk': campaign.pk}))
+
+
+    context = {'campaign': campaign, 'donate_form': donate_form}
+
+    return render(request, 'comeo_app/campaign_donate.html', context)
+
+
+def donate_instruction(request, transaction_pk, campaign_pk):
+
+    # TODO security: this view can be called by anyone through get request with any combination of transaction id and campaign id
+
+    '''
+    At this step transaction initialization take place.
+    Payment partner should process transaction ID for interoperability
+    '''
+
+
+    t = Transaction.objects.get(pk=transaction_pk)
+    transaction_confirmation(t)
+
+    messages.success(request, _('Thanks for your donation! Transaction processing.'))
+
+    return render(request, 'comeo_app/donate_instruction.html', {'pk': transaction_pk, 'campaign_pk': campaign_pk})

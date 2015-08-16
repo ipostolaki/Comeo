@@ -1,0 +1,60 @@
+{% extends 'comeo_app/base.html' %}
+{% block content %}
+{% load some_tags %}
+
+
+<div class="row">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="col-sm-6">
+        <h5>{{ campaign.desc_headline }}</h5>
+        <p >{{ campaign.desc_preview }}</p>
+
+        {% if campaign.image_main %}
+            <img style="height:249px" src="{{ campaign.image_main.url }}" class="img-responsive">
+        {% endif %}
+    </div>
+
+    <div class="col-sm-4">
+
+        <div class="row" style="min-height:55px"></div>
+
+            <p class="lead">Осталось {{ campaign.days_to_finish|days_ru }}</p>
+            <p>Собрано {{ campaign.collected_summ }} из {{ campaign.summ_goal }} <small>MDL</small></p>
+
+            {% include 'comeo_app/progress_bar_template.html' %}
+
+            {% if backers_count > 0 %}
+                <p>{{ backers_count }} {% plural_ru backers_count 'человек' 'человека' 'человек' %} {% plural_ru backers_count 'поддержал' 'поддержали' 'поддержали' %}</p>
+            {% endif %}
+
+
+            <a class="btn btn-lg btn-success" href="{% url 'comeo_app:campaign_donate' campaign.pk %}">Поддержать</a>
+
+            <p class="small" style="margin-top:5px"><a href="#">Связаться с автором</a></p>
+    </div>
+
+</div>
+
+<div class="jumbotron" style="margin-top:50px">
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <br>
+            {{ campaign.desc_main }}
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
