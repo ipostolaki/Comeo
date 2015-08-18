@@ -1,27 +1,16 @@
 from .common import *
-
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
+from .secret import *
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'comeo_one',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'comeo_one',
         'USER': 'comeo_one_user',
-        'PASSWORD': 'secretpass',
-        'HOST': 'localhost',                      # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'PASSWORD': secret_psql_pass,
+        'HOST': 'localhost',
+        'PORT': '', # Set to empty string for default.
     }
 }
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
