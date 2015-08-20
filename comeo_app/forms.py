@@ -74,7 +74,7 @@ class ProfileForm(forms.ModelForm):
 class CampaignForm(forms.ModelForm):
     class Meta:
         model = Campaign
-        exclude = ('collected_summ', 'owner', 'tags', 'funding_type', 'date_start', 'date_finish', 'date_created', 'views_count')
+        exclude = ('collected_summ', 'owner', 'tags', 'funding_type', 'date_start', 'date_finish', 'date_created', 'views_count', 'state')
 
 # ----------------- Admin user management Forms
 
