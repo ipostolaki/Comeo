@@ -10,3 +10,4 @@ email-dummy/
 media
 *.sqlite3
 secret.py
+*.pyc

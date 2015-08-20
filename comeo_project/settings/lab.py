@@ -18,7 +18,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 STATIC_URL = '/home/comeo_lab_env/comeo_project/comeo_app/static/comeo_app/'
-MEDIA_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/media'
+MEDIA_ROOT = '/home/comeo_lab_env/comeo_project/media'
 
 #LOCALE_PATHS = ('/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/locale/',)
 
