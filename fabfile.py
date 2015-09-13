@@ -2,31 +2,48 @@ from __future__ import with_statement
 from fabric.api import *
 
 env.host_string = "root@comeo.org.md"
-# env.key_filename = "/Users/ipostolaki/.ssh/id_rsa"
 
-def deploy():
+def deploy(stop="do_stop"):
+
+    # stop webserver service
+    if stop == 'do_stop':
+        run("stop lab")
+
     # pull updates from central repo
     run("cd /home/comeo_lab_env/comeo_project/ && git fetch && git pull")
-        # stop webserver service
-        run("stop lab")
-        # run migrations if any
-        run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && python ./manage.py migrate")
-        # start webserver
-        run("start lab")
 
-    def check():
-        pass
+    # install new requirements
+    run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && pip install -r reqs.txt")
 
-    def start():
-        run("start lab")
+    # run migrations if any
+    run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && python ./manage.py migrate")
 
-    def status():
-        run("cd /home/comeo_lab_env/comeo_project/ && git fetch && git status")
+    # start webserver
+    run("start lab")
 
-    # def local():
-# 	# local("git status")
+
+def reqs():
+    # freeze local pip reqs
+    local("cd /Users/ipostolaki/envs/comeo_sync/bin && source activate && pip freeze > /Users/ipostolaki/envs/comeo_sync/comeo_project/reqs.txt")
+
+
+def reqs_remote():
+    run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && pip install -r reqs.txt")
+
+
+def start():
+    run("start lab")
+
+
+def status():
+    run("cd /home/comeo_lab_env/comeo_project/ && git fetch && git status")
+
+
+# def local():
+#     local("git status")
 # 	print(env.lcwd)
 
+# env.key_filename = "/Users/ipostolaki/.ssh/id_rsa"
 
 # code_dir = '/srv/django/myproject'
 # with cd(code_dir):        
