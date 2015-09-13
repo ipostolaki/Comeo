@@ -20,6 +20,8 @@
     <link href="{% static 'comeo_app/dist/css/flat-ui.min.css' %}" rel="stylesheet">
     <link href="{% static 'comeo_app/dist/css/my.css' %}" rel="stylesheet">
 
+    <script src="{% static 'comeo_app/dist/js/vendor/jquery.min.js' %}"></script>
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
       <script src="js/vendor/html5shiv.js"></script>
@@ -123,13 +125,10 @@
 
 </div>
 
-    <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
-    <script src="{% static 'comeo_app/dist/js/vendor/jquery.min.js' %}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
     <!-- livereload development server -->
     <script src="127.0.0.1:35729/livereload.js?snipver=1"></script>
-    <!--language selector ui: make all radio button area behave like a link on click-->
+    <!--language selector ui: whole area of radio button behave like a link on click-->
     <script>
     function changeLang(lang) {
         if (lang == 'ru') {

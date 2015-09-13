@@ -11,8 +11,10 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
-STATIC_URL = '/home/comeo_env/comeo_project/comeo_app/static/comeo_app/'
+STATIC_URL = '/comeo_project/comeo_app/static/'
 MEDIA_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/media'
+
+STATIC_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/static/ROOT'
 
 LOCALE_PATHS = ('/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/locale/',)
 
@@ -21,6 +23,9 @@ INSTALLED_APPS += ('debug_toolbar','debug_panel',)
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'email-dummy/'
+
+CKEDITOR_UPLOAD_PATH = "ckeditor/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
 
 
 # SHELL_PLUS_PRE_IMPORTS = (

@@ -162,6 +162,7 @@ def campaign_create(request):
 
             created_campaign.owner = request.user
             created_campaign.editors.add(request.user)
+
             created_campaign.save()
 
             return HttpResponseRedirect(reverse('comeo_app:profile_campaigns'))

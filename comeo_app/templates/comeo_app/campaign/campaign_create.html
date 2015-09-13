@@ -1,6 +1,7 @@
 {% extends 'comeo_app/base.html' %}
 {% load bootstrap %}
 {% load i18n %}
+{% load staticfiles %}
 {% block content %}
 
 <p style="padding-top:25px" class="lead text-center">{% trans 'Edit campaign' %}</p>
@@ -8,8 +9,12 @@
 
 <div class="col-sm-5">
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 <form action="{% url 'comeo_app:campaign_create' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+
+    {{ campaign_form.media }}
     {{ campaign_form|bootstrap }}
 
     <p><button type="submit" class="btn btn-primary">{% trans 'Save' %}</button></p>
