@@ -71,10 +71,13 @@ class ProfileForm(forms.ModelForm):
 #     info = forms.CharField(widget=forms.Textarea)
 
 
+from ckeditor.widgets import CKEditorWidget
+
 class CampaignForm(forms.ModelForm):
+    desc_main = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Campaign
-        exclude = ('collected_summ', 'owner', 'tags', 'funding_type', 'date_start', 'date_finish', 'date_created', 'views_count', 'state')
+        exclude = ('collected_summ', 'owner', 'tags', 'funding_type', 'date_start', 'date_finish', 'date_created', 'views_count', 'state', 'editors')
 
 # ----------------- Admin user management Forms
 

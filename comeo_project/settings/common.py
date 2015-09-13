@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'bootstrapform',
     'django_extensions',
     'django.contrib.humanize',
+    'ckeditor',
 )
 
 MIDDLEWARE_CLASSES = (
