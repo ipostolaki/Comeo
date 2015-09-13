@@ -3,10 +3,10 @@ from fabric.api import *
 
 env.host_string = "root@comeo.org.md"
 
-def deploy(stop="do_stop"):
+def deploy(stop="do", migrate="do"):
 
     # stop webserver service
-    if stop == 'do_stop':
+    if stop == 'do':
         run("stop lab")
 
     # pull updates from central repo
@@ -16,7 +16,8 @@ def deploy(stop="do_stop"):
     run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && pip install -r reqs.txt")
 
     # run migrations if any
-    run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && python ./manage.py migrate")
+    if migrate == 'do':
+        run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && python ./manage.py migrate --settings=comeo_project.settings.lab")
 
     # start webserver
     run("start lab")

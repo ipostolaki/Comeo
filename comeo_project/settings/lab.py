@@ -20,7 +20,7 @@ ALLOWED_HOSTS = []
 STATIC_URL = '/home/comeo_lab_env/comeo_project/comeo_app/static/comeo_app/'
 MEDIA_ROOT = '/home/comeo_lab_env/comeo_project/media'
 
-#LOCALE_PATHS = ('/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/locale/',)
+LOCALE_PATHS = ('/home/comeo_lab_env/comeo_project/comeo_app/locale/',)
 
 # custom email backend which support ssl connection supported by zoho
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
