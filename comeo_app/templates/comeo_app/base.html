@@ -20,6 +20,9 @@
     <link href="{% static 'comeo_app/dist/css/flat-ui.min.css' %}" rel="stylesheet">
     <link href="{% static 'comeo_app/dist/css/my.css' %}" rel="stylesheet">
 
+    <!-- livereload development server -->
+    <script src="http://127.0.0.1:35729/livereload.js?snipver=1"></script>
+
     <script src="{% static 'comeo_app/dist/js/vendor/jquery.min.js' %}"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
@@ -126,8 +129,7 @@
 </div>
 
     <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
-    <!-- livereload development server -->
-    <script src="127.0.0.1:35729/livereload.js?snipver=1"></script>
+
     <!--language selector ui: whole area of radio button behave like a link on click-->
     <script>
     function changeLang(lang) {
@@ -152,37 +154,3 @@
 
 </body>
 </html>
-
-
-
-<!--DRAFTS-->
-
-<!--<div class="row text-right" style="margin-right:-140px">-->
-        <!--Ru | Ro-->
-    <!--</div>-->
-
-    <!--<ul class="nav navbar-nav" style="margin-left:-15px"><li {% if lang != "ro" %}class="active"{% endif %} style="margin-right:-30px">-->
-                    <!--<a href="{% url 'comeo_app:home'%}">Ru</a>-->
-                <!--</li>-->
-                <!--<li style="margin-right:-30px">-->
-                    <!--<a href="#">|</a>-->
-                <!--</li>-->
-                <!--<li {% if lang == "ro" %}class="active"{% endif %}  style="">-->
-                    <!--<a href="{% url 'comeo_app:ro'%}">Ro</a>-->
-                <!--</li></ul>-->
-
-
-
-
-
-
-
-<!--<li {% if lang != "ro" %}class="active"{% endif %} style="margin-right:-30px;">-->
-                    <!--<a href="{% url 'comeo_app:home'%}">ру</a>-->
-                <!--</li>-->
-                    <!--<li style="margin-right:-30px">-->
-                        <!--<a href="#">|</a>-->
-                    <!--</li>-->
-                <!--<li {% if lang == "ro" %}class="active"{% endif %}  style="">-->
-                    <!--<a href="{% url 'comeo_app:ro'%}">ro</a>-->
-                <!--</li>-->
