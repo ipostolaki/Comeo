@@ -147,6 +147,7 @@ def profile_edit(request):
 
 
 def ro(request):
+    # localization system mock page
     return render(request, 'comeo_app/ro.html', {'lang': 'ro'})
 
 @login_required
@@ -195,7 +196,7 @@ def campaign_edit(request, pk):
 
     if request.method == 'GET':
         campaign_form = CampaignForm(instance=campaign)
-        published = (campaign.state==campaign.STATE_PUBLIC)
+        published = (campaign.state == campaign.STATE_PUBLIC)
         context = {'campaign_form': campaign_form, 'campaign': campaign, 'published': published}
         return render(request, 'comeo_app/campaign/campaign_edit.html', context)
 
@@ -248,25 +249,42 @@ def campaign_donate(request, pk):
 
     campaign = Campaign.objects.get(pk=pk)
 
+    if request.user.is_authenticated():
+        user_sign_up_needed = False
+        new_user_form = None
+    else:
+        user_sign_up_needed = True
+        new_user_form = DonateNewUserForm(request.POST or None)
+
+    if user_sign_up_needed:
+        if new_user_form.is_valid():
+            payer_user = new_user_form.save(commit=False)
+            payer_user.set_unusable_password()
+        else:
+            payer_user = None
+    else:
+        payer_user = request.user
+
+
     donate_form = FormDonate(request.POST or None)
 
-    if donate_form.is_valid():
+    if payer_user and donate_form.is_valid():
         transaction = donate_form.save(commit=False)
-        transaction.payer = request.user
+        payer_user.save()
+        transaction.payer = payer_user
         transaction.campaign = campaign
+        transaction.is_public = donate_form.cleaned_data['is_public']
         transaction.save()
-        # TODO refactor? crete trans in next view, send just amount/method (session)
 
-
-        #messages.success(request, _('Thanks for your donation!'))
-        # TODO refactor shortcut
-        #return HttpResponseRedirect(reverse('comeo_app:campaign_details', kwargs={'pk': pk}))
+        # TODO refactor? create transaction in next view, send just amount/method (session)
 
         # redirect to partners page with payment instructions
         return HttpResponseRedirect(reverse('comeo_app:donate_instruction', kwargs={'transaction_pk': transaction.pk, 'campaign_pk': campaign.pk}))
+        # TODO refactor shortcut
+        #return HttpResponseRedirect(reverse('comeo_app:campaign_details', kwargs={'pk': pk}))
 
 
-    context = {'campaign': campaign, 'donate_form': donate_form}
+    context = {'campaign': campaign, 'donate_form': donate_form, 'new_user_form':new_user_form}
 
     return render(request, 'comeo_app/campaign_donate.html', context)
 

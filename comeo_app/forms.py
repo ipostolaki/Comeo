@@ -112,12 +112,17 @@ class CustomUserChangeForm(UserChangeForm):
 
 class FormDonate(forms.ModelForm):
     agree_check = forms.BooleanField(label='Я согласен с правилами')
+    is_public = forms.BooleanField(label='Опубликовать вклад', initial=True, required=False)
 
     class Meta:
         model = Transaction
         fields = ['amount', 'method', 'agree_check']
 
+class DonateNewUserForm(forms.ModelForm):
 
+    class Meta:
+        model = ComeoUser
+        fields = ['email','first_name']
 
 
 # class ProfileEditForm(SignUpForm):

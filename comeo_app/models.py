@@ -142,9 +142,8 @@ class Campaign(models.Model):
     def income_transaction(self, transaction):
 
         # TODO: campaign sum can be incremented by the same transaction twice.
-        # TEST neded: ope campaign recieves the same transaction twice, summ shoul not be incresead in this case,
-        #  it shoudl be equal to summ saved before transaction sent to campaign second time
-
+        # TEST needed: one campaign recieves the same transaction twice, sum should not be be increased in this case,
+        # it should be equal to sum saved before transaction sent to campaign second time
 
         self.collected_summ += transaction.amount
         self.save()
@@ -178,6 +177,7 @@ class Transaction(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
     confirmed = models.BooleanField(default=False) # transaction is confirmed by successful callback from payment partner
     date_confirmed = models.DateTimeField(null=True)
+    is_public = models.BooleanField(default=True)
 
     def confirm(self):
         self.campaign.income_transaction(self)

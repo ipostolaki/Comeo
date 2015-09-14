@@ -14,6 +14,12 @@
             <form action="{% url 'comeo_app:campaign_donate' campaign.pk %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ donate_form|bootstrap }}
+
+                {% if new_user_form %}
+                <p>Ваши контакты</p>
+                {{ new_user_form|bootstrap }}
+                {% endif %}
+
                 <p><button type="submit" class="btn btn-primary">{% trans 'Donate' %}</button></p>
 
             </form>
