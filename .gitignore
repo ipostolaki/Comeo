@@ -11,3 +11,5 @@ media
 *.sqlite3
 secret.py
 *.pyc
+dump.rdb
+celery.log

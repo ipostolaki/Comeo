@@ -6,7 +6,7 @@
 
     {% if campaigns %}
         {% for campaign in campaigns %}
-            {% include 'comeo_app/project_template.html' %}
+        {{ campaign.desc_headline }} {{ campaign.id }} <br>
         {% endfor %}
     {% endif %}
 </div>

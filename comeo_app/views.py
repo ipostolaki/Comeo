@@ -1,17 +1,19 @@
+import datetime
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from comeo_app.forms import *
 from django.utils.translation import ugettext
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Q
 from django.utils import timezone
+
+from comeo_app.forms import *
 from comeo_app.logic import *
-
 from comeo_app.models import *
+from .tasks import finishCampaign
 
-import datetime
 
 #import smtplib
 #from email.mime.text import MIMEText
@@ -23,15 +25,6 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'comeo_app/index.html')
-
-
-def test(request):
-
-    campaigns = Campaign.objects.all()
-
-    context = {'campaigns': campaigns}
-
-    return render(request, 'comeo_app/test.html', context)
 
 
 def faq(request):
@@ -192,7 +185,7 @@ def campaign_edit(request, pk):
 
     campaign = Campaign.objects.get(pk=pk)
 
-    campaign.days_to_finish()
+    # campaign.days_to_finish()
 
     if request.method == 'GET':
         campaign_form = CampaignForm(instance=campaign)
@@ -217,6 +210,7 @@ def campaign_edit(request, pk):
                     campaign.date_start = start
                     finish = start + datetime.timedelta(days=campaign.duration)
                     campaign.date_finish = finish
+                    finishCampaign.apply_async((campaign.id,), eta=finish)
 
                 campaign_form.save()
 
@@ -225,7 +219,7 @@ def campaign_edit(request, pk):
 
 def campaigns_public(request):
 
-    campaigns = Campaign.objects.filter(state=Campaign.STATE_PUBLIC)
+    campaigns = Campaign.objects.exclude(state=Campaign.STATE_DRAFT)
 
     context = {'campaigns': campaigns}
 
@@ -248,6 +242,11 @@ def campaign_details(request, pk):
 def campaign_donate(request, pk):
 
     campaign = Campaign.objects.get(pk=pk)
+
+    if campaign.is_finished():
+        # prevent intentional donate request for finished campaign
+        # TODO: is it needed?
+        return render(request, 'comeo_app/index.html')
 
     if request.user.is_authenticated():
         user_sign_up_needed = False
@@ -281,7 +280,6 @@ def campaign_donate(request, pk):
         # redirect to partners page with payment instructions
         return HttpResponseRedirect(reverse('comeo_app:donate_instruction', kwargs={'transaction_pk': transaction.pk, 'campaign_pk': campaign.pk}))
         # TODO refactor shortcut
-        #return HttpResponseRedirect(reverse('comeo_app:campaign_details', kwargs={'pk': pk}))
 
 
     context = {'campaign': campaign, 'donate_form': donate_form, 'new_user_form':new_user_form}
@@ -305,3 +303,22 @@ def donate_instruction(request, transaction_pk, campaign_pk):
     messages.success(request, _('Thanks for your donation! Transaction processing.'))
 
     return render(request, 'comeo_app/donate_instruction.html', {'pk': transaction_pk, 'campaign_pk': campaign_pk})
+
+
+def test(request):
+
+    negative_camps = []
+    campaigns = Campaign.objects.all()
+
+    for camp in campaigns:
+        camp_days = camp.days_to_finish()
+        if camp_days:
+            if camp_days<0:
+                negative_camps.append(camp)
+
+    # for the_camp in negative_camps:
+    #     finishCampaign.apply_async((the_camp.id,), countdown=180)
+
+    context = {'campaigns': negative_camps}
+
+    return render(request, 'comeo_app/test.html', context)

@@ -94,17 +94,10 @@ class Tag(models.Model):
 
 class Campaign(models.Model):
 
-    #### state choices
-
     STATE_DRAFT = 'draft'
-    STATE_PUBLIC = 'public'
-    STATE_COMPLETE = 'complete'
-
-    STATES = (
-        (STATE_DRAFT, 'draft'),
-        (STATE_PUBLIC, 'public'),
-        (STATE_COMPLETE, 'complete'),
-    )
+    STATE_PUBLIC = 'public' # TODO: rename to published?
+    STATE_FINISHED_SUCCESSFULLY = 'STATE_FINISHED_SUCCESSFULLY'
+    STATE_FINISHED_NON_SUCCESSFULLY = 'STATE_FINISHED_NON_SUCCESSFULLY'
 
     #### funding choices
 
@@ -128,7 +121,7 @@ class Campaign(models.Model):
     collected_summ = models.PositiveIntegerField(blank=True, default=0)
     editors = models.ManyToManyField(ComeoUser, related_name='campaign_editors', verbose_name=_('campaign editors'))
     owner = models.ForeignKey(ComeoUser, verbose_name=_('campaign owner'), null=True)
-    state = models.CharField(_('State'), max_length=50, choices=STATES, default=STATE_DRAFT)
+    state = models.CharField(_('State'), max_length=50, default=STATE_DRAFT)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
     funding_type = models.CharField(verbose_name=_('Funding type'), max_length=50, choices=FUND_TYPES, default=FUND_UNCONDITIONAL)
     date_start = models.DateField(_('start date'), null=True)
@@ -137,26 +130,25 @@ class Campaign(models.Model):
     views_count = models.PositiveIntegerField(_('view count'), default=0)
 
 
-
-
     def income_transaction(self, transaction):
-
-        # TODO: campaign sum can be incremented by the same transaction twice.
-        # TEST needed: one campaign recieves the same transaction twice, sum should not be be increased in this case,
-        # it should be equal to sum saved before transaction sent to campaign second time
 
         self.collected_summ += transaction.amount
         self.save()
 
-    # def get_progress_percents(self):
-    #     percents = (self.collected_summ*100)/self.summ_goal
-    #     return int(round(percents))
+        # TODO: campaign sum can be incremented by the same transaction twice.
+        # TEST needed: one campaign receives the same transaction twice, sum should not be be increased in this case,
+        # it should be equal to sum saved before transaction sent to campaign second time
+
 
     def days_to_finish(self):
         now = timezone.now().date()
         if self.date_finish:
             days_left = self.date_finish - now
             return days_left.days
+
+
+    def is_finished(self):
+        return self.state in [self.STATE_FINISHED_SUCCESSFULLY, self.STATE_FINISHED_NON_SUCCESSFULLY]
 
 
 class Transaction(models.Model):
@@ -184,3 +176,6 @@ class Transaction(models.Model):
         self.date_confirmed = timezone.now()
         self.confirmed = True
         self.save()
+
+
+

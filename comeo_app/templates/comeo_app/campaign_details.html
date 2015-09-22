@@ -26,8 +26,13 @@
     <div class="col-sm-4">
 
         <div class="row" style="min-height:55px"></div>
+            {% if campaign.is_finished %}
+                <p class="lead" style="margin-bottom:0px">Сбор завершен </p>
+                <small>{{ campaign.date_finish }}</small>
+            {% else %}
+                <p class="lead">Осталось {{ campaign.days_to_finish|days_ru }}</p>
+            {% endif %}
 
-            <p class="lead">Осталось {{ campaign.days_to_finish|days_ru }}</p>
             <p>Собрано {{ campaign.collected_summ }} из {{ campaign.summ_goal }} <small>MDL</small></p>
 
             {% include 'comeo_app/progress_bar_template.html' %}
@@ -37,7 +42,7 @@
             {% endif %}
 
 
-            <a class="btn btn-lg btn-success" href="{% url 'comeo_app:campaign_donate' campaign.pk %}">Поддержать</a>
+            <a class="btn btn-lg btn-success {% if campaign.is_finished %} disabled {% endif %}" href="{% url 'comeo_app:campaign_donate' campaign.pk %}">Поддержать</a>
 
             <p class="small" style="margin-top:5px"><a href="#">Связаться с автором</a></p>
     </div>
