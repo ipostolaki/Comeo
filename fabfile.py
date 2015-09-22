@@ -10,7 +10,7 @@ def deploy(stop="do", migrate="do"):
         run("stop lab")
 
     # pull updates from central repo
-    run("cd /home/comeo_lab_env/comeo_project/ && git fetch && git pull")
+    run("cd /home/comeo_lab_env/comeo_project/ && git fetch && git pull --no-edit")
 
     # install new requirements
     run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && pip install -r reqs.txt")
