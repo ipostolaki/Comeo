@@ -144,7 +144,7 @@ class Campaign(models.Model):
         now = timezone.now().date()
         if self.date_finish:
             days_left = self.date_finish - now
-            return days_left.days
+            return days_left.days+1
 
 
     def is_finished(self):

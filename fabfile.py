@@ -5,9 +5,10 @@ env.host_string = "root@comeo.org.md"
 
 def deploy(stop="do", migrate="do"):
 
-    # stop webserver service
+    # stop services
     if stop == 'do':
         run("stop lab")
+        run("stop lab_celery")
 
     # pull updates from central repo
     run("cd /home/comeo_lab_env/comeo_project/ && git fetch && git pull --no-edit")
@@ -19,8 +20,9 @@ def deploy(stop="do", migrate="do"):
     if migrate == 'do':
         run("cd /home/comeo_lab_env/bin/ && source activate && cd /home/comeo_lab_env/comeo_project/ && python ./manage.py migrate --settings=comeo_project.settings.lab")
 
-    # start webserver
+    # start services
     run("start lab")
+    run("start lab_celery")
 
 
 def reqs():
@@ -34,6 +36,7 @@ def reqs_remote():
 
 def start():
     run("start lab")
+    run("start lab_celery")
 
 
 def status():
