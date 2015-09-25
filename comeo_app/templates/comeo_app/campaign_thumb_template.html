@@ -9,7 +9,7 @@
     <div class="camp-image"  style="min-height:192px">
         {% if campaign.image_main %}
             <a href="{% url 'comeo_app:campaign_details' campaign.pk %}">
-                <img src="{{ campaign.image_main.url }}" class="img-responsive">
+                <img src="{{ campaign.image_main.url }}" class="" style="max-width:255px; max-height:192px; overflow:hidden;">
             </a>
         {% else %}
             <img src="{% static 'comeo_app/placeholder.png' %}" class="img-responsive">
