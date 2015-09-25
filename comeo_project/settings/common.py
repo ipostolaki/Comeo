@@ -89,12 +89,14 @@ LANGUAGES = (
 LANGUAGE_CODE = 'ru'
 
 # Email
-
 DEFAULT_FROM_EMAIL = 'contact@comeo.org.md'
 SERVER_EMAIL = 'contact@comeo.org.md'
 
 # Custom non django
-
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+# Celery
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 

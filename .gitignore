@@ -13,3 +13,4 @@ secret.py
 *.pyc
 dump.rdb
 celery.log
+fabfile.py

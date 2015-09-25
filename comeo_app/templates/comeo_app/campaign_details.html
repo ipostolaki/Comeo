@@ -30,7 +30,7 @@
                 <p class="lead" style="margin-bottom:0px">Сбор завершен </p>
                 <small>{{ campaign.date_finish }}</small>
             {% else %}
-                <p class="lead">Осталось {{ campaign.days_to_finish|days_ru }}</p>
+                <p class="lead">{% plural_ru campaign.days_to_finish 'Остался' 'Осталось' 'Осталось' %} {{ campaign.days_to_finish|days_ru }}</p>
             {% endif %}
 
             <p>Собрано {{ campaign.collected_summ }} из {{ campaign.summ_goal }} <small>MDL</small></p>
