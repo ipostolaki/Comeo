@@ -95,7 +95,7 @@ class Tag(models.Model):
 class Campaign(models.Model):
 
     STATE_DRAFT = 'draft'
-    STATE_PUBLIC = 'public' # TODO: rename to published?
+    STATE_PUBLIC = 'public'  # TODO: rename to published?
     STATE_FINISHED_SUCCESSFULLY = 'STATE_FINISHED_SUCCESSFULLY'
     STATE_FINISHED_NON_SUCCESSFULLY = 'STATE_FINISHED_NON_SUCCESSFULLY'
 
@@ -128,7 +128,6 @@ class Campaign(models.Model):
     date_finish = models.DateField(_('finish date'), null=True)
     date_created = models.DateTimeField(_('creation date'), default=timezone.now)
     views_count = models.PositiveIntegerField(_('view count'), default=0)
-
 
     def income_transaction(self, transaction):
 

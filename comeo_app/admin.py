@@ -32,10 +32,8 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('email',)
 
 
-
-
 admin.site.register(ComeoUser, CustomUserAdmin)
 admin.site.register(Profile)
-admin.site.register(EmailSub)
-admin.site.register(Campaign, list_display = ('desc_headline', 'date_created', 'date_start', 'date_finish', 'state'))
+admin.site.register(EmailSub, list_display=('email',))
+admin.site.register(Campaign, list_display=('desc_headline', 'date_created', 'date_start', 'date_finish', 'state'))
 admin.site.register(Transaction)

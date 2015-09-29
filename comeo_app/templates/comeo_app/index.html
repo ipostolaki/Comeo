@@ -1,6 +1,7 @@
 {% extends 'comeo_app/base.html' %}
 
 {% load staticfiles %}
+{% load bootstrap %}
 {% load i18n %}
 {% block headpart %}
     <script src="modernizr.min.js"></script>
@@ -92,13 +93,16 @@
                 <div><img src="{% static 'comeo_app/process.png' %}" style="width:auto; height:58px;"></img>&nbsp;&nbsp;&nbsp;&nbsp;Вы просматриваете версию сайта для β тестирования системы<br><a href="http://comeo.org.md" target="_blank">Перейти на текущую публичную версию Comeo</a></div>
                 <div style="margin-left:-7px; margin-top:15px;"><a href="https://www.facebook.com/comeomd/" target="_blank"><img style="margin-right:15px" src="{% static 'comeo_app/fb.png' %}" style="width:auto; height:50px;"></img></a>Подпишитесь на обновления</div>
 
-                <div class="form-group form-inline" style="padding-top:15px">
+                <div class="form-group form-inline {% if subscribe_form.email.errors %}has-error{% endif %}" style="padding-top:15px">
                     <form action="{% url 'comeo_app:email_subscribe' %}" method="post">
                         {% csrf_token %}
                     <img src="{% static 'comeo_app/mail.png' %}" style="width:58px; height:58px; margin-left:37px;"></img>&nbsp;
                         <input type="email" class="form-control" placeholder="email рассылка" name="email" style="width:240px; margin-left:0px">
                         <button type="submit" class="btn btn-primary">OK</button>
                     </form>
+                    {% for error in subscribe_form.email.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
                 </div>
 
             </div>

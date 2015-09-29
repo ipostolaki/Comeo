@@ -6,7 +6,7 @@ Running on Ubuntu 14.04, Digitalocean VPS
 
 **Front-end:** HTML, CSS, JS(jQuery), Bootstrap
 
-**Tools:** Virtualenv & Virtualenvwrapper, Fabric, iPython, Livereload, Flower, Django Debug Toolbar
+**Tools:** Virtualenv & Virtualenvwrapper, Fabric, iPython, Livereload, Flower, Django Debug Toolbar, flake8
 
 ## Continous delivery
 Two application instances running on the server at the same time:

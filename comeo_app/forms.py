@@ -11,27 +11,14 @@ from django.utils.translation import ugettext_lazy as _
 # TODO email as username
 # TODO credentials match error text
 
-# class UserProfileForm(ModelForm):
-#
-#     class Meta:
-#         model = Profile
-#         fields = ['info']
-#         # labels = {'info': 'Info'}
-
-
 class SubscribeForm(forms.Form):
     email = forms.EmailField(max_length=254)
 
-# TODO: need to be subclassed to localize ??
+
+# TODO: need to be subclassed to localize ?
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(max_length=254)
     password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
-
-    # error_messages = {
-    #     'invalid_login': _("Please enter a correct %(username)s and password. "
-    #                        "Note that both fields may be case-sensitive."),
-    #     'inactive': _("This account is inactive."),
-    # }
 
 
 class SignUpForm(forms.ModelForm):
@@ -122,7 +109,7 @@ class DonateNewUserForm(forms.ModelForm):
 
     class Meta:
         model = ComeoUser
-        fields = ['email','first_name']
+        fields = ['email', 'first_name']
 
 
 # class ProfileEditForm(SignUpForm):
