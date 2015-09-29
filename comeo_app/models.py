@@ -1,9 +1,7 @@
-from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -63,7 +61,6 @@ class ComeoUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
-
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
@@ -72,7 +69,9 @@ class ComeoUser(AbstractBaseUser, PermissionsMixin):
         return full_name.strip()
 
     def get_short_name(self):
-        "Returns the short name for the user."
+        """
+        Returns the short name for the user.
+        """
         return self.first_name
 
     def email_user(self, subject, message, from_email=None, **kwargs):
@@ -99,31 +98,33 @@ class Campaign(models.Model):
     STATE_FINISHED_SUCCESSFULLY = 'STATE_FINISHED_SUCCESSFULLY'
     STATE_FINISHED_NON_SUCCESSFULLY = 'STATE_FINISHED_NON_SUCCESSFULLY'
 
-    #### funding choices
-
+    # funding choices
     FUND_CONDITIONAL = 'conditional'
     FUND_UNCONDITIONAL = 'unconditional'
 
     FUND_TYPES = (
-        (FUND_CONDITIONAL, 'conditional'),
-        (FUND_UNCONDITIONAL, 'unconditional'),
+        (FUND_CONDITIONAL, 'Conditional funding'),
+        (FUND_UNCONDITIONAL, 'Unconditional funding'),
     )
 
-    #### Duration range for choices
-    DURATION_CHOICES = zip( range(1, 31), range(1, 31) )
+    # Duration range for choices
+    DURATION_CHOICES = zip(range(1, 31), range(1, 31))
 
     desc_headline = models.CharField(_('Headline'), max_length=300)
     desc_preview = models.TextField(_('Short description'), max_length=400)
-    summ_goal = models.PositiveIntegerField()
+    summ_goal = models.PositiveIntegerField()  # TODO: rename to sum
     duration = models.PositiveSmallIntegerField(choices=DURATION_CHOICES)
-    image_main = models.ImageField(verbose_name=_('Campaign image'), blank=True, upload_to='campaigns_images')
+    image_main = models.ImageField(verbose_name=_('Campaign image'), blank=True,
+                                   upload_to='campaigns_images')
     desc_main = models.TextField(_('Description'))
     collected_summ = models.PositiveIntegerField(blank=True, default=0)
-    editors = models.ManyToManyField(ComeoUser, related_name='campaign_editors', verbose_name=_('campaign editors'))
+    editors = models.ManyToManyField(ComeoUser, related_name='campaign_editors',
+                                     verbose_name=_('campaign editors'))
     owner = models.ForeignKey(ComeoUser, verbose_name=_('campaign owner'), null=True)
     state = models.CharField(_('State'), max_length=50, default=STATE_DRAFT)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
-    funding_type = models.CharField(verbose_name=_('Funding type'), max_length=50, choices=FUND_TYPES, default=FUND_UNCONDITIONAL)
+    funding_type = models.CharField(verbose_name=_('Funding type'), max_length=50,
+                                    choices=FUND_TYPES, default=FUND_UNCONDITIONAL)
     date_start = models.DateField(_('start date'), null=True)
     date_finish = models.DateField(_('finish date'), null=True)
     date_created = models.DateTimeField(_('creation date'), default=timezone.now)
@@ -135,9 +136,9 @@ class Campaign(models.Model):
         self.save()
 
         # TODO: campaign sum can be incremented by the same transaction twice.
-        # TEST needed: one campaign receives the same transaction twice, sum should not be be increased in this case,
-        # it should be equal to sum saved before transaction sent to campaign second time
-
+        # Test needed: one campaign receives the same transaction twice, sum should not be be
+        # increased in this case, it should be equal to sum saved before
+        # transaction sent to campaign second time
 
     def days_to_finish(self):
         now = timezone.now().date()
@@ -145,9 +146,8 @@ class Campaign(models.Model):
             days_left = self.date_finish - now
             return days_left.days+1
 
-
     def is_finished(self):
-        return self.state in [self.STATE_FINISHED_SUCCESSFULLY, self.STATE_FINISHED_NON_SUCCESSFULLY]
+        return self.state in [self.STATE_FINISHED_SUCCESSFULLY, self.STATE_FINISHED_NON_SUCCESSFULLY]  # noqa flake8
 
 
 class Transaction(models.Model):
@@ -166,7 +166,7 @@ class Transaction(models.Model):
     payer = models.ForeignKey(ComeoUser)
     external_id = models.CharField(max_length=150, null=True)
     date_created = models.DateTimeField(default=timezone.now)
-    confirmed = models.BooleanField(default=False) # transaction is confirmed by successful callback from payment partner
+    confirmed = models.BooleanField(default=False)  # Confirmed by callback from payment partner
     date_confirmed = models.DateTimeField(null=True)
     is_public = models.BooleanField(default=True)
 
@@ -175,6 +175,3 @@ class Transaction(models.Model):
         self.date_confirmed = timezone.now()
         self.confirmed = True
         self.save()
-
-
-

@@ -8,7 +8,7 @@ DATABASES = {
         'USER': 'comeo_one_user',
         'PASSWORD': secret_psql_pass,
         'HOST': 'localhost',
-        'PORT': '', # Set to empty string for default.
+        'PORT': '',
     }
 }
 
@@ -22,7 +22,7 @@ MEDIA_ROOT = '/home/comeo_lab_env/comeo_project/media'
 
 LOCALE_PATHS = ('/home/comeo_lab_env/comeo_project/comeo_app/locale/',)
 
-# custom email backend which support ssl connection supported by zoho
+# Custom email backend which support ssl connection supported by zoho
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = 'smtp.zoho.com'
 EMAIL_PORT = 465

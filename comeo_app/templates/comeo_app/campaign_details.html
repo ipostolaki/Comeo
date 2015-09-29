@@ -2,7 +2,6 @@
 {% block content %}
 {% load some_tags %}
 
-
 <div class="row">
 
     {% if messages %}
@@ -30,7 +29,10 @@
                 <p class="lead" style="margin-bottom:0px">Сбор завершен </p>
                 <small>{{ campaign.date_finish }}</small>
             {% else %}
-                <p class="lead">{% plural_ru campaign.days_to_finish 'Остался' 'Осталось' 'Осталось' %} {{ campaign.days_to_finish|days_ru }}</p>
+                <p class="lead">{% plural_ru campaign.days_to_finish 'Остался' 'Осталось' 'Осталось' %}
+                    {{ campaign.days_to_finish }}
+                    {% plural_ru campaign.days_to_finish 'день' 'дня' 'дней' %}
+                </p>
             {% endif %}
 
             <p>Собрано {{ campaign.collected_summ }} из {{ campaign.summ_goal }} <small>MDL</small></p>
@@ -38,11 +40,13 @@
             {% include 'comeo_app/progress_bar_template.html' %}
 
             {% if backers_count > 0 %}
-                <p>{{ backers_count }} {% plural_ru backers_count 'человек' 'человека' 'человек' %} {% plural_ru backers_count 'поддержал' 'поддержали' 'поддержали' %}</p>
+                <p>{{ backers_count }}
+                    {% plural_ru backers_count 'человек' 'человека' 'человек' %}
+                    {% plural_ru backers_count 'поддержал' 'поддержали' 'поддержали' %}</p>
             {% endif %}
 
-
-            <a class="btn btn-lg btn-success {% if campaign.is_finished %} disabled {% endif %}" href="{% url 'comeo_app:campaign_donate' campaign.pk %}">Поддержать</a>
+            <a class="btn btn-lg btn-success {% if campaign.is_finished %} disabled {% endif %}"
+               href="{% url 'comeo_app:campaign_donate' campaign.pk %}">Поддержать</a>
 
             <p class="small" style="margin-top:5px"><a href="#">Связаться с автором</a></p>
     </div>
@@ -51,15 +55,10 @@
 
 <div class="jumbotron" style="margin-top:50px">
     <div class="row">
-
         <div class="col-sm-12">
-
-            <br>
-            {{ campaign.desc_main|safe }}
+            <br>{{ campaign.desc_main|safe }}
         </div>
-
     </div>
-
 </div>
 
 {% endblock %}

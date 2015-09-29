@@ -19,7 +19,7 @@ STATIC_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/static/
 LOCALE_PATHS = ('/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/locale/',)
 
 MIDDLEWARE_CLASSES += ('debug_panel.middleware.DebugPanelMiddleware',)
-INSTALLED_APPS += ('debug_toolbar','debug_panel',)
+INSTALLED_APPS += ('debug_toolbar', 'debug_panel',)
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'email-dummy/'
@@ -33,4 +33,4 @@ CKEDITOR_IMAGE_BACKEND = "pillow"
 #     ('module.submodule2', 'function3'),
 #     ('module.submodule3', '*'),
 #     'module.submodule4'
-# )ƒ
+# )

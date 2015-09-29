@@ -3,13 +3,15 @@ import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
-from comeo_app.forms import *
 from comeo_app.logic import transaction_confirmation
-from comeo_app.models import *
+from comeo_app.models import Campaign, Transaction, EmailSub
 import comeo_app.tasks as tasks
+from comeo_app.forms import (SignUpForm, EditUserForm, ProfileForm,
+                             DonateNewUserForm, FormDonate, SubscribeForm, CampaignForm)
 
 
 def home(request):
@@ -51,16 +53,6 @@ def signup(request):
     return render(request, 'comeo_app/signup.html', context)
 
 
-# TODO send registration confirmation email (active user check ?)
-# TODO non form fields errors logging / output
-# TODO double POST ?
-# TODO password reset
-# TODO Password confirmation
-# TODO built-in Django Registration forms/urls
-
-# TODO next hidden input in forms for redirect
-
-
 @login_required
 def profile(request):
     return render(request, 'comeo_app/profile/profile.html')
@@ -74,8 +66,6 @@ def profile_edit(request):
     if request.method == 'POST':
 
         user_form = EditUserForm(instance=request.user, data=request.POST)
-
-        # TODO: Model Factory instead?
         profile_form = ProfileForm(instance=profile, data=request.POST, files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
 
@@ -253,7 +243,7 @@ def email_subscribe(request):
     if subscribe_form.is_valid():
         email = subscribe_form.cleaned_data['email']
         __, new_created = EmailSub.objects.get_or_create(email=email,
-                                                          defaults={'source': 'comeo index page'})
+                                                         defaults={'source': 'comeo index page'})
 
         return render(request, 'comeo_app/email_subscribe_success.html',
                       {'new_created': new_created})

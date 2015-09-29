@@ -1,4 +1,3 @@
-
 def transaction_confirmation(transaction):
     """
     This method should be called when callback or confirmation about transaction is received
