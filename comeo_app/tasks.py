@@ -1,5 +1,7 @@
 from celery import shared_task
+
 from comeo_app.models import Campaign
+
 
 @shared_task
 def finishCampaign(campaign_id):

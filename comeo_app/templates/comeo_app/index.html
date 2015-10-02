@@ -1,6 +1,7 @@
 {% extends 'comeo_app/base.html' %}
 
 {% load staticfiles %}
+{% load bootstrap %}
 {% load i18n %}
 {% block headpart %}
     <script src="modernizr.min.js"></script>
@@ -13,119 +14,111 @@
 
     <p class="lead text-center">Краудфандинг платформа для локальных проектов и событий</p>
 
-<div id="theCarousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="4000" style="width:1132px; margin-left:0px;">
+    <div id="theCarousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="4000" style="width:1132px; margin-left:0px;">
 
-    <ol class="carousel-indicators">
-        <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#theCarousel" data-slide-to="1"></li>
-        <li data-target="#theCarousel" data-slide-to="2"></li>
-        <li data-target="#theCarousel" data-slide-to="3"></li>
-    </ol>
+        <ol class="carousel-indicators">
+            <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#theCarousel" data-slide-to="1"></li>
+            <li data-target="#theCarousel" data-slide-to="2"></li>
+            <li data-target="#theCarousel" data-slide-to="3"></li>
+        </ol>
 
-    <div class="carousel-inner" role="listbox">
+        <div class="carousel-inner" role="listbox">
 
-        <div class="item active">
-            <div class="col-sm-3">
-                <div class="icon lightbulb"></div>
+            <div class="item active">
+                <div class="col-sm-3">
+                    <div class="icon lightbulb"></div>
+                </div>
+                <div class="col-sm-8">
+                    <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Есть хорошая идея?</h2>
+                </div>
             </div>
-            <div class="col-sm-8">
-                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Есть хорошая идея?</h2>
+
+
+            <div class="item">
+                <div class="col-sm-3">
+                    <div class="icon bullseye"></div>
+                </div>
+                <div class="col-sm-8">
+                    <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Опиши и определи цель</h2>
+                </div>
             </div>
+
+
+            <div class="item">
+                <div class="col-sm-3">
+                    <div class="icon chat"></div>
+                </div>
+                <div class="col-sm-8">
+                    <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Поделись с сообществом</h2>
+                </div>
+            </div>
+
+
+            <div class="item">
+                <div class="col-sm-3">
+                    <div class="icon piggybank"></div>
+                </div>
+                <div class="col-sm-8">
+                    <h2 style="display:inline-block; padding-top:60px; margin-left:70px;">Собирай деньги!</h2>
+                </div>
+            </div>
+
         </div>
 
+        <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Prev</span>
+        </a>
 
-        <div class="item">
-            <div class="col-sm-3">
-                <div class="icon bullseye"></div>
-            </div>
-            <div class="col-sm-8">
-                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Опиши и определи цель</h2>
-            </div>
-        </div>
-
-
-        <div class="item">
-            <div class="col-sm-3">
-                <div class="icon chat"></div>
-            </div>
-            <div class="col-sm-8">
-                <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Поделись с сообществом</h2>
-            </div>
-        </div>
-
-
-        <div class="item">
-            <div class="col-sm-3">
-                <div class="icon piggybank"></div>
-            </div>
-            <div class="col-sm-8">
-                <h2 style="display:inline-block; padding-top:60px; margin-left:70px;">Собирай деньги!</h2>
-            </div>
-        </div>
+        <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
 
     </div>
 
-    <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Prev</span>
-    </a>
-
-    <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-
-</div>
-
     <br>
 
-
-
-
-
     <div class="row">
-
-
-
             <div class="row text-center" style="padding:10px">
 
                 <div><img src="{% static 'comeo_app/process.png' %}" style="width:auto; height:58px;"></img>&nbsp;&nbsp;&nbsp;&nbsp;Вы просматриваете версию сайта для β тестирования системы<br><a href="http://comeo.org.md" target="_blank">Перейти на текущую публичную версию Comeo</a></div>
                 <div style="margin-left:-7px; margin-top:15px;"><a href="https://www.facebook.com/comeomd/" target="_blank"><img style="margin-right:15px" src="{% static 'comeo_app/fb.png' %}" style="width:auto; height:50px;"></img></a>Подпишитесь на обновления</div>
 
-                <div class="form-group form-inline" style="padding-top:15px">
+                <div class="form-group form-inline {% if subscribe_form.email.errors %}has-error{% endif %}" style="padding-top:15px">
                     <form action="{% url 'comeo_app:email_subscribe' %}" method="post">
                         {% csrf_token %}
                     <img src="{% static 'comeo_app/mail.png' %}" style="width:58px; height:58px; margin-left:37px;"></img>&nbsp;
                         <input type="email" class="form-control" placeholder="email рассылка" name="email" style="width:240px; margin-left:0px">
                         <button type="submit" class="btn btn-primary">OK</button>
                     </form>
+                    {% for error in subscribe_form.email.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
                 </div>
 
             </div>
-
     </div>
-
-
 
 <div class="row">
-
     <div style="padding-left:5px; padding-top:25px">
-    <p class="lead text-center">Справка</p>
+        <p class="lead text-center">Справка</p>
         {% include 'comeo_app/faq_include.html' %}
     </div>
-
 </div>
 
+<br>
 
-    <br>
 <div class="text-center">
-    <h6>Хочешь добавить проект заранее? Будем рады пообщаться.<h6>
-        <p class="lead">+ 373 79 201 406</p>
+    <h6>Хочешь добавить проект заранее? Будем рады пообщаться.</h6>
+    <p class="lead">+ 373 79 201 406</p>
     <a href="mailto:contact@comeo.org.md">
-        <!--<img src="{% static 'comeo_app/mail.png' %}" style="width:auto; height:42px;"></img>-->
         <p class="lead" style="margin-top:-25px">contact@comeo.org.md</p>
     </a>
 </div>
-    <br>
+
+</div>
+<br>
 
 {% endblock %}

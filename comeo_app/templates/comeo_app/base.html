@@ -5,7 +5,7 @@
 <html lang="en">
   <head profile="http://www.w3.org/2005/10/profile">
   <head profile="http://www.w3.org/2005/10/profile">
-    <!--TODO: favicon the right way-->
+
     <link rel="shortcut icon" type="image/png" href="{% static 'comeo_app/favicon.ico' %}"/>
 
     <meta charset="utf-8">
@@ -13,15 +13,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <!-- <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet"> -->
     <link href="{% static 'comeo_app/dist/css/vendor/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Loading Flat UI -->
     <link href="{% static 'comeo_app/dist/css/flat-ui.min.css' %}" rel="stylesheet">
     <link href="{% static 'comeo_app/dist/css/my.css' %}" rel="stylesheet">
 
-    <!-- livereload development server -->
-    <script src="http://127.0.0.1:35729/livereload.js?snipver=1"></script>
+    {% if outside == 'development' %}
+      <!-- livereload development server -->
+      <script src="http://127.0.0.1:35729/livereload.js?snipver=1"></script>
+    {% endif %}
 
     <script src="{% static 'comeo_app/dist/js/vendor/jquery.min.js' %}"></script>
 
@@ -33,7 +34,6 @@
       {% block headpart %}
       {% endblock %}
 
-
   </head>
 
   <body>
@@ -42,24 +42,30 @@
         <!-- Brand and toggle get grouped for better mobile display -->
 
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#the-navbar-collapse">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                  data-target="#the-navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/"><img class="logo" src="{% static 'comeo_app/logo.png' %}" style="width:174px; height:53px"></a>
+          <a href="/"><img class="logo" src="{% static 'comeo_app/logo.png' %}"
+                           style="width:174px; height:53px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="the-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#"></a></li>
-                {% if beta %}
-                <li {% nav_active request 'comeo_app:campaigns_public' %}><a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Campaigns' %}</a></li>
+                {% if is_beta %}
+                <li {% nav_active request 'comeo_app:campaigns_public' %}>
+                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Кампании' %}</a></li>
                 {% endif %}
-                <li {% nav_active request 'comeo_app:about'%}><a href="{% url 'comeo_app:about' %}">{% if lang == "ro" %}Despre Noi{% else %}{% trans 'About' %}{%endif%}</a></li>
-                <!--<li {% nav_active request 'comeo_app:faq'%}><a href="{% url 'comeo_app:faq' %}">{% trans 'FAQ' %}</a></li>-->
+                <li {% nav_active request 'comeo_app:about'%}>
+                <a href="{% url 'comeo_app:about' %}">
+                    {% if lang == "ro" %}Despre Noi{% else %}{% trans 'About' %}{%endif%}</a></li>
+                <!--<li {% nav_active request 'comeo_app:faq'%}>
+                <a href="{% url 'comeo_app:faq' %}">{% trans 'FAQ' %}</a></li>-->
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -68,8 +74,11 @@
                 <li><img class='image' src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></img></li>
                 {% endif %}
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                     aria-haspopup="true" aria-expanded="false">{{ user.first_name }}
+                      <span class="caret"></span></a>
+
+                    <ul class="dropdown-menu">
                     <li {% nav_active request 'comeo_app:profile comeo_app:profile_edit'%}"><a href="{% url 'comeo_app:profile' %}">{% trans 'Profile' %}</a></li>
                     <li role="separator" class="divider"></li>
                     <li {% nav_active request 'comeo_app:profile_campaigns' %}"><a href="{% url 'comeo_app:profile_campaigns' %}">{% trans 'Campaigns' %}</a></li>
@@ -79,7 +88,7 @@
                 </li>
 
             {% else %}
-                {% if beta %}
+                {% if is_beta %}
                     <li {% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'sign up' %}</a></li>
                     <li {% nav_active request 'comeo_app:login' %}><a href="{% url 'comeo_app:login' %}">{% trans 'Login' %}</a></li>
                 {% endif %}

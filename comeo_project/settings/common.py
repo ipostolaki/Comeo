@@ -73,7 +73,9 @@ USE_TZ = True
 
 LOGIN_URL = '/login/'
 
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ('django.core.context_processors.request','comeo_app.context_processors.custom_processor')
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request',
+    'comeo_app.context_processors.environment_processor')
 
 
 LOGIN_REDIRECT_URL = '/profile/'
@@ -99,4 +101,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-
