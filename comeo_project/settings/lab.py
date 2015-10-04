@@ -13,11 +13,11 @@ DATABASES = {
 }
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+TEMPLATE_DEBUG = False
+ALLOWED_HOSTS = ['.comeo.org.md']
 
-STATIC_URL = '/home/comeo_lab_env/comeo_project/comeo_app/static/comeo_app/'
+STATIC_URL = '/static/'
 MEDIA_ROOT = '/home/comeo_lab_env/comeo_project/media'
 
 LOCALE_PATHS = ('/home/comeo_lab_env/comeo_project/comeo_app/locale/',)
