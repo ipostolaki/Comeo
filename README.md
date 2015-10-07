@@ -13,8 +13,8 @@ Toolbar, flake8
 ## Continous delivery
 Two application instances running on the server at the same time:
 
-1. comeo.org.md - public, stable version for end users.
-2. lab.comeo.org.md - beta version used by volunteers to test new features.
+1. http://comeo.org.md - public, stable version for end users.
+2. http://lab.comeo.org.md - beta version used by volunteers to test new features.
 
 ## Deploy
 **Fabric script:**
