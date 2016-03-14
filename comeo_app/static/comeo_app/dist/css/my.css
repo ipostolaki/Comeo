@@ -1,6 +1,12 @@
 
 /* Carousel */
 
+@media all and (max-device-width: 767px) {
+    .carousel, .middle-texts {
+        display: none;
+    }
+}
+
 #theCarousel {
     border-radius: 4px;
     background-color: #ecf0f1;
