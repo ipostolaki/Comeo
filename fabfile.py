@@ -38,6 +38,7 @@ def lab_reqs_install():
 
 
 def lab_start():
+    # upstart jobs from /etc/init
     run("start lab_gunicorn")
     run("start lab_celery")
     run("start lab_flower")

@@ -73,9 +73,9 @@ USE_TZ = True
 
 LOGIN_URL = '/login/'
 
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
     'django.core.context_processors.request',
-    'comeo_app.context_processors.environment_processor')
+    'comeo_app.context_processors.environment_processor']
 
 
 LOGIN_REDIRECT_URL = '/profile/'
