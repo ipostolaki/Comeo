@@ -10,115 +10,96 @@
 
 {% block content %}
 
-<div style="padding-left:20px;">
+
+
+
+<!-- <div class="row" style="padding-left:20px;"> -->
 
     <p class="lead text-center">Краудфандинг платформа для локальных проектов и событий</p>
 
-    <div id="theCarousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="4000" style="width:1132px; margin-left:0px;">
+<!-- <div class="jumbotron" style="background-color: #ff9b10;"> -->
 
-        <ol class="carousel-indicators">
-            <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#theCarousel" data-slide-to="1"></li>
-            <li data-target="#theCarousel" data-slide-to="2"></li>
-            <li data-target="#theCarousel" data-slide-to="3"></li>
-        </ol>
-
-        <div class="carousel-inner" role="listbox">
-
-            <div class="item active">
+            <div class="row events-row">
                 <div class="col-sm-3">
-                    <div class="icon lightbulb"></div>
+                    <div class="icon map"></div>
                 </div>
-                <div class="col-sm-8">
-                    <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Есть хорошая идея?</h2>
+                <div class="col-sm-6" style="margin-left:50px;">
+                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">События</h3>
+                    <p class="row-lead">
+                        С помощью Comeo можно собрать деньги необходимые для подготовки к организации события у его будущих посетителей.
+                    </p>
+                    <div class="row-content">
+                        Это похоже на краудфандинг кампанию, но вместо денег, прогресс сбора обозначается количеством посетителей.
+                        Если посетителей достаточно, событие состоится, если нет, тогда те кто заплатил за билет, получат деньги обратно.<br>
+                        Comeo поможет организовать воркшоп, выставку, лекцию, концерт и многое другое.
+                        <br><br>
+                        Интересно как это работает?&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info">Узнать больше</button>
+
+
+                    </div>
                 </div>
             </div>
 
 
-            <div class="item">
+            <div class="row projects-row">
                 <div class="col-sm-3">
-                    <div class="icon bullseye"></div>
+                    <div class="icon love"></div>
                 </div>
-                <div class="col-sm-8">
-                    <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Опиши и определи цель</h2>
+                <div class="col-sm-6" style="margin-left:50px;">
+                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">Проекты</h3>
+                    <div class="row-lead">
+                        Comeo помогает проектам находить партнеров для коллаборации и необходимые ресурсы.
+                    </div>
+                    <div class="row-content">
+                    У тебя есть хорошая идея? Скорее всего это заинтересует кого-нибудь нибудь еще!
+                    Проекты становятся лучше, когда интересные люди работают над ними вместе.
+                    С помощью краудфандинга возможно собрать деньги для любого хорошего проекта.
+                    Но проект реализовать намного проще, когда кроме денег, есть доступ ко всем необходимым ресурсам.
+                    <br><br>
+                    <button type="button" class="btn btn-lg btn-info">Подробнее о проектах</button>
+                    </div>
                 </div>
             </div>
 
 
-            <div class="item">
+            <div class="row resources-row">
+                <div class="col-sm-3">
+                    <div class="icon search"></div>
+                </div>
+                <div class="col-sm-6" style="margin-left:50px;">
+                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">Ресурсы</h3>
+                    <div class="row-lead">
+                        Ресурсом в Comeo может быть любая вещь или способность которой обладает человек.
+                    </div>
+                    <div class="row-content">
+                        Во время создания проекта, можно указать необходимые виды ресурсов.
+                        Comeo позволяет находить нужные ресурсы в локальном сообществе и отправлять
+                        их владельцам предложения для коллаборации.
+                        <br><br>
+                        <button type="button" class="btn btn-lg btn-info">Как устроен поиск ресурсов?</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row groups-row">
                 <div class="col-sm-3">
                     <div class="icon chat"></div>
                 </div>
-                <div class="col-sm-8">
-                    <h2 style="display:inline-block; padding-top:60px; margin-left:50px;">Поделись с сообществом</h2>
+                <div class="col-sm-6" style="margin-left:50px;">
+                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">Группы</h3>
+                    <div class="row-lead">
+                        Друзья, коллеги, соседи и любые группы с общими целями могут использовать Comeo чтобы упростить сбор денег.
+                    </div>
+                    <div class="row-content">
+                        Участник группы может опубликовать свое предложение и если его поддержут,
+                        он получит деньги чтобы реализовать цель.
+                        А если нет, тогда те, кто его поддержали, получат деньги обратно.
+                        <br><br>
+                        Ты участник группы у которой есть общие цели?
+                        &nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info">Подробнее о группах</button>
+                    </div>
                 </div>
             </div>
-
-
-            <div class="item">
-                <div class="col-sm-3">
-                    <div class="icon piggybank"></div>
-                </div>
-                <div class="col-sm-8">
-                    <h2 style="display:inline-block; padding-top:60px; margin-left:70px;">Собирай деньги!</h2>
-                </div>
-            </div>
-
-        </div>
-
-        <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Prev</span>
-        </a>
-
-        <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-
-    </div>
-
-    <br>
-
-    <div class="row middle-texts">
-            <div class="row text-center" style="padding:10px">
-
-                <div><img src="{% static 'comeo_app/process.png' %}" style="width:auto; height:58px;"></img>&nbsp;&nbsp;&nbsp;&nbsp;Вы просматриваете версию сайта для β тестирования системы<br><a href="http://comeo.org.md" target="_blank">Перейти на текущую публичную версию Comeo</a></div>
-                <div style="margin-left:-7px; margin-top:15px;"><a href="https://www.facebook.com/comeomd/" target="_blank"><img style="margin-right:15px" src="{% static 'comeo_app/fb.png' %}" style="width:auto; height:50px;"></img></a>Подпишитесь на обновления</div>
-
-                <div class="form-group form-inline {% if subscribe_form.email.errors %}has-error{% endif %}" style="padding-top:15px">
-                    <form action="{% url 'comeo_app:email_subscribe' %}" method="post">
-                        {% csrf_token %}
-                    <img src="{% static 'comeo_app/mail.png' %}" style="width:58px; height:58px; margin-left:37px;"></img>&nbsp;
-                        <input type="email" class="form-control" placeholder="email рассылка" name="email" style="width:240px; margin-left:0px">
-                        <button type="submit" class="btn btn-primary">OK</button>
-                    </form>
-                    {% for error in subscribe_form.email.errors %}
-                        <span class="help-block">{{ error }}</span>
-                    {% endfor %}
-                </div>
-
-            </div>
-    </div>
-
-<div class="row">
-    <div style="padding-left:5px; padding-top:25px">
-        <p class="lead text-center">Справка</p>
-        {% include 'comeo_app/faq_include.html' %}
-    </div>
-</div>
-
-<br>
-
-<div class="text-center">
-    <h6>Хочешь добавить проект заранее? Будем рады пообщаться.</h6>
-    <p class="lead">+ 373 79 201 406</p>
-    <a href="mailto:contact@comeo.org.md">
-        <p class="lead" style="margin-top:-25px">contact@comeo.org.md</p>
-    </a>
-</div>
-
-</div>
-<br>
 
 {% endblock %}

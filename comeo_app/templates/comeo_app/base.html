@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head profile="http://www.w3.org/2005/10/profile">
-  <head profile="http://www.w3.org/2005/10/profile">
 
     <link rel="shortcut icon" type="image/png" href="{% static 'comeo_app/favicon.ico' %}"/>
 
@@ -59,7 +58,9 @@
                 <li><a href="#"></a></li>
                 {% if is_beta %}
                 <li {% nav_active request 'comeo_app:campaigns_public' %}>
-                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Кампании' %}</a></li>
+                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Проекты' %}</a></li>
+                <li {% nav_active request 'comeo_app:campaigns_public' %}>
+                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'События' %}</a></li>
                 {% endif %}
                 <li {% nav_active request 'comeo_app:about'%}>
                 <a href="{% url 'comeo_app:about' %}">
@@ -132,10 +133,9 @@
     </div>
 
     <!-- language selector end -->
+</div>
 
     {% block content %}{% endblock %}
-
-</div>
 
     <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
 
