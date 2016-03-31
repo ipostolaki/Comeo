@@ -4,20 +4,17 @@
 {% load bootstrap %}
 {% load i18n %}
 {% block headpart %}
-    <!--<script src="modernizr.min.js"></script>-->
-    <link href="{% static 'comeo_app/kickdrop/styles.css' %}" rel="stylesheet">
+<script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+<link href="{% static 'comeo_app/kickdrop/styles.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
-
-
-
-<!-- <div class="row" style="padding-left:20px;"> -->
-
-    <p class="lead text-center">Краудфандинг платформа для локальных проектов и событий</p>
-
-<!-- <div class="jumbotron" style="background-color: #ff9b10;"> -->
+    <p class="lead text-center" style="margin-top:-20px">Краудфандинг платформа для локальных проектов и событий</p>
 
             <div class="row events-row">
                 <div class="col-sm-3">
@@ -33,13 +30,14 @@
                         Если посетителей достаточно, событие состоится, если нет, тогда те кто заплатил за билет, получат деньги обратно.<br>
                         Comeo поможет организовать воркшоп, выставку, лекцию, концерт и многое другое.
                         <br><br>
-                        Интересно как это работает?&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info">Узнать больше</button>
-
+                        Интересно как это работает?
+                        &nbsp&nbsp&nbsp&nbsp
+                        <button type="button" class="btn btn-lg btn-info" data-toggle="tooltip" data-placement="top"
+                        title="Coming soon">Узнать больше</button>
 
                     </div>
                 </div>
             </div>
-
 
             <div class="row projects-row">
                 <div class="col-sm-3">
@@ -51,12 +49,11 @@
                         Comeo помогает проектам находить партнеров для коллаборации и необходимые ресурсы.
                     </div>
                     <div class="row-content">
-                    У тебя есть хорошая идея? Скорее всего это заинтересует кого-нибудь нибудь еще!
+                    У тебя есть хорошая идея?<br>Скорее всего это заинтересует кого-нибудь нибудь еще!
                     Проекты становятся лучше, когда интересные люди работают над ними вместе.
-                    С помощью краудфандинга возможно собрать деньги для любого хорошего проекта.
-                    Но проект реализовать намного проще, когда кроме денег, есть доступ ко всем необходимым ресурсам.
                     <br><br>
-                    <button type="button" class="btn btn-lg btn-info">Подробнее о проектах</button>
+                    <button type="button" class="btn btn-lg btn-info" data-toggle="tooltip" data-placement="top"
+                    title="Coming soon">Подробнее о проектах</button>
                     </div>
                 </div>
             </div>
@@ -72,11 +69,14 @@
                         Ресурсом в Comeo может быть любая вещь или способность которой обладает человек.
                     </div>
                     <div class="row-content">
+                        С помощью краудфандинга возможно собрать деньги для любого хорошего проекта.
+                        Но идею реализовать намного проще, когда кроме денег, есть доступ ко всем необходимым ресурсам.
                         Во время создания проекта, можно указать необходимые виды ресурсов.
                         Comeo позволяет находить нужные ресурсы в локальном сообществе и отправлять
                         их владельцам предложения для коллаборации.
                         <br><br>
-                        <button type="button" class="btn btn-lg btn-info">Как устроен поиск ресурсов?</button>
+                        <button type="button" class="btn btn-lg btn-info" data-toggle="tooltip"
+                        data-placement="top" title="Coming soon">Как устроен поиск ресурсов?</button>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,8 @@
                         А если нет, тогда те, кто его поддержали, получат деньги обратно.
                         <br><br>
                         Ты участник группы у которой есть общие цели?
-                        &nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info">Подробнее о группах</button>
+                        &nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info"
+                        data-toggle="tooltip" data-placement="top" title="Coming soon">Подробнее о группах</button>
                     </div>
                 </div>
             </div>

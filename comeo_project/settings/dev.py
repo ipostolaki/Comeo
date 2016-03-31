@@ -16,8 +16,6 @@ MEDIA_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/media'
 
 STATIC_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/static/ROOT'
 
-LOCALE_PATHS = ('/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/locale/',)
-
 MIDDLEWARE_CLASSES += ('debug_panel.middleware.DebugPanelMiddleware',)
 INSTALLED_APPS += ('debug_toolbar', 'debug_panel',)
 

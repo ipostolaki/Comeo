@@ -58,13 +58,12 @@
                 <li><a href="#"></a></li>
                 {% if is_beta %}
                 <li {% nav_active request 'comeo_app:campaigns_public' %}>
-                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Проекты' %}</a></li>
+                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Projects' %}</a></li>
                 <li {% nav_active request 'comeo_app:campaigns_public' %}>
-                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'События' %}</a></li>
+                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Events' %}</a></li>
                 {% endif %}
                 <li {% nav_active request 'comeo_app:about'%}>
-                <a href="{% url 'comeo_app:about' %}">
-                    {% if lang == "ro" %}Despre Noi{% else %}{% trans 'About' %}{%endif%}</a></li>
+                <a href="{% url 'comeo_app:about' %}">{% trans 'About' %}</a></li>
                 <!--<li {% nav_active request 'comeo_app:faq'%}>
                 <a href="{% url 'comeo_app:faq' %}">{% trans 'FAQ' %}</a></li>-->
             </ul>
@@ -90,7 +89,7 @@
 
             {% else %}
                 {% if is_beta %}
-                    <li {% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'sign up' %}</a></li>
+                    <li {% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'Sign up' %}</a></li>
                     <li {% nav_active request 'comeo_app:login' %}><a href="{% url 'comeo_app:login' %}">{% trans 'Login' %}</a></li>
                 {% endif %}
             {% endif %}
@@ -101,26 +100,25 @@
     </nav>
 
 
-<div class="container" style="padding-top:60px">
+<div class="container" style="padding-top:85px">
 
     <!-- language selector -->
 
-    <div class="row text-right">
-        <div style="margin-right:20px;">
+    <div class="row text-right" style="margin-bottom:-20px; margin-right:-70px;">
             <div class="radio-inline" style="margin-right:-20px;">
-                <label class="radio" onclick="changeLang('ru')">
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio" {% if lang != "ro" %} checked="" {% endif %} class="custom-radio">
+                <label class="radio" onclick="changeLang('en')">
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio" {% if LANGUAGE_CODE == "en" %} checked="" {% endif %} class="custom-radio">
                         <span class="icons">
                             <span class="icon-unchecked"></span>
                             <span class="icon-checked"></span>
                         </span>
-                        Ru
+                        En
                 </label>
             </div>
 
-            <div class="radio-inline">
+            <div class="radio-inline" style="margin-right:-20px;">
                 <label class="radio" onclick="changeLang('ro')">
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" data-toggle="radio" {% if lang == "ro" %} checked="" {% endif %} class="custom-radio">
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" data-toggle="radio" {% if LANGUAGE_CODE == "ro" %} checked="" {% endif %} class="custom-radio">
                         <span class="icons">
                             <span class="icon-unchecked"></span>
                             <span class="icon-checked"></span>
@@ -129,9 +127,18 @@
                 </label>
             </div>
 
-        </div>
-    </div>
+            <div class="radio-inline" style="margin-right:-20px;">
+                <label class="radio" onclick="changeLang('ru')">
+                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" data-toggle="radio" {% if LANGUAGE_CODE == "ru" %} checked="" {% endif %} class="custom-radio">
+                        <span class="icons">
+                            <span class="icon-unchecked"></span>
+                            <span class="icon-checked"></span>
+                        </span>
+                        Ru
+                </label>
+            </div>
 
+        </div>
     <!-- language selector end -->
 </div>
 
@@ -139,13 +146,16 @@
 
     <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
 
-    <!--language selector ui: whole area of radio button behave like a link on click-->
+    <!--language selector UI: whole area of radio button behave like a link on click-->
     <script>
     function changeLang(lang) {
-        if (lang == 'ru') {
-            window.location.assign("{% url 'comeo_app:home'%}")
-        }else{
+        if (lang == 'ro') {
             window.location.assign("{% url 'comeo_app:ro'%}")
+        }else{
+            lang_data = {"language": lang};
+            $.post( "{% url 'comeo_app:set_language'%}", lang_data );
+            // delay is needed to reload the page when LANGUAGE_CODE was updated
+            setTimeout(function(){ location.reload(); }, 300);
         }
     }
     </script>

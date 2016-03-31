@@ -16,36 +16,34 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: comeo_app/forms.py:17 comeo_app/forms.py:23
 msgid "Password"
-msgstr "Пароль"
+msgstr ""
 
 #: comeo_app/forms.py:22 comeo_app/models.py:48
 msgid "last name"
-msgstr "Фамилия"
+msgstr ""
 
 #: comeo_app/models.py:10
 msgid "bank account"
-msgstr "Банковский счет"
+msgstr ""
 
 #: comeo_app/models.py:11
 msgid "buletin number"
-msgstr "Номер паспорта"
+msgstr ""
 
 #: comeo_app/models.py:12
 msgid "photo"
-msgstr "Фото"
+msgstr ""
 
 #: comeo_app/models.py:46 comeo_app/models.py:87
 msgid "Email"
-msgstr "Email"
+msgstr ""
 
 #: comeo_app/models.py:47
 msgid "first name"
-msgstr "Имя"
+msgstr ""
 
 #: comeo_app/models.py:49
 msgid "staff status"
@@ -61,15 +59,15 @@ msgstr ""
 
 #: comeo_app/models.py:53
 msgid "user profile"
-msgstr "профиль пользователя"
+msgstr ""
 
 #: comeo_app/models.py:61
 msgid "user"
-msgstr "пользователь"
+msgstr ""
 
 #: comeo_app/models.py:62
 msgid "users"
-msgstr "пользователи"
+msgstr ""
 
 #: comeo_app/models.py:86
 msgid "source"
@@ -131,47 +129,47 @@ msgstr ""
 #: comeo_app/templates/comeo_app/auth/login.html:14
 #: comeo_app/templates/comeo_app/base.html:93
 msgid "Login"
-msgstr "Логин"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/auth/login.html:17
 msgid "Forgot pass?"
-msgstr "Забытый пароль?"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/auth/password_change.html:7
 msgid "Pass change"
-msgstr "Изменение пароля"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/auth/password_change.html:15
 #: comeo_app/templates/comeo_app/campaign/campaign_create.html:20
 #: comeo_app/templates/comeo_app/campaign/campaign_edit.html:17
 #: comeo_app/templates/comeo_app/profile/profile_edit.html:26
 msgid "Save"
-msgstr "Сохранить"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/auth/password_reset.html:16
 #: comeo_app/templates/comeo_app/signup.html:67
 msgid "submit"
-msgstr "Отправить"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:61
 msgid "Projects"
-msgstr "Проекты"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:63
 msgid "Events"
-msgstr "События"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:66
 msgid "About"
-msgstr "О нас"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:68
 msgid "FAQ"
-msgstr "Справка"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:82
 msgid "Profile"
-msgstr "Профиль"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:84
 msgid "Campaigns"
@@ -179,11 +177,11 @@ msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:86
 msgid "Logout"
-msgstr "Выйти"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:92
 msgid "Sign up"
-msgstr "Регистрация"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/campaign/campaign_create.html:7
 #: comeo_app/templates/comeo_app/campaign/campaign_edit.html:6
@@ -212,7 +210,7 @@ msgstr ""
 
 #: comeo_app/templates/comeo_app/profile/profile.html:7
 msgid "edit profile"
-msgstr "Изменить профиль"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/profile/profile_campaigns.html:7
 msgid "Create campaign"
@@ -220,17 +218,19 @@ msgstr ""
 
 #: comeo_app/templates/comeo_app/profile/profile_edit.html:6
 msgid "Profile edit"
-msgstr "Изменение профиля"
+msgstr ""
 
 #: comeo_app/templates/comeo_app/profile/profile_edit.html:24
 msgid "Change password"
-msgstr "Изменить пароль"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/signup.html:4
+msgid "sign up"
+msgstr ""
 
 #: comeo_app/views.py:77
-#, fuzzy
-#| msgid "Profile edit"
 msgid "profile updated"
-msgstr "Изменение профиля"
+msgstr ""
 
 #: comeo_app/views.py:233
 msgid "Thanks for your donation! Transaction processing."

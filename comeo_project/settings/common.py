@@ -1,21 +1,15 @@
-"""
-Django settings for comeo_project project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
-"""
+import os
 
 from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
 
 from .secret import *
+import comeo_app
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # comeo_project folder
+COMEO_APP_DIR_PATH = os.path.dirname(os.path.realpath(comeo_app.__file__))
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
@@ -42,7 +36,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -59,7 +53,7 @@ WSGI_APPLICATION = 'comeo_project.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
 
 #TIME_ZONE = 'Europe/Kiev'
 TIME_ZONE = 'UTC'
@@ -86,9 +80,12 @@ AUTH_USER_MODEL = 'comeo_app.ComeoUser'
 LANGUAGES = (
     ('ru', _('Russian')),
     ('ro', _('Romanian')),
+    ('en', _('English')),
 )
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en'
+
+LOCALE_PATHS = (os.path.join(COMEO_APP_DIR_PATH, 'locale'),)
 
 # Email
 DEFAULT_FROM_EMAIL = 'contact@comeo.org.md'

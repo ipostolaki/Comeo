@@ -87,7 +87,7 @@ def profile_edit(request):
 
 def ro(request):
     # localization system mock page
-    return render(request, 'comeo_app/ro.html', {'lang': 'ro'})
+    return render(request, 'comeo_app/ro.html')
 
 
 @login_required

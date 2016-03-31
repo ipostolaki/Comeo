@@ -2,6 +2,13 @@
     background-color: #ffe699;
 }
 
+.row:hover > div > .icon {
+    -webkit-animation: icon-animate 1.7s steps(47);
+    -moz-animation: icon-animate 1.7s steps(47) infinite;
+    animation: icon-animate 1.7s steps(47) infinite;
+    animation-iteration-count: 1;
+}
+
 .projects-row {
     background-color: #ccd9ff;
 }
@@ -63,15 +70,7 @@
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   margin-left: 150px;
-  }
-
-  .icon:hover {
-    -webkit-animation: icon-animate 1.7s steps(47);
-    -moz-animation: icon-animate 1.7s steps(47) infinite;
-    animation: icon-animate 1.7s steps(47) infinite;
-    animation-iteration-count: 1;
-  }
-
+}
 
 .icon.bullseye {
     background-image: url(bullseye.png);
