@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-30 20:16+0000\n"
+"POT-Creation-Date: 2016-04-24 17:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,9 +73,9 @@ msgstr ""
 msgid "source"
 msgstr ""
 
-#: comeo_app/models.py:113
+#: comeo_app/models.py:113 comeo_app/templates/comeo_app/index.html.py:17
 msgid "Headline"
-msgstr ""
+msgstr "Crowdfunding platform for local projects and events"
 
 #: comeo_app/models.py:114
 msgid "Short description"
@@ -152,10 +152,12 @@ msgid "submit"
 msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:61
+#: comeo_app/templates/comeo_app/index.html:45
 msgid "Projects"
 msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:63
+#: comeo_app/templates/comeo_app/index.html:24
 msgid "Events"
 msgstr ""
 
@@ -207,6 +209,83 @@ msgstr ""
 #: comeo_app/templates/comeo_app/donate_instruction.html:10
 msgid "Ок"
 msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:26
+msgid "Events_description_title"
+msgstr "Use Comeo to collect money needed to organize an event."
+
+#: comeo_app/templates/comeo_app/index.html:29
+msgid "Events_description_content"
+msgstr ""
+"It is similar to crowdfunding campaign, but progress is defined by the "
+"number of visitors, not amount of money. If there is enough visitors, then "
+"event will happen, if not, those who paid will receive their money back. "
+"Comeo may help you to organize a workshop, exhibition, lesson, concert and "
+"much more."
+
+#: comeo_app/templates/comeo_app/index.html:31
+msgid "Events_interested"
+msgstr "Interested?"
+
+#: comeo_app/templates/comeo_app/index.html:34
+#: comeo_app/templates/comeo_app/index.html:53
+msgid "Coming_soon"
+msgstr "Coming soon"
+
+#: comeo_app/templates/comeo_app/index.html:34
+msgid "Read_more"
+msgstr "Read more"
+
+#: comeo_app/templates/comeo_app/index.html:47
+msgid "Projects_description_title"
+msgstr "Using Comeo, you can collect money and find partners and resources needed for your project."
+
+#: comeo_app/templates/comeo_app/index.html:50
+msgid "Projects_description_content"
+msgstr "Have a great idea? Want to collect money to make it real? "
+"It may be interesting for someone else. "
+"Any project may get better, when talented people work together!"
+
+#: comeo_app/templates/comeo_app/index.html:53
+msgid "Read more about projects"
+msgstr "Read more about projects"
+
+#: comeo_app/templates/comeo_app/index.html:64
+msgid "Resources"
+msgstr "Resources"
+
+#: comeo_app/templates/comeo_app/index.html:66
+msgid "index_resourses_title"
+msgstr "Any object or skill which belongs to a person is considered as a resource in Comeo."
+
+#: comeo_app/templates/comeo_app/index.html:69
+msgid "index_resourses_content"
+msgstr "It is much easier to bring a project into reality, "
+"when besides money, you have access to all the required resources. "
+"When creating a project, you can specify demanded resources. "
+"Comeo will search for resources and will send their owners collaboration proposals."
+
+#: comeo_app/templates/comeo_app/index.html:72
+msgid "index_resourses_read_more"
+msgstr "How it works?"
+
+#: comeo_app/templates/comeo_app/index.html:83
+msgid "Groups"
+msgstr "Groups"
+
+#: comeo_app/templates/comeo_app/index.html:85
+msgid "index_groups_title"
+msgstr "Friends, colleagues, neighbours and any group of people with a common goal may use Comeo to simplify money gathering."
+
+#: comeo_app/templates/comeo_app/index.html:88
+msgid "index_groups_content"
+msgstr "Comeo group participant has possibility to publish his suggestion, if it will be supported by the group, "
+"then he will get required amount of money. If not, then those who supported him, will get their money back."
+"<br><br> Are you a member of a group?"
+
+#: comeo_app/templates/comeo_app/index.html:93
+msgid "index_groups_read_more"
+msgstr "More about groups"
 
 #: comeo_app/templates/comeo_app/profile/profile.html:7
 msgid "edit profile"

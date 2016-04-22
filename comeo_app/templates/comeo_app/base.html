@@ -59,11 +59,9 @@
                 {% if is_beta %}
                 <li {% nav_active request 'comeo_app:campaigns_public' %}>
                 <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Projects' %}</a></li>
-                <li {% nav_active request 'comeo_app:campaigns_public' %}>
-                <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Events' %}</a></li>
+                <!--<li {% nav_active request 'comeo_app:campaigns_public' %}>-->
+                <!--<a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Events' %}</a></li>-->
                 {% endif %}
-                <li {% nav_active request 'comeo_app:about'%}>
-                <a href="{% url 'comeo_app:about' %}">{% trans 'About' %}</a></li>
                 <!--<li {% nav_active request 'comeo_app:faq'%}>
                 <a href="{% url 'comeo_app:faq' %}">{% trans 'FAQ' %}</a></li>-->
             </ul>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-30 20:16+0000\n"
+"POT-Creation-Date: 2016-04-24 17:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,7 @@ msgstr ""
 msgid "source"
 msgstr ""
 
-#: comeo_app/models.py:113
+#: comeo_app/models.py:113 comeo_app/templates/comeo_app/index.html.py:17
 msgid "Headline"
 msgstr ""
 
@@ -153,10 +153,12 @@ msgid "submit"
 msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:61
+#: comeo_app/templates/comeo_app/index.html:45
 msgid "Projects"
 msgstr ""
 
 #: comeo_app/templates/comeo_app/base.html:63
+#: comeo_app/templates/comeo_app/index.html:24
 msgid "Events"
 msgstr ""
 
@@ -207,6 +209,71 @@ msgstr ""
 
 #: comeo_app/templates/comeo_app/donate_instruction.html:10
 msgid "Ок"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:26
+msgid "Events_description_title"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:29
+msgid "Events_description_content"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:31
+msgid "Events_interested"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:34
+#: comeo_app/templates/comeo_app/index.html:53
+msgid "Coming_soon"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:34
+msgid "Read_more"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:47
+msgid "Projects_description_title"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:50
+msgid "Projects_description_content"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:53
+msgid "Read more about projects"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:64
+msgid "Resources"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:66
+msgid "index_resourses_title"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:69
+msgid "index_resourses_content"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:72
+msgid "index_resourses_read_more"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:83
+msgid "Groups"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:85
+msgid "index_groups_title"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:88
+msgid "index_groups_content"
+msgstr ""
+
+#: comeo_app/templates/comeo_app/index.html:93
+msgid "index_groups_read_more"
 msgstr ""
 
 #: comeo_app/templates/comeo_app/profile/profile.html:7

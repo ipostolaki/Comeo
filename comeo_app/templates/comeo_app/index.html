@@ -14,26 +14,24 @@
 
 {% block content %}
 
-    <p class="lead text-center" style="margin-top:-20px">Краудфандинг платформа для локальных проектов и событий</p>
+    <p class="lead text-center" style="margin-top:-20px">{% trans 'Headline' %}</p>
 
             <div class="row events-row">
                 <div class="col-sm-3">
                     <div class="icon map"></div>
                 </div>
                 <div class="col-sm-6" style="margin-left:50px;">
-                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">События</h3>
+                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">{% trans 'Events' %}</h3>
                     <p class="row-lead">
-                        С помощью Comeo можно собрать деньги необходимые для подготовки к организации события у его будущих посетителей.
+                        {% trans 'Events_description_title' %}
                     </p>
                     <div class="row-content">
-                        Это похоже на краудфандинг кампанию, но вместо денег, прогресс сбора обозначается количеством посетителей.
-                        Если посетителей достаточно, событие состоится, если нет, тогда те кто заплатил за билет, получат деньги обратно.<br>
-                        Comeo поможет организовать воркшоп, выставку, лекцию, концерт и многое другое.
+                        {% trans 'Events_description_content' %}
                         <br><br>
-                        Интересно как это работает?
+                        {% trans 'Events_interested' %}
                         &nbsp&nbsp&nbsp&nbsp
                         <button type="button" class="btn btn-lg btn-info" data-toggle="tooltip" data-placement="top"
-                        title="Coming soon">Узнать больше</button>
+                        title="{% trans 'Coming_soon' %}">{% trans 'Read_more' %}</button>
 
                     </div>
                 </div>
@@ -44,16 +42,15 @@
                     <div class="icon love"></div>
                 </div>
                 <div class="col-sm-6" style="margin-left:50px;">
-                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">Проекты</h3>
+                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">{% trans 'Projects' %}</h3>
                     <div class="row-lead">
-                        Comeo помогает проектам находить партнеров для коллаборации и необходимые ресурсы.
+                        {% trans 'Projects_description_title' %}
                     </div>
                     <div class="row-content">
-                    У тебя есть хорошая идея?<br>Скорее всего это заинтересует кого-нибудь нибудь еще!
-                    Проекты становятся лучше, когда интересные люди работают над ними вместе.
+                    {% trans 'Projects_description_content' %}
                     <br><br>
                     <button type="button" class="btn btn-lg btn-info" data-toggle="tooltip" data-placement="top"
-                    title="Coming soon">Подробнее о проектах</button>
+                    title="{% trans 'Coming_soon' %}">{% trans 'Read more about projects' %}</button>
                     </div>
                 </div>
             </div>
@@ -64,19 +61,15 @@
                     <div class="icon search"></div>
                 </div>
                 <div class="col-sm-6" style="margin-left:50px;">
-                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">Ресурсы</h3>
+                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">{% trans 'Resources' %}</h3>
                     <div class="row-lead">
-                        Ресурсом в Comeo может быть любая вещь или способность которой обладает человек.
+                        {% trans 'index_resourses_title' %}
                     </div>
                     <div class="row-content">
-                        С помощью краудфандинга возможно собрать деньги для любого хорошего проекта.
-                        Но идею реализовать намного проще, когда кроме денег, есть доступ ко всем необходимым ресурсам.
-                        Во время создания проекта, можно указать необходимые виды ресурсов.
-                        Comeo позволяет находить нужные ресурсы в локальном сообществе и отправлять
-                        их владельцам предложения для коллаборации.
+                        {% trans 'index_resourses_content' %}
                         <br><br>
                         <button type="button" class="btn btn-lg btn-info" data-toggle="tooltip"
-                        data-placement="top" title="Coming soon">Как устроен поиск ресурсов?</button>
+                        data-placement="top" title="{% trans 'Coming_soon' %}">{% trans 'index_resourses_read_more' %}</button>
                     </div>
                 </div>
             </div>
@@ -87,18 +80,15 @@
                     <div class="icon chat"></div>
                 </div>
                 <div class="col-sm-6" style="margin-left:50px;">
-                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">Группы</h3>
+                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">{% trans 'Groups' %}</h3>
                     <div class="row-lead">
-                        Друзья, коллеги, соседи и любые группы с общими целями могут использовать Comeo чтобы упростить сбор денег.
+                        {% trans 'index_groups_title' %}
                     </div>
                     <div class="row-content">
-                        Участник группы может опубликовать свое предложение и если его поддержут,
-                        он получит деньги чтобы реализовать цель.
-                        А если нет, тогда те, кто его поддержали, получат деньги обратно.
-                        <br><br>
-                        Ты участник группы у которой есть общие цели?
+                        {% trans 'index_groups_content' %}
                         &nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info"
-                        data-toggle="tooltip" data-placement="top" title="Coming soon">Подробнее о группах</button>
+                        data-toggle="tooltip" data-placement="top" title="{% trans 'Coming_soon' %}">
+                        {% trans 'index_groups_read_more' %}</button>
                     </div>
                 </div>
             </div>

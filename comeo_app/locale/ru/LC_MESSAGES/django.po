@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-30 20:16+0000\n"
+"POT-Creation-Date: 2016-04-24 17:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,9 +75,9 @@ msgstr "пользователи"
 msgid "source"
 msgstr ""
 
-#: comeo_app/models.py:113
+#: comeo_app/models.py:113 comeo_app/templates/comeo_app/index.html.py:17
 msgid "Headline"
-msgstr ""
+msgstr "Краудфандинг платформа для локальных проектов и событий"
 
 #: comeo_app/models.py:114
 msgid "Short description"
@@ -154,10 +154,12 @@ msgid "submit"
 msgstr "Отправить"
 
 #: comeo_app/templates/comeo_app/base.html:61
+#: comeo_app/templates/comeo_app/index.html:45
 msgid "Projects"
 msgstr "Проекты"
 
 #: comeo_app/templates/comeo_app/base.html:63
+#: comeo_app/templates/comeo_app/index.html:24
 msgid "Events"
 msgstr "События"
 
@@ -210,6 +212,94 @@ msgstr ""
 msgid "Ок"
 msgstr ""
 
+#: comeo_app/templates/comeo_app/index.html:26
+msgid "Events_description_title"
+msgstr ""
+"С помощью Comeo можно собрать деньги необходимые для подготовки к "
+"организации события у его будущих посетителей."
+
+#: comeo_app/templates/comeo_app/index.html:29
+msgid "Events_description_content"
+msgstr ""
+"Это похоже на краудфандинг кампанию, но вместо денег, прогресс сбора "
+"обозначается количеством посетителей. Если посетителей достаточно, событие "
+"состоится, если нет, тогда те кто заплатил за билет, получат деньги обратно."
+"<br> Comeo поможет организовать воркшоп, выставку, лекцию, концерт и многое "
+"другое."
+
+#: comeo_app/templates/comeo_app/index.html:31
+msgid "Events_interested"
+msgstr "Интересно как это работает?"
+
+#: comeo_app/templates/comeo_app/index.html:34
+#: comeo_app/templates/comeo_app/index.html:53
+msgid "Coming_soon"
+msgstr "Скоро"
+
+#: comeo_app/templates/comeo_app/index.html:34
+msgid "Read_more"
+msgstr "Узнать больше"
+
+#: comeo_app/templates/comeo_app/index.html:47
+msgid "Projects_description_title"
+msgstr "Используя Сomeo можно собрать деньги для проекта и найти партнеров с необходимыми ресурсами."
+
+
+#: comeo_app/templates/comeo_app/index.html:50
+msgid "Projects_description_content"
+msgstr ""
+"У тебя есть хорошая идея? Хочешь собрать деньги с помощью краудфандинга и "
+"реализовать её? Скорее всего это заинтересует кого-нибудь нибудь еще."
+"<br>Проекты становятся лучше, когда интересные люди работают над ними вместе!"
+
+#: comeo_app/templates/comeo_app/index.html:53
+msgid "Read more about projects"
+msgstr "Подробнее о проектах"
+
+#: comeo_app/templates/comeo_app/index.html:64
+msgid "Resources"
+msgstr "Ресурсы"
+
+#: comeo_app/templates/comeo_app/index.html:66
+msgid "index_resourses_title"
+msgstr ""
+"Ресурсом в Comeo может быть любая вещь или способность которой обладает "
+"человек."
+
+#: comeo_app/templates/comeo_app/index.html:69
+msgid "index_resourses_content"
+msgstr ""
+"Проект реализовать намного проще, когда кроме денег, есть доступ ко всем необходимым ресурсам. "
+"Во время создания проекта, можно указать необходимые "
+"виды ресурсов. Comeo позволяет находить нужные ресурсы в локальном "
+"сообществе и отправлять их владельцам предложения для коллаборации."
+
+#: comeo_app/templates/comeo_app/index.html:72
+msgid "index_resourses_read_more"
+msgstr "Как устроен поиск ресурсов?"
+
+#: comeo_app/templates/comeo_app/index.html:83
+msgid "Groups"
+msgstr "Группы"
+
+#: comeo_app/templates/comeo_app/index.html:85
+msgid "index_groups_title"
+msgstr ""
+"Друзья, коллеги, соседи и любые группы с общими целями могут использовать "
+"Comeo чтобы упростить сбор денег."
+
+#: comeo_app/templates/comeo_app/index.html:88
+msgid "index_groups_content"
+msgstr ""
+"Участник группы может опубликовать свое предложение и если его поддержут,он "
+"получит деньги чтобы реализовать цель. А если нет, тогда те, кто его "
+"поддержали, получат деньги обратно. "
+"<br><br>Ты участник группы у которой есть общие цели?"
+
+#: comeo_app/templates/comeo_app/index.html:93
+msgid "index_groups_read_more"
+msgstr "Подробнее о группах"
+
 #: comeo_app/templates/comeo_app/profile/profile.html:7
 msgid "edit profile"
 msgstr "Изменить профиль"
@@ -225,6 +315,12 @@ msgstr "Изменение профиля"
 #: comeo_app/templates/comeo_app/profile/profile_edit.html:24
 msgid "Change password"
 msgstr "Изменить пароль"
+
+#: comeo_app/templates/comeo_app/signup.html:4
+#, fuzzy
+#| msgid "Sign up"
+msgid "sign up"
+msgstr "Регистрация"
 
 #: comeo_app/views.py:77
 #, fuzzy
