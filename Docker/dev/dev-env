@@ -1,0 +1,13 @@
+################################################################################################
+WARNING: Set generated strings for passwords, when uploading this file to the production server
+################################################################################################
+
+POSTGRES_PASSWORD=secretpass
+POSTGRES_USER=comeo_django_db_user
+POSTGRES_DB=comeo_django_db
+
+DJANGO_SECRET_KEY=7g%&sc*lv@c@m8f(+ltbro-8hug&wi4p@@=s-mzzs_+=lhz3-6
+SECRET_EMAIL_HOST_PASSWORD=Definepass1
+
+RABBITMQ_DEFAULT_USER=user
+RABBITMQ_DEFAULT_PASS=secretpass

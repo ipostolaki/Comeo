@@ -1,11 +1,6 @@
 from .common import *
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+print("Dev settings loaded")
 
 DEBUG = True
 TEMPLATE_DEBUG = True
@@ -16,8 +11,7 @@ MEDIA_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/media'
 
 STATIC_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/static/ROOT'
 
-MIDDLEWARE_CLASSES += ('debug_panel.middleware.DebugPanelMiddleware',)
-INSTALLED_APPS += ('debug_toolbar', 'debug_panel',)
+INSTALLED_APPS += ('debug_toolbar', 'django_extensions',)
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'email-dummy/'

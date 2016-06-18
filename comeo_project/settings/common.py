@@ -3,7 +3,6 @@ import os
 from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
 
-from .secret import *
 import comeo_app
 
 
@@ -13,7 +12,22 @@ COMEO_APP_DIR_PATH = os.path.dirname(os.path.realpath(comeo_app.__file__))
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
-SECRET_KEY = key
+# TODO: Raise warning / exception in case if critical env vars were not retrieved
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+ENV_RABBIT_USER = os.environ.get('RABBITMQ_DEFAULT_USER')
+ENV_RABBIT_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS')
+ENV_EMAIL_HOST_PASSWORD = os.environ.get('SECRET_EMAIL_HOST_PASSWORD'),
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'pg_database',
+        'PORT': '5432',
+    }
+}
 
 MEDIA_URL = '/uploaded/'
 
@@ -29,7 +43,6 @@ INSTALLED_APPS = (
     'comeo_app',
     'crispy_forms',
     'bootstrapform',
-    'django_extensions',
     'django.contrib.humanize',
     'ckeditor',
 )
@@ -55,7 +68,7 @@ WSGI_APPLICATION = 'comeo_project.wsgi.application'
 
 # LANGUAGE_CODE = 'en-us'
 
-#TIME_ZONE = 'Europe/Kiev'
+# TIME_ZONE = 'Europe/Kiev'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -98,5 +111,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+BROKER_URL = 'amqp://{}:{}@rabbit:5672//'.format(ENV_RABBIT_USER, ENV_RABBIT_PASS)
+CELERY_RESULT_BACKEND = BROKER_URL
 
 ADMINS = (('Ilia', 'ilia.ravemd@gmail.com'),)

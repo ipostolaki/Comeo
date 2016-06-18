@@ -1,0 +1,55 @@
+version: '2'
+
+volumes:
+    pgdata:
+    pglogs:
+    rabbit_data:
+    celery_logs:
+
+services:
+
+    django:
+        build:
+            context: ./../../
+            dockerfile: ./Docker/dev/Dockerfile-dev
+        volumes:
+            - ./../../:/comeo_project
+        working_dir: /comeo_project
+        command: bash -c "python manage.py runserver 0.0.0.0:80"
+        ports:
+            - 80:80
+        depends_on:
+            - pg_database
+        env_file: dev-env
+
+    pg_database:
+        image: postgres:9.5.3
+        # secret strings are in the file
+        env_file: dev-env
+        volumes:
+            # override postgres image Dockerfile data volume
+            - pgdata:/var/lib/postgresql/data
+            - pglogs:/var/log/postgresql
+        ports:
+            # expose ports to the docker host for debug purposes
+            - 5432:5432
+
+    rabbit:
+        image: rabbitmq:3.6.2-management
+        volumes:
+            - rabbit_data:/var/lib/rabbitmq
+        ports:
+            - 15672:15672  # management web panel ports
+        env_file: dev-env
+
+    celery:
+        image: comeo_django  # this image have celery pip installed inside
+        depends_on:
+            - django  # django service image need to be built first
+            - rabbit
+        volumes:
+            - ./../../:/comeo_project
+            - celery_logs:/var/log/
+        working_dir: /comeo_project
+        command: celery -A comeo_project worker -l info --logfile=/var/log/celery.log
+        env_file: dev-env

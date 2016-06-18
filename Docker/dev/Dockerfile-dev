@@ -1,0 +1,23 @@
+FROM python:3.5
+ENV PYTHONUNBUFFERED 1
+
+# these instructions with pip installs will be cached, so they will not be executed on image rebuild
+RUN pip install django==1.9.7
+RUN pip install psycopg2==2.6.1
+RUN pip install celery==3.1.23
+RUN pip install django-crispy-forms==1.6.0
+RUN pip install django-bootstrap-form==3.2.1
+RUN pip install django-ckeditor==4.5.1
+RUN pip install django-debug-toolbar==1.4
+RUN pip install django-extensions==1.6.7
+RUN pip install Pillow==3.2.0
+
+# this ADD instruction invalidates the cache for subsequent instructions, in case if requirements file was changed
+ADD . /comeo_project
+
+# this instruction installs requirements which were not added to the Dockerfile,
+# and skips those which are in Dockerfile
+# TODO: clean up if this is not needed
+#RUN pip install -r /comeo_project/Docker/requirements-dev.txt
+
+ENV OUTSIDE development

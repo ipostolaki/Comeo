@@ -1,4 +1,3 @@
-# Other
 .idea/
 .DS_Store
 
@@ -14,3 +13,4 @@ secret.py
 dump.rdb
 celery.log
 fabfile.py
+*/ignore

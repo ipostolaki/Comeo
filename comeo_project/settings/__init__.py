@@ -2,7 +2,9 @@ import os
 
 # Load distinct settings files
 
-OUTSIDE = os.environ.get('OUTSIDE', None)
+
+# TODO: instead of code in this file use DJANGO_SETTINGS_MODULE in the Docker env file
+OUTSIDE = os.environ.get('OUTSIDE')
 
 if OUTSIDE == 'development':
     from .dev import *

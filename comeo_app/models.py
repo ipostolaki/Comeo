@@ -42,6 +42,8 @@ class CustomUserManager(BaseUserManager):
 
 
 class ComeoUser(AbstractBaseUser, PermissionsMixin):
+    # AbstractBaseUser inheritence is needed in order to
+    # use email instead of username for sign up and login features
 
     email = models.EmailField(_('Email'), max_length=254, unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=False)

@@ -54,7 +54,6 @@ class CustomUserCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kargs):
         super(CustomUserCreationForm, self).__init__(*args, **kargs)
-        del self.fields['username']
 
     class Meta:
         model = ComeoUser
@@ -65,7 +64,6 @@ class CustomUserChangeForm(UserChangeForm):
 
     def __init__(self, *args, **kargs):
         super(CustomUserChangeForm, self).__init__(*args, **kargs)
-        del self.fields['username']
 
     class Meta:
         model = ComeoUser
@@ -75,13 +73,13 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class FormDonate(forms.ModelForm):
-    agree_check = forms.BooleanField(label='Я согласен с правилами')
+    agree_check = forms.BooleanField(label='Я согласен с правилами')  # TODO: localize
 
     class Meta:
         model = Transaction
         fields = ['amount', 'method', 'agree_check']
 
-    is_public = forms.BooleanField(label='Опубликовать вклад', initial=True, required=False)
+    is_public = forms.BooleanField(label='Опубликовать вклад', initial=True, required=False)  # TODO: localize
 
 
 class DonateNewUserForm(forms.ModelForm):
