@@ -5,6 +5,7 @@ volumes:
     pglogs:
     rabbit_data:
     celery_logs:
+    neo_data:
 
 services:
 
@@ -15,11 +16,12 @@ services:
         volumes:
             - ./../../:/comeo_project
         working_dir: /comeo_project
-        command: bash -c "python manage.py runserver 0.0.0.0:80"
+        command: bash -c ". ./Docker/dev/run_django.sh"
         ports:
             - 80:80
         depends_on:
             - pg_database
+            - neo
         env_file: dev-env
 
     pg_database:
@@ -53,3 +55,12 @@ services:
         working_dir: /comeo_project
         command: celery -A comeo_project worker -l info --logfile=/var/log/celery.log
         env_file: dev-env
+
+    neo:
+        image: neo4j:3.0.3
+        env_file: dev-env
+        volumes:
+            - neo_data:/data
+        ports:
+            - 7687:7687
+            - 7474:7474  # web panel tool
