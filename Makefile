@@ -1,6 +1,8 @@
 export COMPOSE_FILE=./Docker/dev/docker-compose-dev.yml
 export COMPOSE_PROJECT_NAME=comeo
 
+.PHONY: logs
+
 default: build
 
 build:
@@ -45,3 +47,7 @@ logs:
 start-pg:
 # start existing pg container
 	docker-compose up pg_database
+
+start-neo:
+# start existing neo container
+	docker-compose up neo

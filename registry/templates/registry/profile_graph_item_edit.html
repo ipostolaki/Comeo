@@ -1,0 +1,27 @@
+{% extends 'comeo_app/profile/base_profile.html' %}
+{% load bootstrap %}
+
+{% load i18n %}
+
+{% block section %}
+
+<h3 style="text-align:center">{% trans 'Edit '|add:item_label %}</h3>  <!--TODO: i18n-->
+
+<div class="col-sm-4 col-sm-offset-4">
+
+<form action="{% url 'registry:profile_graph_item_edit' item_label loaded_node.get_node_id %}"
+      method="post"
+      enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ edit_item_form|bootstrap }}
+        <div>
+            <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+            <button type="submit" class="btn btn-danger" name="delete" value=" ">{% trans 'Delete' %}</button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+

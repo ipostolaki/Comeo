@@ -16,7 +16,8 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 ENV_RABBIT_USER = os.environ.get('RABBITMQ_DEFAULT_USER')
 ENV_RABBIT_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS')
-ENV_EMAIL_HOST_PASSWORD = os.environ.get('SECRET_EMAIL_HOST_PASSWORD'),
+ENV_EMAIL_HOST_PASSWORD = os.environ.get('SECRET_EMAIL_HOST_PASSWORD')
+OUTSIDE = os.environ.get('OUTSIDE')
 
 DATABASES = {
     'default': {
@@ -41,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'comeo_app',
+    'registry',
     'crispy_forms',
     'bootstrapform',
     'django.contrib.humanize',

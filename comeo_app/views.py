@@ -13,6 +13,8 @@ import comeo_app.tasks as tasks
 from comeo_app.forms import (SignUpForm, EditUserForm, ProfileForm,
                              DonateNewUserForm, FormDonate, SubscribeForm, CampaignForm)
 
+from registry import graph_interface
+
 
 def home(request):
     return render(request, 'comeo_app/index.html')
@@ -44,6 +46,9 @@ def signup(request):
                                               password=sign_up_form.cleaned_data['password'])
             if authenticated_user:
                 login(request, authenticated_user)
+
+            # create a new Person node in the graph database
+            graph_interface.Person.create_person(authenticated_user.id)
     else:
         sign_up_form = SignUpForm(initial={'first_name': '', 'email': '',
                                            'last_name': '', 'password': ''})

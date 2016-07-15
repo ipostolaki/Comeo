@@ -12,6 +12,8 @@ POSTGRES_DB=comeo_django_db
 
 DJANGO_SECRET_KEY=7g%&sc*lv@c@m8f(+ltbro-8hug&wi4p@@=s-mzzs_+=lhz3-6
 SECRET_EMAIL_HOST_PASSWORD=Definepass1
+OUTSIDE=development
+NEO4J_REST_URL=http://neo4j:secretpass@neo:7474/db/data/
 
 # RabbitMQ
 
@@ -20,4 +22,5 @@ RABBITMQ_DEFAULT_PASS=secretpass
 
 # Neo4j
 
-NEO4J_AUTH=neo4j/secretpass
+# auth disabled, to enable use value neo4j/secretpass
+NEO4J_AUTH=none

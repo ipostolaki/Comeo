@@ -19,6 +19,7 @@ services:
         command: bash -c ". ./Docker/dev/run_django.sh"
         ports:
             - 80:80
+            - 35729:35729  # livereload tool
         depends_on:
             - pg_database
             - neo
@@ -57,7 +58,7 @@ services:
         env_file: dev-env
 
     neo:
-        image: neo4j:3.0.3
+        image: neo4j:2.3.5  # latest is 3.0.3 (not supported ny neomodel currently)
         env_file: dev-env
         volumes:
             - neo_data:/data

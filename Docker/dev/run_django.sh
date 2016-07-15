@@ -15,6 +15,15 @@ do
   echo -n .
   sleep 1
 done
-
 echo "PostgresSQL database is ready"
+
+
+echo "Waiting for the neo service..."
+while ! nc -w 1 -z neo 7474;
+do
+  echo -n .
+  sleep 1
+done
+echo "Neo4j database is ready"
+
 python manage.py runserver 0.0.0.0:80
