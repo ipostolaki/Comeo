@@ -1,0 +1,138 @@
+<!--
+TODO:
+- size of the node based on it's type
+-->
+
+{% load staticfiles %}
+{% block extra_head %}
+    <link href="{% static 'registry/style/profile_graph_ui.css' %}" rel="stylesheet">
+    <script src="{% static 'registry/vendor/js/d3.v4.min.js' %}"></script>
+{% endblock %}
+
+<svg width="700" height="500">
+
+<filter id = "avatar" x = "0%" y = "0%" width = "100%" height = "100%">
+    <feImage xlink:href = "{% static 'comeo_app/avatar_placeholder.png' %}"/>
+</filter>
+
+</svg>
+
+<script>
+
+
+
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+<!--for debug purposes-->
+<!--svg.style("background-color", "lightgreen");-->
+
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collide", d3.forceCollide(45))  // prevent nodes(and labels partly) from overlapping
+    // .force("x", d3.forceX(width / 2))
+    // .force("y", d3.forceY(height / 2));
+
+d3.json("{% url 'registry:personal_graph_json' %}", function(error, graph) {
+  if (error) throw error;
+
+  var link = svg.append("g")
+      .attr("class", "links")
+      .selectAll("line")
+      .data(graph.links)
+      .enter().append("line")
+      .attr("stroke-width", 2);
+
+  var node = svg.append("g")
+      .attr("class", "nodes")
+    .selectAll("circle")
+    .data(graph.nodes)
+    .enter().append("g").append("circle")
+      .attr("r", get_node_radius_function)
+      .attr("fill", function(d) { return color(d.group); })
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
+
+
+var texts = d3.select(".nodes").selectAll("g").append("text")
+.text(function(d) { return d.id });
+
+  simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(graph.links).distance(70);
+
+
+simulation.force("charge").strength(-150);  // this will repel nodes from each other
+
+    // add avatar instead of filled circle to the Person node
+    var person_node = d3.selectAll("circle").filter(function(d, i) { return d.type == 'person' });
+    person_node.attr('filter', 'url(#avatar)')
+
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+    node
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+
+    texts
+        .attr("dx", get_title_pos_x)
+        .attr("dy", get_title_pos_y);
+
+  }
+});
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+function get_node_radius_function(node_datum) {
+    if (node_datum.type == 'person')
+        return 20;
+
+    return 10;
+}
+
+function get_title_pos_x(d) {
+    if (d.type == 'person')
+        return d.x+25;  // push the label to the right
+
+    return d.x+15;
+}
+
+function get_title_pos_y(d) {
+    if (d.type == 'person')
+        return d.y+5;  // push label down
+
+    return d.y+5;
+}
+
+
+</script>

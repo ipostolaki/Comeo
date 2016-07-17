@@ -1,0 +1,15 @@
+.links line {
+  stroke: aquamarine;
+  stroke-opacity: 1;
+  stroke-width: 3px;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 0.5px;
+}
+
+.nodes text {
+  pointer-events: none;
+  font: 11px helvetica-light;
+}

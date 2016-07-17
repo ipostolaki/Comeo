@@ -2,7 +2,7 @@
 {% load some_tags %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">  <!-- TODO: set lang dynamically, if needed -->
   <head profile="http://www.w3.org/2005/10/profile">
 
     <link rel="shortcut icon" type="image/png" href="{% static 'comeo_app/favicon.ico' %}"/>
@@ -16,7 +16,7 @@
 
     <!-- Loading Flat UI -->
     <link href="{% static 'comeo_app/dist/css/flat-ui.min.css' %}" rel="stylesheet">
-    <link href="{% static 'comeo_app/dist/css/my.css' %}" rel="stylesheet">
+    <link href="{% static 'comeo_app/style/base.css' %}" rel="stylesheet">
 
     {% if outside == 'development' %}
       <!-- livereload development server -->
@@ -30,8 +30,10 @@
       <script src="js/vendor/html5shiv.js"></script>
       <script src="js/vendor/resnav_activenav_activepond.min.js"></script>
     <![endif]-->
-      {% block headpart %}
-      {% endblock %}
+
+    {% block extra_head %}
+        {# A block to add extra stylesheets or any additions needed in the head part #}
+    {% endblock %}
 
   </head>
 
@@ -140,7 +142,9 @@
     <!-- language selector end -->
 </div>
 
+    <div class="container">
     {% block content %}{% endblock %}
+    </div>
 
     <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
 

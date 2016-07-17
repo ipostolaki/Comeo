@@ -3,7 +3,7 @@
 {% load staticfiles %}
 {% load bootstrap %}
 {% load i18n %}
-{% block headpart %}
+{% block extra_head %}
 <script>
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
@@ -75,22 +75,22 @@
             </div>
 
 
-            <div class="row groups-row">
-                <div class="col-sm-3">
-                    <div class="icon chat"></div>
-                </div>
-                <div class="col-sm-6" style="margin-left:50px;">
-                    <h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">{% trans 'Groups' %}</h3>
-                    <div class="row-lead">
-                        {% trans 'index_groups_title' %}
-                    </div>
-                    <div class="row-content">
-                        {% trans 'index_groups_content' %}
-                        &nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info"
-                        data-toggle="tooltip" data-placement="top" title="{% trans 'Coming_soon' %}">
-                        {% trans 'index_groups_read_more' %}</button>
-                    </div>
-                </div>
-            </div>
+            <!--<div class="row groups-row">-->
+                <!--<div class="col-sm-3">-->
+                    <!--<div class="icon chat"></div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-6" style="margin-left:50px;">-->
+                    <!--<h3 style="display:inline-block; padding-top:60px; margin-left:-20px;">{% trans 'Groups' %}</h3>-->
+                    <!--<div class="row-lead">-->
+                        <!--{% trans 'index_groups_title' %}-->
+                    <!--</div>-->
+                    <!--<div class="row-content">-->
+                        <!--{% trans 'index_groups_content' %}-->
+                        <!--&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info"-->
+                        <!--data-toggle="tooltip" data-placement="top" title="{% trans 'Coming_soon' %}">-->
+                        <!--{% trans 'index_groups_read_more' %}</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
 
 {% endblock %}

@@ -22,7 +22,7 @@ from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationshi
 
 class CommonMixin:
 
-    metadata = StringProperty(unique_index=True, required=True)
+    metadata = StringProperty(required=True)
 
     def get_node_id(self):
         # this may be used to access value in the templates
@@ -41,7 +41,7 @@ class CommonMixin:
 
 
 class Resource(StructuredNode, CommonMixin):
-    title = StringProperty(unique_index=True, required=True)
+    title = StringProperty(required=True)
 
 
 class Skill(StructuredNode, CommonMixin):
@@ -53,7 +53,7 @@ class InterestTag(StructuredNode, CommonMixin):
     Data contained in this node should be crowdsourced.
     Any Person may tag other person's interest, and merge it into it's own graph.
     """
-    title = StringProperty(unique_index=True, required=True)
+    title = StringProperty(required=True)
 
 
 class Person(StructuredNode):
@@ -87,7 +87,7 @@ class Person(StructuredNode):
     def add_resource(cls, user_id, title, metadata):
         new_resource = Resource(title=title, metadata=metadata).save()
         person = cls.get_by_django_id(user_id)
-        person.resources.connect(new_resource)\
+        person.resources.connect(new_resource)
 
     @classmethod
     def add_interest(cls, user_id, title, metadata):
@@ -131,3 +131,5 @@ def get_node_class_by_label(item_label):
         return Resource
     elif item_label == 'interest':
         return InterestTag
+
+

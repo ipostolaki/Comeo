@@ -1,24 +1,52 @@
 {% extends 'comeo_app/profile/base_profile.html' %}
 {% load i18n %}
-{% load some_tags %}
+
+{% block extra_head %}
+<script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+{% endblock %}
 
 {% block section %}
 
+<div container>
+    <div class="row">
+
+        <div class="col-md-7">
+        {% include 'registry/personal_graph_ui.html' %}
+        </div>
+
+        <div class="col-md-4">
+
+
+
 <!--Resources-->
-<p class="lead">{% trans 'My resources' %} <a
-        href="{% url 'registry:profile_graph_item_create' 'resource' %}"><b>+</b></a></p>
+<p class="lead">{% trans 'My resources' %}
+    <a href="{% url 'registry:profile_graph_item_create' 'resource' %}"><b>+</b></a></p>
 {% for resource in resources %}
+    <span>
     <a href="{% url 'registry:profile_graph_item_edit' 'resource' resource.get_node_id %}"
-       class="btn btn-info btn-xs">{{ resource.title }}</a>
+       class="btn btn-info btn-xs"
+       data-toggle="tooltip"
+       data-placement="top"
+       title="{{ resource.metadata }}">{{ resource.title }}</a>
+    </span>
 {% endfor %}
 
 <!--Skills-->
 <hr>
-<p class="lead">{% trans 'My skills' %} <a
-        href="{% url 'registry:profile_graph_item_create' 'skill' %}"><b>+</b></a></p>
+<p class="lead">{% trans 'My skills' %}
+    <a href="{% url 'registry:profile_graph_item_create' 'skill' %}"><b>+</b></a></p>
 {% for skill in skills %}
+    <span>
     <a href="{% url 'registry:profile_graph_item_edit' 'skill' skill.get_node_id %}"
-       class="btn btn-info btn-xs">{{ skill.title }}</a>
+       class="btn btn-info btn-xs"
+       data-toggle="tooltip"
+       data-placement="top"
+       title="{{ skill.metadata }}">{{ skill.title }}&nbsp;</a>
+    </span>
 {% endfor %}
 
 <!--Interests-->
@@ -26,9 +54,22 @@
 <p class="lead">{% trans 'My interests & tags' %}
     <a href="{% url 'registry:profile_graph_item_create' 'interest' %}"><b>+</b></a></p>
 {% for interest in interests %}
+    <span>
     <a href="{% url 'registry:profile_graph_item_edit' 'interest' interest.get_node_id %}"
-       class="btn btn-info btn-xs">{{ interest.title }}</a>
+       class="btn btn-info btn-xs"
+       data-toggle="tooltip"
+       data-placement="top"
+       title="{{ interest.metadata }}">{{ interest.title }}&nbsp;</a>
+    </span>
 {% endfor %}
+
+
+    </div>
+
+    </div>
+
+</div>
+
 
 {% endblock %}
 
