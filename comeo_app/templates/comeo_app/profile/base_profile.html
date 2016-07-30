@@ -2,22 +2,19 @@
 {% load i18n %}
 {% load some_tags %}
 {% block content %}
-<div style="padding-left:20px; padding-top:25px">
-
-    <ul class="nav nav-tabs">
-        <li role="presentation" {% nav_active request 'comeo_app:profile'%}>
-            <a href="{% url 'comeo_app:profile' %}">Profile</a>
-        </li>
-        <li role="presentation" {% nav_active request 'comeo_app:profile_campaigns'%}>
-            <a href="{% url 'comeo_app:profile_campaigns' %}">Campaigns</a>
-        </li>
-        <li role="presentation">
-            <a href="{% url 'registry:profile_graph' %}">Graph</a>
-        </li>
-    </ul>
-    <br>
-    {% block section %}
-    {% endblock %}
-
-</div>
+    <div style="padding-left:20px; padding-top:25px;">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class={% nav_active request 'comeo_app:profile' %}>
+                <a href="{% url 'comeo_app:profile' %}">Profile</a>
+            </li>
+            <li role="presentation" class={% nav_active request 'comeo_app:profile_campaigns' %}>
+                <a href="{% url 'comeo_app:profile_campaigns' %}">Campaigns</a>
+            </li>
+            <li role="presentation" class={% nav_active request 'registry:profile_graph' %}>
+                <a href="{% url 'registry:profile_graph' %}">Graph</a>
+            </li>
+        </ul>
+        {% block section %}
+        {% endblock %}
+    </div>
 {% endblock %}

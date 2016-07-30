@@ -18,8 +18,6 @@ class LoginForm(AuthenticationForm):
 
 
 class SignUpForm(forms.ModelForm):
-
-    last_name = forms.CharField(required=True, label=_('last name'))
     password = forms.CharField(min_length=5, label=_('Password'))
 
     class Meta:
