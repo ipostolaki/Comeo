@@ -3,11 +3,19 @@ Graph Interface tests stub
 TODO: modify
 """
 
-def test_create_person():
+from django.test import TestCase
+
+
+class TestUserGenerator(TestCase):
     pass
 
-def test_get_by_django_id():
-    pass
+    # def test_create_person(self):
+    #     pass
+    #
+    # def test_get_by_django_id(self):
+    #     pass
+    #
+    # def test_add_skill(self):
+    #     pass
 
-def test_add_skill():
-    pass
+

@@ -14,3 +14,4 @@ dump.rdb
 celery.log
 fabfile.py
 */ignore
+*.env

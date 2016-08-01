@@ -17,7 +17,7 @@ An env var NEO4J_REST_URL is needed to establish connection.
 - Transactions support, when connecting nodes
 """
 
-from neomodel import StructuredNode, StringProperty, RelationshipTo, RelationshipFrom, UniqueProperty
+from neomodel import StructuredNode, StringProperty, RelationshipTo
 
 
 class CommonMixin:

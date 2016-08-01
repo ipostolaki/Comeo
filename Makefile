@@ -12,6 +12,9 @@ run:
 	docker-compose stop django  # for restart cases, when already running
 	docker-compose up
 
+test: stop
+	cd ./Docker/test && make test
+
 run-detached:
 	docker-compose up -d
 
