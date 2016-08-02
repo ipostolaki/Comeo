@@ -4,7 +4,7 @@ from comeo_app.models import ComeoUser
 
 from . import users_generator as ug
 
-from registry import graph_interface as gi
+from registry import graph_interface
 
 
 class TestUserGenerator(TestCase):
@@ -31,12 +31,17 @@ class TestUserGenerator(TestCase):
         }
         ug.sign_up_user(data)
         loaded_user = ComeoUser.objects.get(first_name=mock_first_name)
+        loaded_person = graph_interface.Person.get_by_django_id(loaded_user.id)
         self.assertTrue(loaded_user)
+        self.assertTrue(loaded_person)
+
+    def test_smoke_make_many_users(self):
+        ug.make_many_users(3)
 
 
-class TestGraphInterface(SimpleTestCase):
+class TestGraphFilling(SimpleTestCase):
 
-    def test_person_creation(self):
-        p = gi.Person.create_person(1)
-        loaded_p = gi.Person.get_by_django_id(1)
-        self.assertTrue(loaded_p)
+    def test_get_random_noun(self):
+        noun = ug.get_random_noun()
+        self.assertIsInstance(noun, str)
+

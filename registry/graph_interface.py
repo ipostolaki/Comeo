@@ -22,7 +22,7 @@ from neomodel import StructuredNode, StringProperty, RelationshipTo
 
 class CommonMixin:
 
-    metadata = StringProperty(required=True)
+    metadata = StringProperty(default="")
 
     def get_node_id(self):
         # this may be used to access value in the templates
@@ -78,19 +78,19 @@ class Person(StructuredNode):
         return cls.nodes.get(django_user_id=django_user_id)
 
     @classmethod
-    def add_skill(cls, user_id, title, metadata):
+    def add_skill(cls, user_id, title, metadata=None):
         new_skill = Skill(title=title, metadata=metadata).save()
         person = cls.get_by_django_id(user_id)
         person.skills.connect(new_skill)
         
     @classmethod
-    def add_resource(cls, user_id, title, metadata):
+    def add_resource(cls, user_id, title, metadata=None):
         new_resource = Resource(title=title, metadata=metadata).save()
         person = cls.get_by_django_id(user_id)
         person.resources.connect(new_resource)
 
     @classmethod
-    def add_interest(cls, user_id, title, metadata):
+    def add_interest(cls, user_id, title, metadata=None):
         new_interest = InterestTag(title=title, metadata=metadata).save()
         person = cls.get_by_django_id(user_id)
         person.interests.connect(new_interest)

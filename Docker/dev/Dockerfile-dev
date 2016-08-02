@@ -18,7 +18,7 @@ RUN pip install Pillow==3.2.0
 RUN pip install neomodel==2.0.2
 
 # Dev only dependencies
-RUN pip install django-debug-toolbar==1.4
+RUN pip install django-debug-toolbar==1.5
 RUN pip install django-extensions==1.6.7
 RUN pip install livereload==2.4.1
 RUN pip install fake-factory==0.5.9
