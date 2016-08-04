@@ -2,7 +2,7 @@
 {% load some_tags %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="en">  <!-- TODO: set lang dynamically, if needed -->
+<html lang="{{ LANGUAGE_CODE }}">  <!-- TODO: set lang dynamically, if needed -->
   <head profile="http://www.w3.org/2005/10/profile">
 
     <link rel="shortcut icon" type="image/png" href="{% static 'comeo_app/favicon.ico' %}"/>
@@ -30,11 +30,11 @@
       <script src="js/vendor/html5shiv.js"></script>
       <script src="js/vendor/resnav_activenav_activepond.min.js"></script>
     <![endif]-->
+    <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
 
     {% block extra_head %}
         {# A block to add extra stylesheets or any additions needed in the head part #}
     {% endblock %}
-
   </head>
 
   <body>
@@ -69,6 +69,8 @@
             {% if user.is_authenticated %}
                 {% if user.profile.photo %}
                 <li><img class='image' src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></img></li>
+                {% else %}
+                <li><img class='image' src="{% static 'comeo_app/avatar_placeholder.png' %}" style="width:auto; height:53px;"></img></li>
                 {% endif %}
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -85,8 +87,8 @@
                 </li>
 
             {% else %}
-                    <li class={% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'Sign up' %}</a></li>
-                    <li class={% nav_active request 'comeo_app:login' %}><a href="{% url 'comeo_app:login' %}">{% trans 'Login' %}</a></li>
+                <li class={% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'Sign up' %}</a></li>
+                <li class={% nav_active request 'comeo_app:login' %}><a href="{% url 'comeo_app:login' %}">{% trans 'Login' %}</a></li>
             {% endif %}
 
           </ul>
@@ -94,90 +96,73 @@
       </div><!-- /.container-fluid -->
     </nav>
 
+    <div class="container-fluid">
 
-<div class="container" style="padding-top:85px">
-
-    <!-- language selector -->
-
-    <div class="row text-right" style="margin-bottom:-20px; margin-right:-70px;">
-            <div class="radio-inline" style="margin-right:-20px;">
-                <label class="radio" onclick="changeLang('en')">
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio" {% if LANGUAGE_CODE == "en" %} checked="" {% endif %} class="custom-radio">
-                        <span class="icons">
-                            <span class="icon-unchecked"></span>
-                            <span class="icon-checked"></span>
-                        </span>
-                        En
-                </label>
+        <!-- language selector -->
+        <div class="row text-right" style="margin-bottom:-20px; padding-top:80px">
+            <div class="col-md-11">
+                <form class="form-inline" id="changeLangForm" action="{% url 'comeo_app:set_language'%}" method="post">
+                    {% csrf_token %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                       <div class="radio-inline" style="margin-right:-20px;">
+                            <label class="radio" onclick="changeLangSubmit()">
+                                <input type="radio" name="language" id="optionsRadios" value="{{ language.code }}"
+                                       data-toggle="radio" {% if language.code == LANGUAGE_CODE %} checked="" {% endif %}
+                                       class="custom-radio">
+                                    <span class="icons">
+                                        <span class="icon-unchecked"></span>
+                                        <span class="icon-checked"></span>
+                                    </span>
+                                    {{ language.code|title }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                    <input name="next" type="hidden" value="{% url 'comeo_app:home' %}">
+                </form>
             </div>
-
-            <div class="radio-inline" style="margin-right:-20px;">
-                <label class="radio" onclick="changeLang('ro')">
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" data-toggle="radio" {% if LANGUAGE_CODE == "ro" %} checked="" {% endif %} class="custom-radio">
-                        <span class="icons">
-                            <span class="icon-unchecked"></span>
-                            <span class="icon-checked"></span>
-                        </span>
-                        Ro
-                </label>
-            </div>
-
-            <div class="radio-inline" style="margin-right:-20px;">
-                <label class="radio" onclick="changeLang('ru')">
-                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" data-toggle="radio" {% if LANGUAGE_CODE == "ru" %} checked="" {% endif %} class="custom-radio">
-                        <span class="icons">
-                            <span class="icon-unchecked"></span>
-                            <span class="icon-checked"></span>
-                        </span>
-                        Ru
-                </label>
-            </div>
-
         </div>
-    <!-- language selector end -->
-</div>
 
-    {% block content-pre-container %}
-    {% endblock %}
+        <script>
+            <!--language selector UI: whole area of radio button behave like a link on click-->
+            function changeLangSubmit() {
+                lang = $("#changeLangForm input:checked").val()
+                if (lang == 'ro') {
+                    window.location.assign("{% url 'comeo_app:ro'%}")  // stub page for not implemented localization
+                }else{
+                    $("#changeLangForm").submit();  // go to django i18n.set_language redirect
+                }
+            }
+        </script>
+    
+        {% block content-container-fluid %}
+        {% endblock %}
+    </div>
 
     <div class="container">
         {% block content %}{% endblock %}
     </div>
 
-    <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
+    {% if outside != 'development' %}
+        <!-- Google Analytics -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    <!--language selector UI: whole area of radio button behave like a link on click-->
-    <script>
-    function changeLang(lang) {
-        if (lang == 'ro') {
-            window.location.assign("{% url 'comeo_app:ro'%}")
-        }else{
-            lang_data = {"language": lang};
-            $.post( "{% url 'comeo_app:set_language'%}", lang_data );
-            // delay is needed to reload the page when LANGUAGE_CODE was updated
-            setTimeout(function(){ location.reload(); }, 300);
-        }
-    }
-    </script>
+            {% if outside == 'lab' %}
+            track_id = 'UA-62250280-2'
+            {% else %}
+            track_id = 'UA-62250280-1'
+            {% endif %}
 
-{% if outside != 'development' %}
-<!-- Google Analytics -->
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    {% if outside == 'lab' %}
-    track_id = 'UA-62250280-2'
-    {% else %}
-    track_id = 'UA-62250280-1'
+            ga('create', track_id, 'auto');
+            ga('send', 'pageview');
+        </script>
     {% endif %}
-
-    ga('create', track_id, 'auto');
-    ga('send', 'pageview');
-</script>
-{% endif %}
 
 </body>
 </html>

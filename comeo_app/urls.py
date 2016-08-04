@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, url, include
-from django.views.i18n import set_language
-from django.views.decorators.csrf import csrf_exempt
+from django.views import i18n
 
 from comeo_app import views, forms
 
@@ -12,7 +11,7 @@ urlpatterns = patterns(
     url(r'^about/$', views.about, name='about'),
     url(r'^ro/$', views.ro, name='ro'),
     # localization
-    url(r'^i18n/setlang/$', csrf_exempt(set_language), name='set_language'),
+    url(r'^i18n/setlang/$', i18n.set_language, name='set_language'),
 
     # Campaigns
     url(r'^campaigns/$', views.campaigns_public, name='campaigns_public'),
