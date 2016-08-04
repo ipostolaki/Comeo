@@ -1,3 +1,9 @@
+"""
+Additional data sources:
+https://en.wikipedia.org/wiki/Category:Skills
+
+"""
+
 nouns_list = [
     'people',
     'history',

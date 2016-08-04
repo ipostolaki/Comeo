@@ -112,7 +112,7 @@ class Campaign(models.Model):
     # Duration range for choices
     DURATION_CHOICES = zip(range(1, 31), range(1, 31))
 
-    desc_headline = models.CharField(_('Headline'), max_length=300)
+    desc_headline = models.CharField(_('Campaign headline'), max_length=300)
     desc_preview = models.TextField(_('Short description'), max_length=400)
     summ_goal = models.PositiveIntegerField()  # TODO: rename to sum
     duration = models.PositiveSmallIntegerField(choices=DURATION_CHOICES)
