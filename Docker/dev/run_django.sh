@@ -2,7 +2,7 @@
 
 # freeze what was installed during Dockerfile build,
 # file will be saved to the docker-compose mounted volume
-pip freeze > requirements-freezed.txt
+pip freeze > ./Docker/dev/requirements-freezed.txt
 
 # run livereload server as bg job
 python live.py &

@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
 from comeo_app.logic import transaction_confirmation
-from comeo_app.models import Campaign, Transaction, EmailSub
+from comeo_app.models import Campaign, Transaction, EmailSub, ComeoUser
 import comeo_app.tasks as tasks
 from comeo_app.forms import (SignUpForm, EditUserForm, ProfileForm,
                              DonateNewUserForm, FormDonate, SubscribeForm, CampaignForm)
@@ -61,6 +61,11 @@ def signup(request):
 @login_required
 def profile(request):
     return render(request, 'comeo_app/profile/profile.html')
+
+
+def public_profile(request, django_user_id):
+    user = ComeoUser.objects.get(id=django_user_id)
+    return render(request, 'comeo_app/profile/public_profile.html', {'subject_user': user})
 
 
 @login_required

@@ -9,7 +9,7 @@ TODO:
     <script src="{% static 'registry/vendor/js/d3.v4.min.js' %}"></script>
 {% endblock %}
 
-<svg width="700" height="500">
+<svg width="{{ svgwidth }}" height="{{ svgheight }}">
 
 <filter id = "avatar" x = "0%" y = "0%" width = "100%" height = "100%">
     <feImage xlink:href = "{% static 'comeo_app/avatar_placeholder.png' %}"/>
@@ -49,7 +49,7 @@ var simulation = d3.forceSimulation()
     .force("collide", d3.forceCollide(55));  // prevent nodes(and labels partly) from overlapping
 
 
-d3.json("{% url 'registry:personal_graph_json' %}", function(error, graph) {
+d3.json("{% url 'registry:personal_graph_json' subject_user.id %}", function(error, graph) {
   if (error) throw error;
 
 

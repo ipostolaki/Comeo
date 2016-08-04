@@ -5,13 +5,15 @@ from django.http import HttpResponse
 
 from .forms import EditGraphItemForm
 from . import graph_interface as graph
+from comeo_app.models import ComeoUser
 
 
 def profile_graph(request):
     context = {
         'resources': graph.Person.get_resources(request.user.id),
         'skills': graph.Person.get_skills(request.user.id),
-        'interests': graph.Person.get_interests(request.user.id)
+        'interests': graph.Person.get_interests(request.user.id),
+        'subject_user': request.user
     }
     return render(request, 'registry/profile_graph.html', context)
 
@@ -69,32 +71,38 @@ def profile_graph_item_edit(request, item_label, node_id):
                 return redirect('registry:profile_graph')
 
     if request.method == 'GET':
-        initial_data = {'title':loaded_node.title, 'metadata':loaded_node.metadata}
+        initial_data = {'title': loaded_node.title, 'metadata': loaded_node.metadata}
         edit_item_form = EditGraphItemForm(initial=initial_data)
 
     context.update({'edit_item_form': edit_item_form, 'item_label': item_label})
     return render(request, 'registry/profile_graph_item_edit.html', context)
 
 
-def get_personal_graph_json(request):
+def get_personal_graph_json(request, django_user_id):
     """
     This method prepares data needed for d3.js to render personal graph visualization
-    """
-
-    RESOURCES_LABEL = "Resources"
-    SKILLS_LABEL = "Skills"
-    INTERESTS_LABEL = "Interests"
-
-    person_name = request.user.get_full_name()
-
-    """
+    ----
     There are base nodes and links, which should be displayed for every person.
     D3.js graph data notation:
         "id" – used both as identifier and as text which will be rendered
         "group" – used for colouring of nodes of the same kind
     """
+
+    """
+    TODO:
+    - id's separated from labels/titles
+    - colouring based on type of node instead of group
+    - localize base nodes labels
+    """
+    RESOURCES_LABEL = "Resources"
+    SKILLS_LABEL = "Skills"
+    INTERESTS_LABEL = "Interests"
+
+    user = ComeoUser.objects.get(id=django_user_id)
+    person_name = user.get_full_name()
+
     base_nodes = [
-         {"id": person_name, "group": 0, "type":"person"},
+         {"id": person_name, "group": 0, "type": "person"},
          {"id": RESOURCES_LABEL, "group": 1},
          {"id": SKILLS_LABEL, "group": 2},
          {"id": INTERESTS_LABEL, "group": 3}
@@ -105,34 +113,26 @@ def get_personal_graph_json(request):
         {"source": person_name, "target": INTERESTS_LABEL}
     ]
 
-    skills = graph.Person.get_skills(request.user.id)
+    skills = graph.Person.get_skills(user.id)
     for skill in skills:
         skill_node = {"id": skill.title, "group": 4}
         skill_link = {"source": SKILLS_LABEL, "target": skill.title}
         base_nodes.append(skill_node)
         base_links.append(skill_link)
 
-    interests = graph.Person.get_interests(request.user.id)
+    interests = graph.Person.get_interests(user.id)
     for interest in interests:
         interest_node = {"id": interest.title, "group": 5}
         interest_link = {"source": INTERESTS_LABEL, "target": interest.title}
         base_nodes.append(interest_node)
         base_links.append(interest_link)
     
-    resources = graph.Person.get_resources(request.user.id)
+    resources = graph.Person.get_resources(user.id)
     for resource in resources:
         resource_node = {"id": resource.title, "group": 0}
         resource_link = {"source": RESOURCES_LABEL, "target": resource.title}
         base_nodes.append(resource_node)
         base_links.append(resource_link)
 
-
-    """
-    TODO:
-    - id's separated from labels/titles
-    - colouring based on type of node instead of group
-    """
-
     graph_data = {"nodes": base_nodes, "links": base_links}
-
     return HttpResponse(json.dumps(graph_data), content_type='application/json')

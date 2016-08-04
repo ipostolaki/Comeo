@@ -31,12 +31,12 @@ urlpatterns = patterns(
     url(r'^profile/campaigns/(?P<pk>\d+)/$', views.campaign_edit, name='campaign_edit'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^profile/edit/$', views.profile_edit, name='profile_edit'),
+    url(r'^profile/public/(?P<django_user_id>[0-9]+)$', views.public_profile, name='public_profile'),
 
     # Auth
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^login/$', 'django.contrib.auth.views.login',
-        {'template_name': 'comeo_app/auth/login.html', 'authentication_form': forms.LoginForm},
-        name='login'),
+        {'template_name': 'comeo_app/auth/login.html', 'authentication_form': forms.LoginForm}, name='login'),
 
     url(r'^logout/$', 'django.contrib.auth.views.logout',
         {'template_name': 'comeo_app/auth/logout.html'}, name='logout'),
