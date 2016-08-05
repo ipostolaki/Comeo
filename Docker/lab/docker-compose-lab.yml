@@ -1,0 +1,45 @@
+version: '2'
+
+volumes:
+    pgdata:
+    pglogs:
+    rabbit_data:
+    celery_logs:
+    neo_data:
+
+services:
+
+    django:
+        build:
+            context: ./../../
+            dockerfile: ./Docker/lab/Dockerfile-lab
+        volumes:
+            - ./../../:/comeo_project
+        working_dir: /comeo_project
+        command: bash -c ". ./Docker/lab/run_django.sh"
+        ports:
+            - 3000:80  # nginx on the server is listening port 3000 to serve the lab subdomain
+        depends_on:
+            - pg_database
+            - neo
+        env_file: lab.env
+
+    pg_database:
+        image: postgres:9.5.3
+        # secret strings are in the file
+        env_file: lab.env
+        volumes:
+            # override postgres image Dockerfile data volume
+            - pgdata:/var/lib/postgresql/data
+            - pglogs:/var/log/postgresql
+        ports:
+            # expose ports to the docker host for debug purposes
+            - 5432:5432
+    neo:
+        image: neo4j:2.3.5  # latest is 3.0.3 (not supported ny neomodel currently)
+        env_file: lab.env
+        volumes:
+            - neo_data:/data
+        ports:
+            - 7687:7687
+            - 7474:7474  # web panel tool
