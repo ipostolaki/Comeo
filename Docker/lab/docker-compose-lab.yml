@@ -32,9 +32,6 @@ services:
             # override postgres image Dockerfile data volume
             - pgdata:/var/lib/postgresql/data
             - pglogs:/var/log/postgresql
-        ports:
-            # expose ports to the docker host for debug purposes
-            - 5432:5432
     neo:
         image: neo4j:2.3.5  # latest is 3.0.3 (not supported ny neomodel currently)
         env_file: lab.env
