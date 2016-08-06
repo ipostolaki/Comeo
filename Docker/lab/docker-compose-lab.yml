@@ -8,7 +8,6 @@ volumes:
     neo_data:
 
 services:
-
     django:
         build:
             context: ./../../
@@ -39,4 +38,4 @@ services:
             - neo_data:/data
         ports:
             - 7687:7687
-            - 7474:7474  # web panel tool
+            - 7474:7474

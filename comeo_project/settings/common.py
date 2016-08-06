@@ -3,14 +3,10 @@ import os
 from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
 
-import comeo_app
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # comeo_project folder
-COMEO_APP_DIR_PATH = os.path.dirname(os.path.realpath(comeo_app.__file__))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__name__))  # comeo_project folder
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # TODO: Raise warning / exception in case if critical env vars were not retrieved
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
@@ -30,7 +26,10 @@ DATABASES = {
     }
 }
 
+# Media files are served by Nginx, Docker have mapped media volume, thus uploaded files are persisted
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/uploaded/'
+
 
 # Application definition
 
@@ -66,7 +65,6 @@ WSGI_APPLICATION = 'comeo_project.wsgi.application'
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
 
@@ -79,18 +77,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 LOGIN_URL = '/login/'
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
     'django.core.context_processors.request',
     'comeo_app.context_processors.environment_processor']
 
-
 LOGIN_REDIRECT_URL = '/profile/'
 
 AUTH_USER_MODEL = 'comeo_app.ComeoUser'
-
 
 LANGUAGES = (
     ('ru', _('Russian')),
@@ -100,7 +95,7 @@ LANGUAGES = (
 
 LANGUAGE_CODE = 'en'
 
-LOCALE_PATHS = (os.path.join(COMEO_APP_DIR_PATH, 'locale'),)
+LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'comeo_app/locale'),)
 
 # Email
 DEFAULT_FROM_EMAIL = 'contact@comeo.org.md'

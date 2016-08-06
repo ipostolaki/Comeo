@@ -1,5 +1,6 @@
 from .common import *
 
+
 print("Dev settings loaded")
 
 DEBUG = True
@@ -7,9 +8,9 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/media'
 
-STATIC_ROOT = '/Users/ipostolaki/envs/comeo_sync/comeo_project/comeo_app/static/ROOT'
+# in development mode, runserver is serving all static files from one folder
+STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 
 INSTALLED_APPS += ('debug_toolbar', 'django_extensions',)
 
