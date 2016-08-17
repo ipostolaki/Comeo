@@ -1,6 +1,6 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-from registry import views, forms
+from registry import views
 
 urlpatterns = [
     url(r'^profile/graph/$', views.profile_graph, name='profile_graph'),

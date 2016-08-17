@@ -11,8 +11,8 @@ from faker import Faker
 
 from comeo_app.models import ComeoUser
 from registry import graph_interface
+from shared.basic_logger import log
 from .data import nouns
-from tools.basic_logger import log
 
 fake = Faker(locale='en')  # abstract fake data generator
 

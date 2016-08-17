@@ -5,7 +5,7 @@ volumes:
     pglogs:
     rabbit_data:
     celery_logs:
-    neo_data_simulation:
+    neo_data:
 
 services:
     django:
@@ -61,7 +61,7 @@ services:
         image: neo4j:2.3.5  # latest is 3.0.3 (not supported ny neomodel currently)
         env_file: dev.env
         volumes:
-            - neo_data_simulation:/data
+            - neo_data:/data
         ports:
             - 7687:7687
             - 7474:7474

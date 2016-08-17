@@ -61,8 +61,8 @@
                 <li class={% nav_active request 'comeo_app:campaigns_public' %}>
                 <a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Projects' %}</a></li>
                 <!--<a href="{% url 'comeo_app:campaigns_public' %}">{% trans 'Events' %}</a></li>-->
-                <!--<li class={% nav_active request 'comeo_app:faq'%}>
-                <a href="{% url 'comeo_app:faq' %}">{% trans 'FAQ' %}</a></li>-->
+                <!--<li class={% nav_active request 'base:faq'%}>
+                <a href="{% url 'base:faq' %}">{% trans 'FAQ' %}</a></li>-->
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -101,7 +101,7 @@
         <!-- language selector -->
         <div class="row text-right" style="margin-bottom:10px; padding-top:80px">
             <div class="col-md-11">
-                <form class="form-inline" id="changeLangForm" action="{% url 'comeo_app:set_language'%}" method="post">
+                <form class="form-inline" id="changeLangForm" action="{% url 'base:set_language'%}" method="post">
                     {% csrf_token %}
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
@@ -120,7 +120,7 @@
                             </label>
                         </div>
                     {% endfor %}
-                    <input name="next" type="hidden" value="{% url 'comeo_app:home' %}">
+                    <input name="next" type="hidden" value="{% url 'base:home' %}">
                 </form>
             </div>
         </div>
@@ -130,7 +130,7 @@
             function changeLangSubmit() {
                 lang = $("#changeLangForm input:checked").val()
                 if (lang == 'ro') {
-                    window.location.assign("{% url 'comeo_app:ro'%}")  // stub page for not implemented localization
+                    window.location.assign("{% url 'base:ro'%}")  // stub page for not implemented localization
                 }else{
                     $("#changeLangForm").submit();  // go to django i18n.set_language redirect
                 }

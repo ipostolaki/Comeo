@@ -16,18 +16,6 @@ from comeo_app.forms import (SignUpForm, EditUserForm, ProfileForm,
 from registry import graph_interface
 
 
-def home(request):
-    return render(request, 'comeo_app/index.html')
-
-
-def faq(request):
-    return render(request, 'comeo_app/faq.html')
-
-
-def about(request):
-    return render(request, 'comeo_app/about.html')
-
-
 def signup(request):
 
     registered = False
@@ -93,11 +81,6 @@ def profile_edit(request):
 
     context = {'profile_form': profile_form, 'user_form': user_form}
     return render(request, 'comeo_app/profile/profile_edit.html', context)
-
-
-def ro(request):
-    # localization system mock page
-    return render(request, 'comeo_app/ro.html')
 
 
 @login_required

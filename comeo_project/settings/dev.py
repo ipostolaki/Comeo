@@ -5,7 +5,7 @@ print("Dev settings loaded")
 
 DEBUG = True
 TEMPLATE_DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost"]
 
 STATIC_URL = '/static/'
 

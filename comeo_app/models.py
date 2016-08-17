@@ -84,7 +84,7 @@ class ComeoUser(AbstractBaseUser, PermissionsMixin):
 
 
 class EmailSub(models.Model):
-
+    # TODO: move to separate reusable basic email subscription app
     source = models.CharField(verbose_name=_('source'), max_length=300, blank=True)
     email = models.EmailField(_('Email'), max_length=254)
 

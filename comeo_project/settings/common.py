@@ -4,9 +4,8 @@ from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
 
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# Build paths inside the project like this: os.path.join(PROJECT_ROOT, ...)
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__name__))  # comeo_project folder
-
 
 # TODO: Raise warning / exception in case if critical env vars were not retrieved
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
@@ -33,6 +32,12 @@ MEDIA_URL = '/uploaded/'
 
 # Application definition
 
+PROJECT_APPS = (
+    'apps.base',
+    'comeo_app',
+    'registry',
+)
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,13 +45,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'comeo_app',
-    'registry',
     'crispy_forms',
     'bootstrapform',
     'django.contrib.humanize',
     'ckeditor',
-)
+) + PROJECT_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,7 +84,7 @@ LOGIN_URL = '/login/'
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
     'django.core.context_processors.request',
-    'comeo_app.context_processors.environment_processor']
+    'shared.context_processors.environment_processor']
 
 LOGIN_REDIRECT_URL = '/profile/'
 

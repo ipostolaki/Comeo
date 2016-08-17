@@ -1,17 +1,9 @@
-from django.conf.urls import patterns, url, include
-from django.views import i18n
+from django.conf.urls import patterns, url
 
 from comeo_app import views, forms
 
 urlpatterns = patterns(
     '',
-    # Base
-    url(r'^$', views.home, name='home'),
-    url(r'^faq/$', views.faq, name='faq'),
-    url(r'^about/$', views.about, name='about'),
-    url(r'^ro/$', views.ro, name='ro'),
-    # localization
-    url(r'^i18n/setlang/$', i18n.set_language, name='set_language'),
 
     # Campaigns
     url(r'^campaigns/$', views.campaigns_public, name='campaigns_public'),
