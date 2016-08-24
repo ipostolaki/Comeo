@@ -72,8 +72,7 @@ class Person(StructuredNode):
     @classmethod
     def get_by_django_id(cls, django_user_id):
         """
-        :param name: django user id
-        :return: neomodel Person instance
+        :return: neomodel Person StructuredNode instance
         """
         return cls.nodes.get(django_user_id=django_user_id)
 

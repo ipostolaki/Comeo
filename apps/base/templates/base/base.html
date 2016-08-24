@@ -12,25 +12,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <link href="{% static 'base/dist/css/vendor/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'base/vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Loading Flat UI -->
-    <link href="{% static 'base/dist/css/flat-ui.min.css' %}" rel="stylesheet">
-    <link href="{% static 'base/style/base.css' %}" rel="stylesheet">
+    <link href="{% static 'base/vendor/flat-ui/css/flat-ui.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'base/base.css' %}" rel="stylesheet">
 
     {% if outside == 'development' %}
       <!-- livereload development server -->
       <script src="http://localhost:35729/livereload.js?snipver=1"></script>
     {% endif %}
 
-    <script src="{% static 'base/dist/js/vendor/jquery.min.js' %}"></script>
+    <script src="{% static 'base/vendor/js/jquery.min.js' %}"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-      <script src="js/vendor/html5shiv.js"></script>
-      <script src="js/vendor/resnav_activenav_activepond.min.js"></script>
+      <script src="{% static 'base/vendor/js/html5shiv.js' %}"></script>
+      <script src="{% static 'base/vendor/js/respond.min.js' %}"></script>
     <![endif]-->
-    <script src="{% static 'base/dist/js/flat-ui.min.js' %}"></script>
+    <script src="{% static 'base/vendor/flat-ui/js/flat-ui.min.js' %}"></script>
 
     {% block extra_head %}
         {# A block to add extra stylesheets or any additions needed in the head part #}
@@ -50,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/"><img class="logo" src="{% static 'base/logo.png' %}"
+          <a href="/"><img class="logo" src="{% static 'base/images/logo.png' %}"
                            style="width:174px; height:53px"></a>
         </div>
 
@@ -68,9 +69,9 @@
             <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 {% if user.profile.photo %}
-                <li><img class='image' src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></img></li>
+                <li><img class='image' src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></li>
                 {% else %}
-                <li><img class='image' src="{% static 'base/avatar_placeholder.png' %}" style="width:auto; height:53px;"></img></li>
+                <li><img class='image' src="{% static 'base/images/avatar_placeholder.png' %}" style="width:auto; height:53px;"></li>
                 {% endif %}
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
