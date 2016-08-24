@@ -5,32 +5,32 @@
 <html lang="{{ LANGUAGE_CODE }}">  <!-- TODO: set lang dynamically, if needed -->
   <head profile="http://www.w3.org/2005/10/profile">
 
-    <link rel="shortcut icon" type="image/png" href="{% static 'comeo_app/favicon.ico' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'base/favicon.ico' %}"/>
 
     <meta charset="utf-8">
     <title>{% block title %}COMEO{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <link href="{% static 'comeo_app/dist/css/vendor/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'base/dist/css/vendor/bootstrap.css' %}" rel="stylesheet">
 
     <!-- Loading Flat UI -->
-    <link href="{% static 'comeo_app/dist/css/flat-ui.min.css' %}" rel="stylesheet">
-    <link href="{% static 'comeo_app/style/base.css' %}" rel="stylesheet">
+    <link href="{% static 'base/dist/css/flat-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'base/style/base.css' %}" rel="stylesheet">
 
     {% if outside == 'development' %}
       <!-- livereload development server -->
       <script src="http://localhost:35729/livereload.js?snipver=1"></script>
     {% endif %}
 
-    <script src="{% static 'comeo_app/dist/js/vendor/jquery.min.js' %}"></script>
+    <script src="{% static 'base/dist/js/vendor/jquery.min.js' %}"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
       <script src="js/vendor/html5shiv.js"></script>
       <script src="js/vendor/resnav_activenav_activepond.min.js"></script>
     <![endif]-->
-    <script src="{% static 'comeo_app/dist/js/flat-ui.min.js' %}"></script>
+    <script src="{% static 'base/dist/js/flat-ui.min.js' %}"></script>
 
     {% block extra_head %}
         {# A block to add extra stylesheets or any additions needed in the head part #}
@@ -50,7 +50,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/"><img class="logo" src="{% static 'comeo_app/logo.png' %}"
+          <a href="/"><img class="logo" src="{% static 'base/logo.png' %}"
                            style="width:174px; height:53px"></a>
         </div>
 
@@ -70,7 +70,7 @@
                 {% if user.profile.photo %}
                 <li><img class='image' src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></img></li>
                 {% else %}
-                <li><img class='image' src="{% static 'comeo_app/avatar_placeholder.png' %}" style="width:auto; height:53px;"></img></li>
+                <li><img class='image' src="{% static 'base/avatar_placeholder.png' %}" style="width:auto; height:53px;"></img></li>
                 {% endif %}
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -78,17 +78,17 @@
                       <span class="caret"></span></a>
 
                     <ul class="dropdown-menu">
-                    <li class={% nav_active request 'comeo_app:profile comeo_app:profile_edit'%}><a href="{% url 'comeo_app:profile' %}">{% trans 'Profile' %}</a></li>
+                    <li class={% nav_active request 'profiles:profile profiles:profile_edit'%}><a href="{% url 'profiles:profile' %}">{% trans 'Profile' %}</a></li>
                     <li role="separator" class="divider"></li>
-                    <li class={% nav_active request 'comeo_app:profile_campaigns' %}><a href="{% url 'comeo_app:profile_campaigns' %}">{% trans 'Campaigns' %}</a></li>
+                    <li class={% nav_active request 'profiles:profile_campaigns' %}><a href="{% url 'profiles:profile_campaigns' %}">{% trans 'Campaigns' %}</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="{% url 'comeo_app:logout' %}">{% trans 'Logout' %}</a></li>
+                    <li><a href="{% url 'profiles:logout' %}">{% trans 'Logout' %}</a></li>
                   </ul>
                 </li>
 
             {% else %}
-                <li class={% nav_active request 'comeo_app:signup' %}><a href="{% url 'comeo_app:signup' %}">{% trans 'Sign up' %}</a></li>
-                <li class={% nav_active request 'comeo_app:login' %}><a href="{% url 'comeo_app:login' %}">{% trans 'Login' %}</a></li>
+                <li class={% nav_active request 'profiles:signup' %}><a href="{% url 'profiles:signup' %}">{% trans 'Sign up' %}</a></li>
+                <li class={% nav_active request 'profiles:login' %}><a href="{% url 'profiles:login' %}">{% trans 'Login' %}</a></li>
             {% endif %}
 
           </ul>

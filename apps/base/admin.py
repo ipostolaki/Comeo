@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from comeo_app.models import Campaign, Transaction, EmailSub, ComeoUser, Profile
-from comeo_app.forms import CustomUserChangeForm, CustomUserCreationForm
+from apps.profiles.models import ComeoUser, Profile
+from comeo_app.models import Campaign, Transaction, EmailSub
+from apps.profiles.forms import CustomUserChangeForm, CustomUserCreationForm
 
 
 class CustomUserAdmin(UserAdmin):

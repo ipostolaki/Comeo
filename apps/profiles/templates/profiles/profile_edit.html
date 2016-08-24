@@ -17,14 +17,13 @@
         {% endfor %}
     {% endif %}
 
-    <form action="{% url 'comeo_app:profile_edit' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'profiles:profile_edit' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ user_form|bootstrap }}
         {{ profile_form|bootstrap }}
-        <a href="{% url 'comeo_app:password_change' %}">{% trans 'Change password' %}</a>
+        <a href="{% url 'profiles:password_change' %}">{% trans 'Change password' %}</a>
         <p></p>
         <p><button type="submit" class="btn btn-primary">{% trans 'Save' %}</button></p>
-
     </form>
 
 </div>

@@ -1,7 +1,7 @@
 """
 TODO:
 - nouns data separation by semantics
-- views for simulation
+- distinct django app with views to control simulation
 - separate graph filling and user's sign up
 """
 

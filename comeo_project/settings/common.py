@@ -34,6 +34,7 @@ MEDIA_URL = '/uploaded/'
 
 PROJECT_APPS = (
     'apps.base',
+    'apps.profiles',
     'comeo_app',
     'registry',
 )
@@ -88,7 +89,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
 
 LOGIN_REDIRECT_URL = '/profile/'
 
-AUTH_USER_MODEL = 'comeo_app.ComeoUser'
+AUTH_USER_MODEL = 'profiles.ComeoUser'
 
 LANGUAGES = (
     ('ru', _('Russian')),

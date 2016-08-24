@@ -1,0 +1,9 @@
+{% extends 'profiles/base_profile.html' %}
+{% load i18n %}
+
+{% block section %}
+<p class="lead">{{user.get_full_name}}</p>
+<p>{{user.email}}</p>
+<p class="lead"><a href="{% url 'profiles:profile_edit' %}">{% trans 'edit profile' %}</a></p>
+{% endblock %}
+

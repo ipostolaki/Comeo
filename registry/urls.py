@@ -2,6 +2,7 @@ from django.conf.urls import url
 
 from registry import views
 
+
 urlpatterns = [
     url(r'^profile/graph/$', views.profile_graph, name='profile_graph'),
     url(r'^profile/graph/edit/(?P<item_label>[A-Za-z]+)/$',

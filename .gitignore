@@ -7,11 +7,9 @@ __pycache__/
 email-dummy/
 *.ipynb
 media
-*.sqlite3
 secret.py
 *.pyc
 dump.rdb
-celery.log
 fabfile.py
 */ignore
 *.env
