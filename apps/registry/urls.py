@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from registry import views
+from apps.registry import views
 
 
 urlpatterns = [

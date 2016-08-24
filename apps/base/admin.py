@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from apps.profiles.models import ComeoUser, Profile
-from comeo_app.models import Campaign, Transaction, EmailSub
+from comeo_app.models import Campaign, Transaction
 from apps.profiles.forms import CustomUserChangeForm, CustomUserCreationForm
 
 
@@ -36,6 +36,5 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(ComeoUser, CustomUserAdmin)
 admin.site.register(Profile)
 admin.site.register(Transaction, list_display=('date_created',))
-admin.site.register(EmailSub, list_display=('email',))
 admin.site.register(Campaign, list_display=('desc_headline', 'date_created',
                                             'date_start', 'date_finish', 'state'))

@@ -1,13 +1,13 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 
-from .models import ComeoUser
-from .forms import EditUserForm, ProfileForm, SignUpForm
-from registry import graph_interface
+from apps.registry import graph_interface
 from comeo_app.models import Campaign
+from .forms import EditUserForm, ProfileForm, SignUpForm
+from .models import ComeoUser
 
 
 def signup(request):

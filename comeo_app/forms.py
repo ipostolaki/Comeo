@@ -6,10 +6,6 @@ from comeo_app.models import Transaction, Campaign
 from apps.profiles.models import ComeoUser
 
 
-class SubscribeForm(forms.Form):
-    email = forms.EmailField(max_length=254)
-
-
 class CampaignForm(forms.ModelForm):
     desc_main = forms.CharField(widget=CKEditorWidget())
 

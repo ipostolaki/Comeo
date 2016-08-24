@@ -5,12 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 from apps.profiles.models import ComeoUser
 
 
-class EmailSub(models.Model):
-    # TODO: move to separate reusable basic email subscription app
-    source = models.CharField(verbose_name=_('source'), max_length=300, blank=True)
-    email = models.EmailField(_('Email'), max_length=254)
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=100)
 
@@ -55,14 +49,8 @@ class Campaign(models.Model):
     views_count = models.PositiveIntegerField(_('view count'), default=0)
 
     def income_transaction(self, transaction):
-
         self.collected_summ += transaction.amount
         self.save()
-
-        # TODO: campaign sum can be incremented by the same transaction twice.
-        # Test needed: one campaign receives the same transaction twice, sum should not be be
-        # increased in this case, it should be equal to sum saved before
-        # transaction sent to campaign second time
 
     def days_to_finish(self):
         now = timezone.now().date()
@@ -90,11 +78,14 @@ class Transaction(models.Model):
     payer = models.ForeignKey(ComeoUser)
     external_id = models.CharField(max_length=150, null=True)
     date_created = models.DateTimeField(default=timezone.now)
-    confirmed = models.BooleanField(default=False)  # Confirmed by callback from payment partner
+    confirmed = models.BooleanField(default=False)  # updated when transaction is captured by PSP
     date_confirmed = models.DateTimeField(null=True)
     is_public = models.BooleanField(default=True)
 
     def confirm(self):
+        """
+        This method should be called when transaction confirmation is received from the PSP
+        """
         self.campaign.income_transaction(self)
         self.date_confirmed = timezone.now()
         self.confirmed = True

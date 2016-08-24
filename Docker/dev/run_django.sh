@@ -5,7 +5,7 @@
 pip freeze > ./Docker/dev/requirements-freezed.txt
 
 # run livereload server as bg job
-python live.py &
+python ./tools/live.py &
 
 # Waiting for pg service is possible with official postgres docker image
 # pg container start to listen to connections, only when setup/start process is complete

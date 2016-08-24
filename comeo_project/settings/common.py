@@ -36,7 +36,7 @@ PROJECT_APPS = (
     'apps.base',
     'apps.profiles',
     'comeo_app',
-    'registry',
+    'apps.registry',
 )
 
 INSTALLED_APPS = (
