@@ -25,27 +25,27 @@ migrate:
 migrations:
 	docker-compose exec django ./manage.py makemigrations
 
-apply_migrations: migrations migrate
+apply-migrations: migrations migrate
 
 # execute bash in the currently running container
-django_exec_bash:
+django-exec-bash:
 	docker-compose exec django bash
 
 # run new django container, with bash, and remove it after usage
-django_run_bash:
+django-run-bash:
 	docker-compose run --rm --no-deps django bash
 
-django_shell:
+django-shell:
 	docker-compose exec django ./manage.py shell_plus
 
 logs:
 	docker-compose logs -f --tail=500
 
-start-pg:
+run-pg:
 # start existing pg container
 	docker-compose up pg_database
 
-start-neo:
+run-neo:
 # start existing neo container
 	docker-compose up neo
 

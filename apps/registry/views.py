@@ -1,11 +1,11 @@
 import json
 
-from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
-from .forms import EditGraphItemForm
+from apps.profiles.models import ComeoUser
 from . import graph_interface as graph
-from comeo_app.models import ComeoUser
+from .forms import EditGraphItemForm
 
 
 def profile_graph(request):

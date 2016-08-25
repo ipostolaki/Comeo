@@ -1,0 +1,34 @@
+<!--TODO: localize -->
+
+{% load staticfiles %}
+
+<div class="col-md-3">
+
+    <div class="camp-headline" style="min-height:60px">
+            <h6>{{ campaign.desc_headline }}</h6>
+    </div>
+
+    <div class="camp-image"  style="min-height:192px">
+        {% if campaign.image_main %}
+            <a href="{% url 'crowdfunding:campaign_details' campaign.pk %}">
+                <img src="{{ campaign.image_main.url }}" class="" style="max-width:255px; max-height:192px; overflow:hidden;">
+            </a>
+        {% else %}
+            <img src="{% static 'base/images/campaign_placeholder.png' %}" class="img-responsive">
+        {% endif %}
+    </div>
+
+    <div class="camp-desc" style="min-height:160px; ">
+        <p style="max-height:150px; overflow:hidden;">{{ campaign.desc_preview }}</p>
+    </div>
+
+    {% include 'crowdfunding/progress_bar_template.html' %}
+
+    <p style="margin-top:-8px">{{ campaign.collected_summ }} из {{ campaign.summ_goal }} <small>MDL</small></p>
+
+    <a class="btn btn-xs btn-primary" style="display:inline" href="{% url 'crowdfunding:campaign_details' campaign.pk %}">Подробнее</a>
+
+    <br>
+    <br>
+</div>
+

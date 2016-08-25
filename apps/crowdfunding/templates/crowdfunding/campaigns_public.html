@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<!--<div style="padding-left:5px;">-->
+<div class="container">
+
+    {% if campaigns %}
+        {% for campaign in campaigns %}
+            {% include 'crowdfunding/campaign_thumb_template.html' %}
+        {% endfor %}
+    {% endif %}
+</div>
+
+<!--</div>-->
+
+
+{% endblock %}

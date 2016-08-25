@@ -14,5 +14,5 @@ def about(request):
 
 
 def ro(request):
-    # romanian language localization mock page showing "translation in progress" text
+    # Romanian language localization mock page showing "translation in progress" text
     return render(request, 'base/ro.html')

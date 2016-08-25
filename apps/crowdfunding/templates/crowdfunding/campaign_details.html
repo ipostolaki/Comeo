@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load base_tags %}
+
+<div class="row">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="col-sm-6">
+        <h5>{{ campaign.desc_headline }}</h5>
+        <p >{{ campaign.desc_preview }}</p>
+
+        {% if campaign.image_main %}
+            <img style="height:249px" src="{{ campaign.image_main.url }}" class="img-responsive">
+        {% endif %}
+    </div>
+
+    <div class="col-sm-4">
+
+        <div class="row" style="min-height:55px"></div>
+            {% if campaign.is_finished %}
+                <p class="lead" style="margin-bottom:0px">Сбор завершен </p>
+                <small>{{ campaign.date_finish }}</small>
+            {% else %}
+                <p class="lead">Осталось дней: {{ campaign.days_to_finish }}</p>
+            {% endif %}
+
+            <p>Собрано {{ campaign.collected_summ }} из {{ campaign.summ_goal }} <small>MDL</small></p>
+
+            {% include 'crowdfunding/progress_bar_template.html' %}
+
+            {% if backers_count > 0 %}
+                <p>Вкладчиков: {{ backers_count }}</p>
+            {% endif %}
+
+            <a class="btn btn-lg btn-success {% if campaign.is_finished %} disabled {% endif %}"
+               href="{% url 'crowdfunding:campaign_donate' campaign.pk %}">Поддержать</a>
+
+            <p class="small" style="margin-top:5px"><a href="#">Связаться с автором</a></p>
+    </div>
+
+</div>
+
+<div class="jumbotron" style="margin-top:50px">
+    <div class="row">
+        <div class="col-sm-12">
+            <br>{{ campaign.desc_main|safe }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

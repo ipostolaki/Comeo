@@ -1,0 +1,6 @@
+{% load base_tags %}
+
+<div class="progress">
+    {% widthratio campaign.collected_summ campaign.summ_goal 100 as percents %}
+    <div class="progress-bar" role="progressbar" style="min-width: 2em; width: {{ percents|max100 }}%;">{{ percents }}%</div>
+</div>

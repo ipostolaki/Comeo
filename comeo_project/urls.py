@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('apps.base.urls', namespace="base")),
     url(r'^profile/', include('apps.profiles.urls', namespace="profiles")),
-    url(r'^', include('comeo_app.urls', namespace="comeo_app")),
+    url(r'^crowdfunding/', include('apps.crowdfunding.urls', namespace="crowdfunding")),
     url(r'^registry/', include('apps.registry.urls', namespace="registry")),
     url(r'^ckeditor/', include('ckeditor.urls')),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

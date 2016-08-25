@@ -35,7 +35,7 @@ MEDIA_URL = '/uploaded/'
 PROJECT_APPS = (
     'apps.base',
     'apps.profiles',
-    'comeo_app',
+    'apps.crowdfunding',
     'apps.registry',
 )
 
@@ -99,7 +99,7 @@ LANGUAGES = (
 
 LANGUAGE_CODE = 'en'
 
-LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'comeo_app/locale'),)
+LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'comeo_project/locale'),)
 
 # Email
 DEFAULT_FROM_EMAIL = 'contact@comeo.org.md'

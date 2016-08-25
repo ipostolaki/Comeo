@@ -36,26 +36,25 @@ services:
             # expose ports to the docker host for debug purposes
             - 5432:5432
 
-#    rabbit:
-#        image: rabbitmq:3.6.2-management
-#        volumes:
-#            - rabbit_data:/var/lib/rabbitmq
-#        ports:
-#            - 15672:15672  # management web panel ports
-#        env_file: dev.env
-#
-# TODO: wait for db's before starting celery
-#    celery:
-#        image: comeo_django  # this image have celery pip installed inside
-#        depends_on:
-#            - django  # django service image need to be built first
-#            - rabbit
-#        volumes:
-#            - ./../../:/comeo_project
-#            - celery_logs:/var/log/
-#        working_dir: /comeo_project
-#        command: celery -A comeo_project worker -l info --logfile=/var/log/celery.log
-#        env_file: dev.env
+    rabbit:
+        image: rabbitmq:3.6.2-management
+        volumes:
+            - rabbit_data:/var/lib/rabbitmq
+        ports:
+            - 15672:15672  # management web panel ports
+        env_file: dev.env
+
+    celery:
+        image: comeo_django  # this image have celery pip installed inside
+        depends_on:
+            - django  # django service image need to be built first
+            - rabbit
+        volumes:
+            - ./../../:/comeo_project
+            - celery_logs:/var/log/
+        working_dir: /comeo_project
+        command: bash -c ". ./Docker/dev/run_celery.sh"
+        env_file: dev.env
 
     neo:
         image: neo4j:2.3.5  # latest is 3.0.3 (not supported ny neomodel currently)

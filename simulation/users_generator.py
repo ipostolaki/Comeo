@@ -9,8 +9,8 @@ import random
 
 from faker import Faker
 
+from apps.profiles.models import ComeoUser
 from apps.registry import graph_interface
-from comeo_app.models import ComeoUser
 from shared.basic_logger import log
 from .data import nouns
 

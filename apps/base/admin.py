@@ -1,15 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from apps.profiles.models import ComeoUser, Profile
-from comeo_app.models import Campaign, Transaction
+from apps.crowdfunding.models import Campaign, Transaction
 from apps.profiles.forms import CustomUserChangeForm, CustomUserCreationForm
+from apps.profiles.models import ComeoUser, Profile
 
 
 class CustomUserAdmin(UserAdmin):
-
-    # The forms to add and change user instances
-
+    # Forms necessary to add and change user instances
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
 

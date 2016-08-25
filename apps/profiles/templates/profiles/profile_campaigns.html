@@ -1,14 +1,14 @@
 {% extends 'profiles/base_profile.html' %}
 {% load i18n %}
-{% load some_tags %}
+{% load base_tags %}
 
 {% block section %}
 
-<p class="lead"><a href="{% url 'comeo_app:campaign_create' %}">{% trans 'Create campaign' %}</a></p>
+<p class="lead"><a href="{% url 'crowdfunding:campaign_create' %}">{% trans 'Create campaign' %}</a></p>
 
 {% if campaigns %}
     {% for campaign in campaigns %}
-        <a href="{% url 'comeo_app:campaign_edit' campaign.id %}">
+        <a href="{% url 'crowdfunding:campaign_edit' campaign.id %}">
             {{ campaign.desc_headline }}
         </a>
         <br>

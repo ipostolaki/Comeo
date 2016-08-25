@@ -1,7 +1,7 @@
 from django.test import TestCase, SimpleTestCase
 
+from apps.profiles.models import ComeoUser
 from apps.registry import graph_interface
-from comeo_app.models import ComeoUser
 from . import users_generator as ug
 
 

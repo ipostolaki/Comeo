@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 
+from apps.crowdfunding.models import Campaign
 from apps.registry import graph_interface
-from comeo_app.models import Campaign
 from .forms import EditUserForm, ProfileForm, SignUpForm
 from .models import ComeoUser
 
