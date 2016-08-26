@@ -4,4 +4,4 @@ max-line-length = 100
 count = True
 statistics = True
 
-exclude = .git,ignore,__pycache__,migrations,simulation
+exclude = ignore,migrations,simulation

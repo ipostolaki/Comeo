@@ -1,0 +1,28 @@
+################################################################################################
+WARNING: Set generated strings for passwords, when uploading this file to the production server
+################################################################################################
+
+# PostgreSQL
+
+POSTGRES_PASSWORD=secret
+POSTGRES_USER=secret
+POSTGRES_DB=secret
+
+# Django
+
+DJANGO_SECRET_KEY=secret
+SECRET_EMAIL_HOST_PASSWORD=secret
+OUTSIDE=template
+NEO4J_REST_URL=http://neo4j:secretpass@neo:7474/db/data/
+
+# RabbitMQ
+
+RABBITMQ_DEFAULT_USER=user
+RABBITMQ_DEFAULT_PASS=secret
+
+# Neo4j
+
+# auth disabled, to enable use value neo4j/secretpass
+NEO4J_AUTH=none
+NEO4J_CACHE_MEMORY=32M
+NEO4J_HEAP_MEMORY=128
