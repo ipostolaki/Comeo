@@ -18,7 +18,7 @@
         </div>
         {% endif %}
 
-        <form action="/signup/" class="form-horizontal" method="post">
+        <form action="{% url 'profiles:signup' %}" class="form-horizontal" method="post">
             {% csrf_token %}
 
             <div class="form-group {% if sign_up_form.first_name.errors %}has-error{% endif %}">

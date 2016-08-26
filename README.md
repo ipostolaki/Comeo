@@ -1,24 +1,38 @@
-# Comeo System Fact Sheet
+# Comeo!
 
-Running on Ubuntu 14.04, Digitalocean VPS
+Comeo is a crowdfunding platform featuring network of people, their resources, skills and interests.
 
-**Back-end:** Nginx, Gunicorn, Upstart(services monitoring), Python Django, PostgreSQL,
-Celery+RabbitMQ
+![demo](documents/personal_graph_example.png)  
+*<p align="center">Example of a Comeo user's public profile</p>*
 
-**Front-end:** HTML, CSS, JS(jQuery), Bootstrap
 
-**Tools:** Virtualenv & Virtualenvwrapper, Fabric, IPython, Livereload, Flower, Django Debug
-Toolbar, flake8
 
-## Continous delivery
-Two application instances running on the server at the same time:
+## Current status
+Basic users management and crowdfunding features are implemented at the moment.
+###### Live beta: [http://lab.comeo.org.md](http://lab.comeo.org.md)
+**Upcoming features:**  
+- Matching of people which may be interested to work on common projects  
+- Visual representation of a project with it's demanded resourses as a graph  
+- Smart contracts for automatic value distribution between projects participants
 
-1. http://comeo.org.md - public, stable version for end users.
-2. http://lab.comeo.org.md - beta version used by volunteers to test new features.
 
-## Deploy
-**Fabric script:**
+## System Fact Sheet
 
-Pulling code updates, installing new requirements, applying migrations, restarting services.
+**Back-end:**  
+Python, Django, Nginx, Gunicorn, Docker, PostgreSQL, Neo4j,
+Celery+RabbitMQ  
+**Front-end:**  
+HTML, CSS, jQuery, Bootstrap, D3.js  
+**Tools:**  
+Fabric, Livereload, Django Debug Toolbar, flake8
 
-Executed on demand on local development machine.
+## Run the system
+Makefiles and docker-compose are used to build and run system for different environments.  
+`make run` in the project root will run containers for [dev environment](/Docker/dev).  
+`cd ./docker/lab/ && make run` will run staging environment containers.
+
+## Tests
+`make test` will run unit tests in separate set of containers which will include ephemeral Neo4j database instance.
+
+## Simulation
+There is a [simulation module](/simulation) used to generate users and fill their personal graphs with fake data. It is used to implement and test new features.  

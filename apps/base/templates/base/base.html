@@ -121,7 +121,7 @@
                             </label>
                         </div>
                     {% endfor %}
-                    <input name="next" type="hidden" value="{% url 'base:home' %}">
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
                 </form>
             </div>
         </div>
