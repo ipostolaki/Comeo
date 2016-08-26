@@ -4,7 +4,6 @@ from django.conf import global_settings
 from django.utils.translation import ugettext_lazy as _
 
 
-# Build paths inside the project like this: os.path.join(PROJECT_ROOT, ...)
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__name__))  # comeo_project folder
 
 # TODO: Raise warning / exception in case if critical env vars were not retrieved
@@ -30,8 +29,6 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/uploaded/'
 
 
-# Application definition
-
 PROJECT_APPS = (
     'apps.base',
     'apps.profiles',
@@ -52,6 +49,7 @@ INSTALLED_APPS = (
     'ckeditor',
 ) + PROJECT_APPS
 
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -61,7 +59,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    )
+)
 
 ROOT_URLCONF = 'comeo_project.urls'
 
@@ -70,26 +68,11 @@ WSGI_APPLICATION = 'comeo_project.wsgi.application'
 
 # Internationalization
 
-# LANGUAGE_CODE = 'en-us'
-
-# TIME_ZONE = 'Europe/Kiev'
+LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
-LOGIN_URL = '/login/'
-
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
-    'django.core.context_processors.request',
-    'shared.context_processors.environment_processor']
-
-LOGIN_REDIRECT_URL = '/profile/'
-
-AUTH_USER_MODEL = 'profiles.ComeoUser'
 
 LANGUAGES = (
     ('ru', _('Russian')),
@@ -97,16 +80,24 @@ LANGUAGES = (
     ('en', _('English')),
 )
 
-LANGUAGE_CODE = 'en'
-
 LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'comeo_project/locale'),)
+
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/profile/'
+
+
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
+    'django.core.context_processors.request',
+    'shared.context_processors.environment_processor']
+
+
+AUTH_USER_MODEL = 'profiles.ComeoUser'
+
 
 # Email
 DEFAULT_FROM_EMAIL = 'contact@comeo.org.md'
 SERVER_EMAIL = 'contact@comeo.org.md'
-
-# Custom non django
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Celery
 CELERY_ACCEPT_CONTENT = ['json']
@@ -115,4 +106,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 BROKER_URL = 'amqp://{}:{}@rabbit:5672//'.format(ENV_RABBIT_USER, ENV_RABBIT_PASS)
 CELERY_RESULT_BACKEND = BROKER_URL
 
+# Misc
 ADMINS = (('Ilia', 'ilia.ravemd@gmail.com'),)
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

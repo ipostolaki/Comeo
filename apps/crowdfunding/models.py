@@ -12,7 +12,7 @@ class Tag(models.Model):
 class Campaign(models.Model):
 
     STATE_DRAFT = 'draft'
-    STATE_PUBLIC = 'public'  # TODO: rename to published?
+    STATE_PUBLIC = 'public'
     STATE_FINISHED_SUCCESSFULLY = 'STATE_FINISHED_SUCCESSFULLY'
     STATE_FINISHED_NON_SUCCESSFULLY = 'STATE_FINISHED_NON_SUCCESSFULLY'
 
@@ -56,10 +56,10 @@ class Campaign(models.Model):
         now = timezone.now().date()
         if self.date_finish:
             days_left = self.date_finish - now
-            return days_left.days+1
+            return days_left.days + 1
 
     def is_finished(self):
-        return self.state in [self.STATE_FINISHED_SUCCESSFULLY, self.STATE_FINISHED_NON_SUCCESSFULLY]  # noqa flake8
+        return self.state in [self.STATE_FINISHED_SUCCESSFULLY, self.STATE_FINISHED_NON_SUCCESSFULLY]
 
 
 class Transaction(models.Model):

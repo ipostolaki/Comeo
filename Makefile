@@ -5,3 +5,6 @@ include ./tools/Makefile-base
 
 test: stop
 	cd ./Docker/test && make test
+
+flake:
+	flake8 --config=.flake8 .

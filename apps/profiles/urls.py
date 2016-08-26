@@ -47,4 +47,3 @@ urlpatterns = [
         {'template_name': 'profiles/auth/password_reset_complete.html'},
         name='password_reset_complete'),
 ]
-

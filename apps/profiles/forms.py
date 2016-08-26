@@ -31,22 +31,20 @@ class ProfileForm(forms.ModelForm):
         fields = '__all__'
 
 
-# ----------------- Admin user management Forms
-
-class CustomUserCreationForm(UserCreationForm):
+class AdminUserCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kargs):
-        super(CustomUserCreationForm, self).__init__(*args, **kargs)
+        super(AdminUserCreationForm, self).__init__(*args, **kargs)
 
     class Meta:
         model = ComeoUser
         fields = '__all__'
 
 
-class CustomUserChangeForm(UserChangeForm):
+class AdminUserChangeForm(UserChangeForm):
 
     def __init__(self, *args, **kargs):
-        super(CustomUserChangeForm, self).__init__(*args, **kargs)
+        super(AdminUserChangeForm, self).__init__(*args, **kargs)
 
     class Meta:
         model = ComeoUser

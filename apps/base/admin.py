@@ -2,14 +2,14 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from apps.crowdfunding.models import Campaign, Transaction
-from apps.profiles.forms import CustomUserChangeForm, CustomUserCreationForm
+from apps.profiles.forms import AdminUserChangeForm, AdminUserCreationForm
 from apps.profiles.models import ComeoUser, Profile
 
 
 class CustomUserAdmin(UserAdmin):
     # Forms necessary to add and change user instances
-    form = CustomUserChangeForm
-    add_form = CustomUserCreationForm
+    form = AdminUserChangeForm
+    add_form = AdminUserCreationForm
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

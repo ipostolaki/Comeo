@@ -1,5 +1,6 @@
 from .common import *
 
+
 print("Lab settings loaded")
 
 DEBUG = False

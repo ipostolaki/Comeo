@@ -64,4 +64,3 @@ def attach_nodes_to_person_graph(user_id, amount_nodes_to_add=3):
         graph_interface.Person.add_skill(user_id, get_random_noun())
         graph_interface.Person.add_resource(user_id, get_random_noun())
         graph_interface.Person.add_interest(user_id, get_random_noun())
-

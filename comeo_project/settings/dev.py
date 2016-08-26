@@ -26,9 +26,8 @@ def show_toolbar(request):
     return True
 DEBUG_TOOLBAR_CONFIG = {
     # needed to skip INTERNAL_IPS check, which depends on Docker machine ip
-    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
-
 
 # ipython
 # SHELL_PLUS_PRE_IMPORTS = (

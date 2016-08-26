@@ -12,7 +12,7 @@ An env var NEO4J_REST_URL is needed to establish connection.
 """
 
 """
-# TODO:
+TODO:
 - Exceptions handling
 - Transactions support, when connecting nodes
 """
@@ -81,7 +81,7 @@ class Person(StructuredNode):
         new_skill = Skill(title=title, metadata=metadata).save()
         person = cls.get_by_django_id(user_id)
         person.skills.connect(new_skill)
-        
+
     @classmethod
     def add_resource(cls, user_id, title, metadata=None):
         new_resource = Resource(title=title, metadata=metadata).save()
@@ -121,7 +121,7 @@ class Groups(StructuredNode):
     """
 
 
-#### Utils
+# –––––––––– Utils ––––––––––
 
 def get_node_class_by_label(item_label):
     if item_label == 'skill':
@@ -130,5 +130,3 @@ def get_node_class_by_label(item_label):
         return Resource
     elif item_label == 'interest':
         return InterestTag
-
-

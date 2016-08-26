@@ -1,0 +1,7 @@
+[flake8]
+ignore = D,E501,F403
+max-line-length = 100
+count = True
+statistics = True
+
+exclude = .git,ignore,__pycache__,migrations,simulation

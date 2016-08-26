@@ -13,4 +13,3 @@ urlpatterns = [
     url(r'^campaigns/publish$/(?P<pk>\d+)/', views.campaign_edit, name='campaign_publish'),
     url(r'^campaigns/edit/(?P<pk>\d+)/$', views.campaign_edit, name='campaign_edit'),
 ]
-

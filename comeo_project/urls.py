@@ -11,4 +11,4 @@ urlpatterns = [
     url(r'^crowdfunding/', include('apps.crowdfunding.urls', namespace="crowdfunding")),
     url(r'^registry/', include('apps.registry.urls', namespace="registry")),
     url(r'^ckeditor/', include('ckeditor.urls')),
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

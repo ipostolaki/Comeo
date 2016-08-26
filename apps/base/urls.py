@@ -11,4 +11,4 @@ urlpatterns = [
     # localization
     url(r'^i18n/setlang/$', i18n.set_language, name='set_language'),
     url(r'^ro/$', views.ro, name='ro'),
-    ]
+]

@@ -81,7 +81,7 @@ def profile_graph_item_edit(request, item_label, node_id):
 def get_personal_graph_json(request, django_user_id):
     """
     This method prepares data needed for d3.js to render personal graph visualization
-    ----
+
     There are base nodes and links, which should be displayed for every person.
     D3.js graph data notation:
         "id" – used both as identifier and as text which will be rendered
@@ -94,6 +94,7 @@ def get_personal_graph_json(request, django_user_id):
     - colouring based on type of node instead of group
     - localize base nodes labels
     """
+
     RESOURCES_LABEL = "Resources"
     SKILLS_LABEL = "Skills"
     INTERESTS_LABEL = "Interests"
@@ -102,10 +103,10 @@ def get_personal_graph_json(request, django_user_id):
     person_name = user.get_full_name()
 
     base_nodes = [
-         {"id": person_name, "group": 0, "type": "person"},
-         {"id": RESOURCES_LABEL, "group": 1},
-         {"id": SKILLS_LABEL, "group": 2},
-         {"id": INTERESTS_LABEL, "group": 3}
+        {"id": person_name, "group": 0, "type": "person"},
+        {"id": RESOURCES_LABEL, "group": 1},
+        {"id": SKILLS_LABEL, "group": 2},
+        {"id": INTERESTS_LABEL, "group": 3}
     ]
     base_links = [
         {"source": person_name, "target": RESOURCES_LABEL},
@@ -126,7 +127,7 @@ def get_personal_graph_json(request, django_user_id):
         interest_link = {"source": INTERESTS_LABEL, "target": interest.title}
         base_nodes.append(interest_node)
         base_links.append(interest_link)
-    
+
     resources = graph.Person.get_resources(user.id)
     for resource in resources:
         resource_node = {"id": resource.title, "group": 0}

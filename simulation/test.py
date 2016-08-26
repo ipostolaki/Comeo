@@ -42,4 +42,3 @@ class TestGraphFilling(SimpleTestCase):
     def test_get_random_noun(self):
         noun = ug.get_random_noun()
         self.assertIsInstance(noun, str)
-
