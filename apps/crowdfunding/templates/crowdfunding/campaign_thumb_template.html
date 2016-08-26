@@ -24,7 +24,7 @@
 
     {% include 'crowdfunding/progress_bar_template.html' %}
 
-    <p style="margin-top:-8px">{{ campaign.collected_summ }} из {{ campaign.summ_goal }} <small>MDL</small></p>
+    <p style="margin-top:-8px">{{ campaign.collected_sum }} из {{ campaign.sum_goal }} <small>MDL</small></p>
 
     <a class="btn btn-xs btn-primary" style="display:inline" href="{% url 'crowdfunding:campaign_details' campaign.pk %}">Подробнее</a>
 

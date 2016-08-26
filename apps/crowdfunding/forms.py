@@ -11,7 +11,7 @@ class CampaignForm(forms.ModelForm):
 
     class Meta:
         model = Campaign
-        exclude = ('collected_summ', 'owner', 'tags', 'date_start', 'funding_type',
+        exclude = ('collected_sum', 'owner', 'tags', 'date_start', 'funding_type',
                    'date_finish', 'date_created', 'views_count', 'state', 'editors')
 
 

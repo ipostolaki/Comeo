@@ -30,12 +30,12 @@ class Campaign(models.Model):
 
     desc_headline = models.CharField(_('Campaign headline'), max_length=300)
     desc_preview = models.TextField(_('Short description'), max_length=400)
-    summ_goal = models.PositiveIntegerField()  # TODO: rename to sum
+    sum_goal = models.PositiveIntegerField()
     duration = models.PositiveSmallIntegerField(choices=DURATION_CHOICES)
     image_main = models.ImageField(verbose_name=_('Campaign image'), blank=True,
                                    upload_to='campaigns_images')
     desc_main = models.TextField(_('Description'))
-    collected_summ = models.PositiveIntegerField(blank=True, default=0)
+    collected_sum = models.PositiveIntegerField(blank=True, default=0)
     editors = models.ManyToManyField(ComeoUser, related_name='campaign_editors',
                                      verbose_name=_('campaign editors'))
     owner = models.ForeignKey(ComeoUser, verbose_name=_('campaign owner'), null=True)
@@ -49,7 +49,7 @@ class Campaign(models.Model):
     views_count = models.PositiveIntegerField(_('view count'), default=0)
 
     def income_transaction(self, transaction):
-        self.collected_summ += transaction.amount
+        self.collected_sum += transaction.amount
         self.save()
 
     def days_to_finish(self):
