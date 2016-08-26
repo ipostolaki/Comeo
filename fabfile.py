@@ -14,18 +14,20 @@ def deploy(stop="do"):
 
 def pull():
     # Pull updates from the central repo
-    run("cd /home/ubuntu/urbana/ && git fetch && git pull --no-edit")
+    run("cd /home/comeo_lab_env/comeo_project/ && git fetch && git pull --no-edit")
 
 
 def start():
-    run("cd /home/ubuntu/urbana/docker/stage && make run-detached")
+    # start all docker-compose services
+    # migrations will be applied before django starts up
+    run("cd /home/comeo_lab_env/comeo_project/Docker/lab && make run-detached")
 
 
 def build():
     # Rebuild django container, to install there new pip reqs
-    run("cd /home/ubuntu/urbana/docker/stage && make build")
+    run("cd /home/comeo_lab_env/comeo_project/Docker/lab && make build")
 
 
 def stop_action():
     # Stop running containers
-    run("cd /home/ubuntu/urbana/docker/stage && make stop")
+    run("cd /home/comeo_lab_env/comeo_project/Docker/lab && make stop")
