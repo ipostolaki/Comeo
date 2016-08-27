@@ -1,8 +1,3 @@
-<!--
-TODO:
-- size of the node based on it's type
--->
-
 {% load staticfiles %}
 {% block extra_head %}
     <link href="{% static 'registry/style/profile_graph_ui.css' %}" rel="stylesheet">
@@ -10,71 +5,61 @@ TODO:
 {% endblock %}
 
 <svg width="{{ svgwidth }}" height="{{ svgheight }}">
-
-<filter id = "avatar" x = "0%" y = "0%" width = "100%" height = "100%">
-    <feImage xlink:href = "{% static 'base/images/avatar_placeholder.png' %}"/>
-</filter>
-
+    <filter id = "avatar" x = "0%" y = "0%" width = "100%" height = "100%">
+        <feImage xlink:href = "{% static 'base/images/avatar_placeholder.png' %}"/>
+    </filter>
 </svg>
-
 
 <script>
 
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
+    var svg = d3.select("svg"),
+        width = +svg.attr("width"),
+        height = +svg.attr("height");
 
-<!--for debug purposes-->
-<!--svg.style("background-color", "lightgreen");-->
+    var color = d3.scaleOrdinal(d3.schemeCategory20);
 
-var color = d3.scaleOrdinal(d3.schemeCategory20);
+    // Marker definition, which is used to render arrow at the end of the path(link)
+    svg.append("defs").append("marker")
+      .append("marker")
+        .attr("id", "link-arrow")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 15)
+        .attr("refY", -1.5)
+        .attr("markerWidth", 6)
+        .attr("markerHeight", 6)
+        .attr("orient", "auto")
+      .append("path")
+        .attr("d", "M0,-5L10,0L0,5");
 
-// Marker definition, which is used to render arrow at the end of the path(link)
-svg.append("defs").append("marker")
-  .append("marker")
-    .attr("id", "link-arrow")
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 15)
-    .attr("refY", -1.5)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
-    .attr("orient", "auto")
-  .append("path")
-    .attr("d", "M0,-5L10,0L0,5");
-
-var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("collide", d3.forceCollide(55));  // prevent nodes(and labels partly) from overlapping
+    var simulation = d3.forceSimulation()
+        .force("link", d3.forceLink().id(function(d) { return d.id; }))
+        .force("charge", d3.forceManyBody())
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collide", d3.forceCollide(55));  // prevent nodes(and labels partly) from overlapping
 
 
-d3.json("{% url 'registry:personal_graph_json' subject_user.id %}", function(error, graph) {
-  if (error) throw error;
+    d3.json("{% url 'registry:personal_graph_json' subject_user.id %}", function(error, graph) {
+        if (error) throw error;
 
+        simulation
+          .nodes(graph.nodes)
+          .on("tick", ticked);
 
-simulation
-  .nodes(graph.nodes)
-  .on("tick", ticked);
+        simulation.force("link").links(graph.links).distance(70);
+        simulation.force("charge").strength(-150);  // this will repel nodes from each other
 
-simulation.force("link").links(graph.links).distance(70);
-simulation.force("charge").strength(-150);  // this will repel nodes from each other
-
-
-var path = svg.append("g")
-        .attr("class", "paths")
-        .selectAll("path")
-        .data(simulation.force("link").links())
-      .enter().append("path")
-        .attr("class", "curve-link");
-        // .attr("marker-end", "url(#link-arrow)");
-
+        var path = svg.append("g")
+            .attr("class", "paths")
+            .selectAll("path")
+            .data(simulation.force("link").links())
+            .enter().append("path")
+            .attr("class", "curve-link");
 
         var node = svg.append("g")
             .attr("class", "nodes")
-          .selectAll("circle")
-          .data(graph.nodes)
-          .enter().append("g").append("circle")
+            .selectAll("circle")
+            .data(graph.nodes)
+            .enter().append("g").append("circle")
             .attr("r", get_node_radius_function)
             .attr("fill", function(d) { return color(d.group); })
             .call(d3.drag()
@@ -82,98 +67,87 @@ var path = svg.append("g")
                 .on("drag", dragged)
                 .on("end", dragended));
 
+        var titles = d3.select(".nodes")
+            .selectAll("g")
+            .append("text")
+            .text(function(d) { return d.id });
 
-        var titles = d3.select(".nodes").selectAll("g").append("text")
-          .text(function(d) { return d.id });
+        // add avatar instead of filled circle to the Person node
+        var person_node = d3.selectAll("circle").filter(function(d, i) { return d.type == 'person' });
+        person_node.attr('filter', 'url(#avatar)')
 
+        function ticked() {
+            path.attr("d", linkArc);
+            node
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; });
+            titles
+                .attr("dx", get_title_pos_x)
+                .attr("dy", get_title_pos_y);
+        }
+    });
 
-    // add avatar instead of filled circle to the Person node
-    var person_node = d3.selectAll("circle").filter(function(d, i) { return d.type == 'person' });
-    person_node.attr('filter', 'url(#avatar)')
+    function linkArc(d) {
+        var dx = d.target.x - d.source.x,
+            dy = d.target.y - d.source.y,
+            dr = Math.sqrt(dx * dx + dy * dy);
+        return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+    }
 
+    function dragstarted(d) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+    }
 
-  function ticked() {
-    // link
-    //     .attr("x1", function(d) { return d.source.x; })
-    //     .attr("y1", function(d) { return d.source.y; })
-    //     .attr("x2", function(d) { return d.target.x; })
-    //     .attr("y2", function(d) { return d.target.y; });
+    function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+    }
 
-     path.attr("d", linkArc);
+    function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    }
 
-    node
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+    function get_node_radius_function(node_datum) {
+        if (node_datum.type == 'person')
+            return 20;
 
-    titles
-        .attr("dx", get_title_pos_x)
-        .attr("dy", get_title_pos_y);
+        return 10;
+    }
 
-  }
-});
+    function get_title_pos_x(d) {
+        if (d.type == 'person')
+            return d.x+25;  // push the label to the right
 
+        return d.x+15;
+    }
 
-function linkArc(d) {
-  var dx = d.target.x - d.source.x,
-      dy = d.target.y - d.source.y,
-      dr = Math.sqrt(dx * dx + dy * dy);
-  return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-}
+    function get_title_pos_y(d) {
+        if (d.type == 'person')
+            return d.y+5;  // push label down
 
-function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-  d.fx = d.x;
-  d.fy = d.y;
-}
+        return d.y+5;
+    }
 
-function dragged(d) {
-  d.fx = d3.event.x;
-  d.fy = d3.event.y;
-}
+    // enable Zoom and Pan
+    svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .call(d3.zoom()
+            .scaleExtent([1 / 2, 4])
+            .on("zoom", zoomed));
 
-function dragended(d) {
-  if (!d3.event.active) simulation.alphaTarget(0);
-  d.fx = null;
-  d.fy = null;
-}
+    function zoomed() {
+        var nodes = d3.select(".nodes").selectAll("g")
+        var paths = d3.select(".paths").selectAll("path")
 
-function get_node_radius_function(node_datum) {
-    if (node_datum.type == 'person')
-        return 20;
-
-    return 10;
-}
-
-function get_title_pos_x(d) {
-    if (d.type == 'person')
-        return d.x+25;  // push the label to the right
-
-    return d.x+15;
-}
-
-function get_title_pos_y(d) {
-    if (d.type == 'person')
-        return d.y+5;  // push label down
-
-    return d.y+5;
-}
-
-// enable Zoom and Pan
-svg.append("rect")
-    .attr("width", width)
-    .attr("height", height)
-    .style("fill", "none")
-    .style("pointer-events", "all")
-    .call(d3.zoom()
-        .scaleExtent([1 / 2, 4])
-        .on("zoom", zoomed));
-
-function zoomed() {
-    var nodes = d3.select(".nodes").selectAll("g")
-    var paths = d3.select(".paths").selectAll("path")
-
-    nodes.attr("transform", d3.event.transform);
-    paths.attr("transform", d3.event.transform);
-}
+        nodes.attr("transform", d3.event.transform);
+        paths.attr("transform", d3.event.transform);
+    }
 
 </script>
