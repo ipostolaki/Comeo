@@ -3,11 +3,11 @@
 Comeo is a crowdfunding platform featuring network of people, their resources, skills and interests.
 
 ![demo](documents/personal_graph_example.png)  
-###### Example of a Comeo user's public profile, D3.js rendered
+###### Example of a Comeo user's public profile. Stored in the Neo4j graph database, rendered by D3.js.
 
 ## Current status
 Basic users management and crowdfunding features are implemented at the moment.
-###### Live beta: [http://lab.comeo.org.md](http://lab.comeo.org.md)
+###### Live beta: [http://lab.comeo.org.md](http://lab.comeo.org.md) (running on Digitalocean Ubuntu VPS)
 **Upcoming features:**  
 - Matching of people which may be interested to work on common projects  
 - Visual representation of a project with it's demanded resourses as a graph  
@@ -20,11 +20,11 @@ Basic users management and crowdfunding features are implemented at the moment.
 Python, Django, Nginx, Gunicorn, Docker, PostgreSQL, Neo4j,
 Celery+RabbitMQ  
 **Front-end:**  
-HTML, CSS, jQuery, Bootstrap, D3.js  
+HTML, CSS, Bootstrap, jQuery, AJAX, D3.js  
 **Tools:**  
 Fabric, Livereload, Django Debug Toolbar, flake8
 
-## Run the system
+## Dockerized environments
 Makefiles and docker-compose are used to build and run system for different environments.  
 `make run` in the project root will run containers for [dev environment](/Docker/dev).  
 `cd ./docker/lab/ && make run` will run staging environment containers.
