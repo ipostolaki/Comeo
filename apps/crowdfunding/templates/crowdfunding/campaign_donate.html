@@ -7,15 +7,14 @@
 
     <div class="col-sm-4">
         <h5>{{ campaign.desc_headline }}</h5>
-        <p class="lead">Поддержать проект</p>
-        <p>Выбор суммы и способа оплаты</p>
+        <p class="lead">{% trans 'Make a donation' %}</p>
 
             <form action="{% url 'crowdfunding:campaign_donate' campaign.pk %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ donate_form|bootstrap }}
 
                 {% if new_user_form %}
-                <p>Ваши контакты</p>
+                <p>{% trans 'Your contact data' %}</p>
                 {{ new_user_form|bootstrap }}
                 {% endif %}
 

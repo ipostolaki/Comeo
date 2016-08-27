@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% block content %}
 {% load base_tags %}
+{% load i18n %}
 
 <div class="row">
 
@@ -26,24 +27,24 @@
 
         <div class="row" style="min-height:55px"></div>
             {% if campaign.is_finished %}
-                <p class="lead" style="margin-bottom:0px">Сбор завершен </p>
+                <p class="lead" style="margin-bottom:0px">{% trans 'Collection is finished' %}</p>
                 <small>{{ campaign.date_finish }}</small>
             {% else %}
-                <p class="lead">Осталось дней: {{ campaign.days_to_finish }}</p>
+                <p class="lead">{% trans 'Days left:' %} {{ campaign.days_to_finish }}</p>
             {% endif %}
 
-            <p>Собрано {{ campaign.collected_sum }} из {{ campaign.sum_goal }} <small>MDL</small></p>
+            <p>{% trans 'Collected' %} {{ campaign.collected_sum }} {% trans 'from' %} {{ campaign.sum_goal }}</p>
 
             {% include 'crowdfunding/progress_bar_template.html' %}
 
             {% if backers_count > 0 %}
-                <p>Вкладчиков: {{ backers_count }}</p>
+                <p>{% trans 'Backers:' %} {{ backers_count }}</p>
             {% endif %}
 
             <a class="btn btn-lg btn-success {% if campaign.is_finished %} disabled {% endif %}"
-               href="{% url 'crowdfunding:campaign_donate' campaign.pk %}">Поддержать</a>
+               href="{% url 'crowdfunding:campaign_donate' campaign.pk %}">{% trans 'Donate' %}</a>
 
-            <p class="small" style="margin-top:5px"><a href="#">Связаться с автором</a></p>
+            <p class="small" style="margin-top:5px"><a href="#">{% trans 'Contact the author' %}</a></p>
     </div>
 
 </div>

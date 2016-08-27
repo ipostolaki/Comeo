@@ -65,7 +65,6 @@ def profile_edit(request):
             saved_user.save()
 
             messages.success(request, _('profile updated'))
-            # TODO: confirm email change through token link
     else:
         profile_form = ProfileForm(instance=profile)
         user_form = EditUserForm(instance=request.user)

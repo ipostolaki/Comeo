@@ -1,11 +1,10 @@
 {% extends 'profiles/base_profile.html' %}
 {% load bootstrap %}
-
 {% load i18n %}
 
 {% block section %}
 
-<h4 style="text-align:center">Add new {{ item_label }}</h4> <!--TODO: localize-->
+<h4 style="text-align:center">{% trans 'Add new' %} {{ item_label }}</h4>
 
 <div class="col-sm-4 col-sm-offset-4">
 
@@ -20,4 +19,3 @@
 </div>
 
 {% endblock %}
-

@@ -63,7 +63,6 @@ def campaign_edit(request, pk):
 
 
 def campaigns_public(request):
-
     campaigns = Campaign.objects.exclude(state=Campaign.STATE_DRAFT)
     context = {'campaigns': campaigns}
     return render(request, 'crowdfunding/campaigns_public.html', context)
@@ -86,10 +85,8 @@ def campaign_donate(request, pk):
     if campaign.is_finished():
         raise Http404()  # Prevent donate request for finished campaign
 
-    # TODO: suggest login in case if already registered, but signed out at donation moment
-
     if not request.user.is_authenticated():
-        # Collect unregistered user personal data for donation history
+        # Collect unregistered user personal data for the history of donations
         new_user_form = DonateNewUserForm(request.POST or None)
 
         if new_user_form.is_valid():
@@ -111,7 +108,8 @@ def campaign_donate(request, pk):
         transaction.save()
 
         # Redirect to PSP's page with payment instructions, local mock page for now
-        return redirect('crowdfunding:donate_instruction', transaction_pk=transaction.pk,
+        return redirect('crowdfunding:donate_instruction',
+                        transaction_pk=transaction.pk,
                         campaign_pk=campaign.pk)
 
     context = {'campaign': campaign, 'donate_form': donate_form, 'new_user_form': new_user_form}

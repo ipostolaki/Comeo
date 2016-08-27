@@ -1,6 +1,7 @@
 """
-This module manages connection to neo4j database to store and retrieve data related to Person's
-graph.
+This module manages connection to neo4j database to
+store and retrieve data related to Person's graph.
+
 Every Person(django user) is related to these primary entities:
 - Resource
 - Skill

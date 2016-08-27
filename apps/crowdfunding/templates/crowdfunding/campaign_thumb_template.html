@@ -1,7 +1,5 @@
-<!--TODO: localize -->
-
 {% load staticfiles %}
-
+{% load i18n %}
 <div class="col-md-3">
 
     <div class="camp-headline" style="min-height:60px">
@@ -24,9 +22,9 @@
 
     {% include 'crowdfunding/progress_bar_template.html' %}
 
-    <p style="margin-top:-8px">{{ campaign.collected_sum }} из {{ campaign.sum_goal }} <small>MDL</small></p>
+    <p style="margin-top:-8px">{{ campaign.collected_sum }} {% trans 'from' %} {{ campaign.sum_goal }}</p>
 
-    <a class="btn btn-xs btn-primary" style="display:inline" href="{% url 'crowdfunding:campaign_details' campaign.pk %}">Подробнее</a>
+    <a class="btn btn-xs btn-primary" style="display:inline" href="{% url 'crowdfunding:campaign_details' campaign.pk %}">{% trans 'View more' %}</a>
 
     <br>
     <br>
