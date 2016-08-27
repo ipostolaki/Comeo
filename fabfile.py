@@ -4,9 +4,8 @@ from fabric.api import run, env
 env.host_string = "root@comeo.org.md"
 
 
-def deploy(stop="do"):
-    if stop == 'do':
-        stop_action()
+def deploy():
+    stop()
     pull()
     build()
     start()
@@ -14,7 +13,7 @@ def deploy(stop="do"):
 
 def pull():
     # Pull updates from the central repo
-    run("cd /home/comeo_lab_env/comeo_project/ && git fetch && git pull --no-edit")
+    run("cd /home/comeo_lab_env/comeo_project/ && git fetch --all && git reset --hard origin/lab_droplet")
 
 
 def start():
@@ -28,6 +27,6 @@ def build():
     run("cd /home/comeo_lab_env/comeo_project/Docker/lab && make build")
 
 
-def stop_action():
+def stop():
     # Stop running containers
     run("cd /home/comeo_lab_env/comeo_project/Docker/lab && make stop")

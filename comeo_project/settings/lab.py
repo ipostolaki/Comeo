@@ -9,7 +9,7 @@ ALLOWED_HOSTS = ['.comeo.org.md']
 
 STATIC_URL = '/static/'
 
-# Custom email backend which support ssl connection supported by zoho
+# Custom email backend which supports ssl connection supported by zoho
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = 'smtp.zoho.com'
 EMAIL_PORT = 465
