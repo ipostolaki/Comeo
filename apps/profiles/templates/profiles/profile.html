@@ -5,6 +5,8 @@
 <p class="lead">{{user.get_full_name}}
 <p>{{user.email}}</p>
 <p class="small"><a href="{% url 'profiles:profile_edit' %}">{% trans 'edit profile' %}</a></p>
-<p class="small"><a target="_blank" href="{% url 'profiles:public_profile' user.id %}">{% trans 'View public' %}</a></p>
+<p class="small">
+    <a target="_blank" href="{% url 'profiles:public_profile' user.id %}">{% trans 'View public' %}</a>
+</p>
 {% endblock %}
 
