@@ -3,7 +3,7 @@
 Comeo is a crowdfunding platform featuring network of people, their resources, skills and interests.
 
 ![demo](documents/personal_graph_example.png)  
-###### Example of a Comeo user's public profile
+###### Example of a Comeo user's public profile, D3.js rendered
 
 ## Current status
 Basic users management and crowdfunding features are implemented at the moment.

@@ -61,9 +61,6 @@
                 <li><a href="#"></a></li>
                 <li class={% nav_active request 'crowdfunding:campaigns_public' %}>
                 <a href="{% url 'crowdfunding:campaigns_public' %}">{% trans 'Projects' %}</a></li>
-                <!--<a href="{% url 'crowdfunding:campaigns_public' %}">{% trans 'Events' %}</a></li>-->
-                <!--<li class={% nav_active request 'base:faq'%}>
-                <a href="{% url 'base:faq' %}">{% trans 'FAQ' %}</a></li>-->
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -129,12 +126,7 @@
         <script>
             <!--language selector UI: whole area of radio button behave like a link on click-->
             function changeLangSubmit() {
-                lang = $("#changeLangForm input:checked").val()
-                if (lang == 'ro') {
-                    window.location.assign("{% url 'base:ro'%}")  // stub page for not implemented localization
-                }else{
-                    $("#changeLangForm").submit();  // go to django i18n.set_language redirect
-                }
+                $("#changeLangForm").submit();  // go to django i18n.set_language redirect
             }
         </script>
     
