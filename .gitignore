@@ -13,3 +13,4 @@ dump.rdb
 fabfile.py
 */ignore
 *.env
+*.log

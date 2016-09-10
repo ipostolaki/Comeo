@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
     'bootstrapform',
     'django.contrib.humanize',
     'ckeditor',
@@ -109,4 +108,49 @@ CELERY_RESULT_BACKEND = BROKER_URL
 # Misc
 ADMINS = (('Ilia', 'ilia.ravemd@gmail.com'),)
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(pathname)s:%(lineno)d %(message)s'
+        },
+        'simple': {
+            'format': '[%(levelname)s] %(module)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        'file': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(os.path.join(PROJECT_ROOT, 'logs'), "django.log"),
+            'maxBytes': 1024*1024*1,
+            'backupCount': 100,
+            'level': 'INFO',  # log file will not store debug level records
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'apps': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+        },
+        'py.warnings': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+        'django.request': {
+            'handlers': ['mail_admins', 'file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    }
+}

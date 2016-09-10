@@ -1,8 +1,6 @@
 from .common import *
 
 
-print("Dev settings loaded")
-
 DEBUG = True
 TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ["localhost"]

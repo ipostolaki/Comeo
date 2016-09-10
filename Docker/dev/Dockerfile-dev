@@ -9,7 +9,6 @@ RUN apt-get update && apt-get -y install netcat
 RUN pip install django==1.9.7
 RUN pip install psycopg2==2.6.1
 RUN pip install celery==3.1.23
-RUN pip install django-crispy-forms==1.6.0
 RUN pip install django-bootstrap-form==3.2.1
 RUN pip install django-ckeditor==4.5.1
 RUN pip install Pillow==3.2.0

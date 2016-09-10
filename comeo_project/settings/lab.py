@@ -1,8 +1,6 @@
 from .common import *
 
 
-print("Lab settings loaded")
-
 DEBUG = False
 TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = ['.comeo.org.md']
