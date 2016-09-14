@@ -11,11 +11,11 @@ from faker import Faker
 
 from apps.profiles.models import ComeoUser
 from apps.registry import graph_interface
-from shared.basic_logger import log
 from .data import nouns
+from shared.shortcuts import log
+
 
 fake = Faker(locale='en')  # abstract fake data generator
-
 
 # Users creation
 
@@ -35,7 +35,7 @@ def sign_up_user(reg_data):
         created_user = ComeoUser.objects.create_user(**reg_data)
     except Exception as e:
         # ignore exceptions related to unique constraints
-        log("Skipped exception during user sign up: {}".format(e))
+        log.debug("Skipped exception during user sign up: {}".format(e))
         return
     # after successful sign up – create Person node in the graph db
     graph_interface.Person.create_person(created_user.id)
