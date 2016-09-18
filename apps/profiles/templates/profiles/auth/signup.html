@@ -3,10 +3,6 @@
 {% load i18n %}
 <p style="padding-top:25px" class="lead text-center">{% trans 'sign up' %}</p>
 <hr>
-    {% if registered %}
-    <strong>Welcome {{ user.get_full_name }}</strong>
-    {% else %}
-
         {% if sign_up_form.non_field_errors %}
         <div class="alert alert-danger alert-dismissible" role="alert" style="margin-top:50px;">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -69,5 +65,4 @@
             </div>
         </form>
 
-    {% endif %}
 {% endblock %}

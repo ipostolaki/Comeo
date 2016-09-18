@@ -1,27 +1,28 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
 
 from apps.crowdfunding.models import Campaign
 from apps.registry import graph_interface
 from .forms import EditUserForm, ProfileForm, SignUpForm
 from .models import ComeoUser
+from shared.shortcuts import log
 
 
 def signup(request):
-    registered = False
 
     if request.method == 'POST':
         sign_up_form = SignUpForm(request.POST)
 
         if sign_up_form.is_valid():
-            user = sign_up_form.save()
+            user = sign_up_form.save(commit=False)
             user.set_password(user.password)
             user.save()
-            registered = True
 
+            # According to Django guidelines: "you must successfully authenticate the
+            # user with authenticate() before you call login()"
             authenticated_user = authenticate(email=sign_up_form.cleaned_data['email'],
                                               password=sign_up_form.cleaned_data['password'])
             if authenticated_user:
@@ -29,11 +30,16 @@ def signup(request):
 
             # create a new Person node in the graph database
             graph_interface.Person.create_person(authenticated_user.id)
+
+            log.info("New user registered: %s", authenticated_user.get_full_name())
+
+            messages.success(request, _('Welcome ')+user.get_short_name()+'!')
+            return redirect('profiles:profile')
     else:
         sign_up_form = SignUpForm(initial={'first_name': '', 'email': '',
                                            'last_name': '', 'password': ''})
 
-    context = {'sign_up_form': sign_up_form, 'registered': registered}
+    context = {'sign_up_form': sign_up_form}
     return render(request, 'profiles/auth/signup.html', context)
 
 
@@ -65,6 +71,7 @@ def profile_edit(request):
             saved_user.save()
 
             messages.success(request, _('profile updated'))
+            return redirect('profiles:profile')
     else:
         profile_form = ProfileForm(instance=profile)
         user_form = EditUserForm(instance=request.user)
