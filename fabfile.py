@@ -13,7 +13,7 @@ def deploy():
 
 def pull():
     # Pull updates from the central repo
-    run("cd /home/comeo_lab_env/comeo_project/ && git fetch --all && git reset --hard origin/lab_droplet")
+    run("cd /home/comeo_lab_env/comeo_project/ && git fetch --all && git reset --hard origin/master")
 
 
 def start():
