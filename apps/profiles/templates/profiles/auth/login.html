@@ -11,11 +11,11 @@
     <form action="{% url 'profiles:login' %}" method="post">
         {% csrf_token %}
         {{ form|bootstrap }}
+        <input name="next" type="hidden" value="{{ next }}">
         <button type="submit" class="btn btn-primary btn-block">{% trans 'Login' %}</button>
     </form>
 	<br>
     <small><a href="{% url 'profiles:password_reset' %}">{% trans 'Forgot pass?' %}</a></small>
-
 
 </div>
 

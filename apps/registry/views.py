@@ -2,12 +2,14 @@ import json
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from apps.profiles.models import ComeoUser
 from . import graph_interface as graph
 from .forms import EditGraphItemForm
 
 
+@login_required
 def profile_graph(request):
     context = {
         'resources': graph.Person.get_resources(request.user.id),
@@ -18,6 +20,7 @@ def profile_graph(request):
     return render(request, 'registry/profile_graph.html', context)
 
 
+@login_required
 def profile_graph_item_create(request, item_label):
     """
     Abstract view to create one of: Resource, Skill, Interest
@@ -43,6 +46,7 @@ def profile_graph_item_create(request, item_label):
     return render(request, 'registry/profile_graph_item_create.html', context)
 
 
+@login_required
 def profile_graph_item_edit(request, item_label, node_id):
     """
     Abstract view to edit one of: Resource, Skill, Interest
