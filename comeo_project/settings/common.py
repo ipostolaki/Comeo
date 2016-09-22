@@ -24,10 +24,9 @@ DATABASES = {
     }
 }
 
-# Media files are served by Nginx, Docker have mapped media volume, thus uploaded files are persisted
+# Media files are served by Nginx, Docker has a mapped media volume, thus uploaded files are persisted
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 MEDIA_URL = '/uploaded/'
-
 
 PROJECT_APPS = (
     'apps.base',

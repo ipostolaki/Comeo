@@ -14,3 +14,4 @@ fabfile.py
 */ignore
 *.env
 *.log
+static_collected/

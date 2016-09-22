@@ -7,9 +7,6 @@ ALLOWED_HOSTS = ["localhost"]
 
 STATIC_URL = '/static/'
 
-# in development mode, runserver is serving all static files from one folder
-STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
-
 INSTALLED_APPS += ('debug_toolbar', 'django_extensions',)
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'

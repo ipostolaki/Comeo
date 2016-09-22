@@ -6,6 +6,7 @@ TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = ['.comeo.org.md']
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static_collected')
 
 # Custom email backend which supports ssl connection supported by zoho
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
