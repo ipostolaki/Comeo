@@ -1,6 +1,6 @@
 # Comeo!
 
-Comeo is a crowdfunding platform featuring network of people, their resources, skills and interests.
+Comeo is a crowdfunding and cooperation platform featuring network of people, their resources, skills and interests.
 
 ![demo](documents/personal_graph_example.png)  
 ###### Example of a Comeo user's public profile. Stored in the Neo4j graph database, rendered by D3.js.
@@ -34,3 +34,12 @@ Makefiles and docker-compose are used to build and run system for different envi
 
 ## Simulation
 There is a [simulation module](/simulation) used to generate users and fill their personal graphs with fake data. It is used to implement and test new features.  
+
+
+# Contribution
+
+Comeo is an open source project, licensed under AGPL version 3.  
+Feel free to contribute! Check out the [contribution guide](documents/contribution_guide.md).
+
+
+![agplv3](documents/agplv3.png)  
