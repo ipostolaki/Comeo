@@ -108,9 +108,9 @@ def get_personal_graph_json(request, django_user_id):
 
     base_nodes = [
         {"id": person_name, "group": 0, "type": "person"},
-        {"id": RESOURCES_LABEL, "group": 1},
-        {"id": SKILLS_LABEL, "group": 2},
-        {"id": INTERESTS_LABEL, "group": 3}
+        {"id": RESOURCES_LABEL, "group": 1, "type": "asset"},
+        {"id": SKILLS_LABEL, "group": 2, "type": "asset"},
+        {"id": INTERESTS_LABEL, "group": 3, "type": "asset"}
     ]
     base_links = [
         {"source": person_name, "target": RESOURCES_LABEL},

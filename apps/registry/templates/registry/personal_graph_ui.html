@@ -35,7 +35,7 @@
         .force("link", d3.forceLink().id(function(d) { return d.id; }))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("collide", d3.forceCollide(55));  // prevent nodes(and labels partly) from overlapping
+        .force("collide", d3.forceCollide(15));  // node collision radius - prevent nodes(and labels partly) from overlapping
 
 
     d3.json("{% url 'registry:personal_graph_json' subject_user.id %}", function(error, graph) {
@@ -45,8 +45,8 @@
           .nodes(graph.nodes)
           .on("tick", ticked);
 
-        simulation.force("link").links(graph.links).distance(70);
-        simulation.force("charge").strength(-150);  // this will repel nodes from each other
+        simulation.force("link").links(graph.links).distance(60);
+        simulation.force("charge").strength(-100);  // this will repel nodes from each other
 
         var path = svg.append("g")
             .attr("class", "paths")
@@ -106,23 +106,29 @@
     }
 
     function dragended(d) {
+
         if (!d3.event.active) simulation.alphaTarget(0);
         d.fx = null;
         d.fy = null;
+
     }
 
     function get_node_radius_function(node_datum) {
-        if (node_datum.type == 'person')
+        if (node_datum.type == 'person')  // root node, in the graph center
             return 20;
+        if (node_datum.type == 'asset')  // asset is any node which is connected to a Person node
+            return 12;
 
-        return 10;
+        return 7;  // common node size
     }
 
     function get_title_pos_x(d) {
         if (d.type == 'person')
             return d.x+25;  // push the label to the right
+        if (d.type == 'asset')
+            return d.x+13;
 
-        return d.x+15;
+        return d.x+9;
     }
 
     function get_title_pos_y(d) {
