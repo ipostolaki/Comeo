@@ -33,7 +33,7 @@ def signup(request):
 
             log.info("New user registered: %s", authenticated_user.get_full_name())
 
-            messages.success(request, _('Welcome ')+user.get_short_name()+'!')
+            messages.success(request, _('Welcome ') + user.get_short_name() + '!')
             return redirect('profiles:profile')
     else:
         sign_up_form = SignUpForm(initial={'first_name': '', 'email': '',

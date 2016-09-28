@@ -21,4 +21,5 @@ RUN pip install django-debug-toolbar==1.5
 RUN pip install django-extensions==1.6.7
 RUN pip install livereload==2.4.1
 RUN pip install fake-factory==0.5.9
+RUN pip install ptpython  # alternative python REPL, works with IPython/django-extensions
 

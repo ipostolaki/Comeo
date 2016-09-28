@@ -11,7 +11,7 @@ When opening a pull request with new code, *please* use this checklist:
 - Critical methods are covered by unit tests. Use `make tests`  
 - Your code is accompanied by inline comments and docstrings where it may be necessary  
 - If you are adding front-end related functionality, make sure that it is styled by the bootstrap theme  
-- New code is PEP8 formatted. There is a tuned make target `make flake8`, it will help you find the lines where formatting is needed.
+- New code is PEP8 formatted. There is a tuned make target `make flake`, it will help you find the lines where formatting is needed.
 
 
 # Comeo Codebase Principles

@@ -131,7 +131,7 @@ LOGGING = {
         'file': {
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(os.path.join(PROJECT_ROOT, 'logs'), "django.log"),
-            'maxBytes': 1024*1024*1,
+            'maxBytes': 1024 * 1024 * 1,
             'backupCount': 100,
             'level': 'INFO',  # log file will not store debug level records
             'formatter': 'verbose'

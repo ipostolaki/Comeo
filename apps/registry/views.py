@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 
 from apps.profiles.models import ComeoUser
 from . import graph_interface as graph
@@ -40,6 +41,9 @@ def profile_graph_item_create(request, item_label):
             if item_label == 'interest':
                 graph.Person.add_interest(request.user.id, item_title, item_metadata)
 
+            # invalidate cached personal graph data
+            cache.delete(get_personal_cache_key(request.user.id))
+
             return redirect('registry:profile_graph')
 
     context = {'edit_item_form': edit_item_form, 'item_label': item_label}
@@ -64,6 +68,7 @@ def profile_graph_item_edit(request, item_label, node_id):
     if request.method == 'POST':
         if request.POST.get("delete", False):
             loaded_node.delete()
+            cache.delete(get_personal_cache_key(request.user.id))  # invalidate cached personal graph data
             return redirect('registry:profile_graph')
         else:
             # validate form and save modified data
@@ -72,6 +77,7 @@ def profile_graph_item_edit(request, item_label, node_id):
                 item_title = edit_item_form.cleaned_data['title']
                 item_metadata = edit_item_form.cleaned_data['metadata']
                 loaded_node.update_node_with_data(item_title, item_metadata)
+                cache.delete(get_personal_cache_key(request.user.id))  # invalidate cached personal graph data
                 return redirect('registry:profile_graph')
 
     if request.method == 'GET':
@@ -83,6 +89,25 @@ def profile_graph_item_edit(request, item_label, node_id):
 
 
 def get_personal_graph_json(request, django_user_id):
+    cached_graph_data = cache.get(get_personal_cache_key(django_user_id))
+    if cached_graph_data is None:
+        graph_data = retrieve_personal_graph_ui_data(django_user_id)
+        cache.set(get_personal_cache_key(django_user_id), graph_data)
+        return_graph_data = graph_data
+    else:
+        return_graph_data = cached_graph_data
+
+    return HttpResponse(return_graph_data, content_type='application/json')
+
+
+# –––––––––– Helpers ––––––––––
+
+def get_personal_cache_key(django_user_id):
+    key_base = 'personal_graph_data'
+    return key_base + str(django_user_id)
+
+
+def retrieve_personal_graph_ui_data(django_user_id):
     """
     This method prepares data needed for d3.js to render personal graph visualization
 
@@ -98,7 +123,6 @@ def get_personal_graph_json(request, django_user_id):
     - colouring based on type of node instead of group
     - localize base nodes labels
     """
-
     RESOURCES_LABEL = "Resources"
     SKILLS_LABEL = "Skills"
     INTERESTS_LABEL = "Interests"
@@ -140,4 +164,5 @@ def get_personal_graph_json(request, django_user_id):
         base_links.append(resource_link)
 
     graph_data = {"nodes": base_nodes, "links": base_links}
-    return HttpResponse(json.dumps(graph_data), content_type='application/json')
+
+    return json.dumps(graph_data)
