@@ -76,7 +76,7 @@
                       <span class="caret"></span></a>
 
                     <ul class="dropdown-menu">
-                    <li class={% nav_active request 'profiles:profile profiles:profile_edit'%}><a href="{% url 'profiles:profile' %}">{% trans 'Profile' %}</a></li>
+                    <li class={% nav_active request 'profiles:profile profiles:profile'%}><a href="{% url 'profiles:profile' %}">{% trans 'Profile' %}</a></li>
                     <li role="separator" class="divider"></li>
                     <li class={% nav_active request 'profiles:profile_campaigns' %}><a href="{% url 'profiles:profile_campaigns' %}">{% trans 'Campaigns' %}</a></li>
                     <li role="separator" class="divider"></li>

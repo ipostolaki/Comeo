@@ -1,31 +1,46 @@
 {% extends 'base/base.html' %}
 {% load i18n %}
-{% load base_tags %}
+{% load static base_tags %}
+
+{% block extra_head %}
+    <link href="{% static 'profiles/profile.css' %}" rel="stylesheet">
+    {% block extra_head_nested %}
+    {% endblock %}
+{% endblock %}
+
 {% block content %}
-    <div style="padding-left:20px; padding-top:25px;">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class={% nav_active request 'profiles:profile' %}>
+<div class="row profile-base-row">
+    <div class="profile-menu-column col-md-2">
+      <ul class="profile-nav nav nav-pills nav-stacked">
+            <li class={% nav_active request 'profiles:profile' %}>
                 <a href="{% url 'profiles:profile' %}">Profile</a>
             </li>
-            <li role="presentation" class={% nav_active request 'profiles:profile_campaigns' %}>
+            <li class={% nav_active request 'profiles:profile_campaigns' %}>
                 <a href="{% url 'profiles:profile_campaigns' %}">Campaigns</a>
             </li>
-            <li role="presentation" class={% nav_active request 'registry:profile_graph' %}>
-                <a href="{% url 'registry:profile_graph' %}">Graph</a>
-            </li>
+            <li class={% nav_active request 'profiles:settings' %}>
+                <a href="{% url 'profiles:settings' %}">Settings</a>
+            </li>           
         </ul>
-        <br>
+    </div>
 
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+    <div class="col-md-10"> <!--column with profile sub-section content-->
+        <div class="row messages-row">
+            <div class="col-md-7">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
 
         {% block section %}
         {% endblock %}
     </div>
+
+</div>
 {% endblock %}

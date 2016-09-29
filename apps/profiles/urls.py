@@ -7,7 +7,7 @@ from . import forms
 
 urlpatterns = [
     url(r'^$', views.profile, name='profile'),
-    url(r'^edit/$', views.profile_edit, name='profile_edit'),
+    url(r'^settings/$', views.profile_settings, name='settings'),
     url(r'^public/(?P<django_user_id>[0-9]+)$', views.public_profile, name='public_profile'),
 
     url(r'^campaigns$', views.profile_campaigns, name='profile_campaigns'),

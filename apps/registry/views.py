@@ -11,17 +11,6 @@ from .forms import EditGraphItemForm
 
 
 @login_required
-def profile_graph(request):
-    context = {
-        'resources': graph.Person.get_resources(request.user.id),
-        'skills': graph.Person.get_skills(request.user.id),
-        'interests': graph.Person.get_interests(request.user.id),
-        'subject_user': request.user
-    }
-    return render(request, 'registry/profile_graph.html', context)
-
-
-@login_required
 def profile_graph_item_create(request, item_label):
     """
     Abstract view to create one of: Resource, Skill, Interest

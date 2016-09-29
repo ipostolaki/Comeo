@@ -48,7 +48,13 @@ def profile(request):
     """
     View for user's own profile
     """
-    return render(request, 'profiles/profile.html')
+    context = {
+        'resources': graph_interface.Person.get_resources(request.user.id),
+        'skills': graph_interface.Person.get_skills(request.user.id),
+        'interests': graph_interface.Person.get_interests(request.user.id),
+        'subject_user': request.user
+    }
+    return render(request, 'profiles/profile.html', context)
 
 
 def public_profile(request, django_user_id):
@@ -57,7 +63,7 @@ def public_profile(request, django_user_id):
 
 
 @login_required
-def profile_edit(request):
+def profile_settings(request):
     profile = request.user.profile
 
     if request.method == 'POST':
@@ -70,14 +76,14 @@ def profile_edit(request):
             saved_user.profile = saved_profile
             saved_user.save()
 
-            messages.success(request, _('profile updated'))
+            messages.success(request, _('Your changes were saved'))
             return redirect('profiles:profile')
     else:
         profile_form = ProfileForm(instance=profile)
         user_form = EditUserForm(instance=request.user)
 
     context = {'profile_form': profile_form, 'user_form': user_form}
-    return render(request, 'profiles/profile_edit.html', context)
+    return render(request, 'profiles/profile_settings.html', context)
 
 
 @login_required

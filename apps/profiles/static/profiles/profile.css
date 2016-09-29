@@ -1,0 +1,35 @@
+.profile-nav > li > a {
+    padding: 3px 7px;
+}
+
+.profile-menu-column {
+    border-right: 1px solid steelblue;
+    /*border-bottom: 1px solid steelblue;*/
+    min-height:550px;
+}
+
+@media all and (max-width: 768px) {
+
+    .profile-menu-column {
+    /* on mobile devices profile menu should not have min-height */
+        display: inline-block;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid steelblue;
+        margin-right: 15px;
+        min-height:0px;
+    }
+
+    .svg-container {
+        /* do not show the graph on mobile devices */
+        display:none;
+    }
+}
+
+.profile-base-row {
+    padding-top:25px;
+}
+
+.messages-row {
+    margin-left:35px;
+}
