@@ -33,7 +33,7 @@ def profile_graph_item_create(request, item_label):
             # invalidate cached personal graph data
             cache.delete(get_personal_cache_key(request.user.id))
 
-            return redirect('registry:profile_graph')
+            return redirect('profiles:profile')
 
     context = {'edit_item_form': edit_item_form, 'item_label': item_label}
     return render(request, 'registry/profile_graph_item_create.html', context)
@@ -58,7 +58,7 @@ def profile_graph_item_edit(request, item_label, node_id):
         if request.POST.get("delete", False):
             loaded_node.delete()
             cache.delete(get_personal_cache_key(request.user.id))  # invalidate cached personal graph data
-            return redirect('registry:profile_graph')
+            return redirect('profiles:profile')
         else:
             # validate form and save modified data
             edit_item_form = EditGraphItemForm(data=request.POST)
@@ -67,7 +67,7 @@ def profile_graph_item_edit(request, item_label, node_id):
                 item_metadata = edit_item_form.cleaned_data['metadata']
                 loaded_node.update_node_with_data(item_title, item_metadata)
                 cache.delete(get_personal_cache_key(request.user.id))  # invalidate cached personal graph data
-                return redirect('registry:profile_graph')
+                return redirect('profiles:profile')
 
     if request.method == 'GET':
         initial_data = {'title': loaded_node.title, 'metadata': loaded_node.metadata}

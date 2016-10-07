@@ -29,6 +29,8 @@ Makefiles and docker-compose are used to build and run system for different envi
 `make run` in the project root will run containers for [dev environment](/Docker/dev).  
 `cd ./docker/lab/ && make run` will run staging environment containers.
 
+Service will be available on port 80 of machine where docker is running.
+
 ## Tests
 `make test` will run unit tests in separate set of containers which will include ephemeral Neo4j database instance.
 
@@ -39,7 +41,7 @@ There is a [simulation module](/simulation) used to generate users and fill thei
 # Contribution
 
 Comeo is an open source project, licensed under AGPL version 3.  
-Feel free to contribute! Check out the [contribution guide](documents/contribution_guide.md).
+Feel free to contribute! Check out the [contribution guide and codebase principles](documents/contribution_guide.md).
 
 
 ![agplv3](documents/agplv3.png)  
