@@ -125,7 +125,7 @@ LOGGING = {
             'formatter': 'simple'
         },
         'mail_admins': {
-            'level': 'ERROR',
+            'level': 'INFO',
             'class': 'django.utils.log.AdminEmailHandler',
         },
         'file': {
@@ -150,6 +150,10 @@ LOGGING = {
             'handlers': ['mail_admins', 'file'],
             'level': 'ERROR',
             'propagate': False,
+        },
+        'mail.intended': {
+            'handlers': ['mail_admins', 'file'],
+            'level': 'INFO',
         },
     }
 }

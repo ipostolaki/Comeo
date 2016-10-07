@@ -41,11 +41,15 @@ django-shell:
 logs:
 	docker-compose logs -f --tail=500
 
-run-pg:
+pg-run:
 # start existing pg container
 	docker-compose up pg_database
 
-run-neo:
+pg-exec:
+# execute bash in the running pg container
+	docker-compose exec pg_database bash
+
+neo-run:
 # start existing neo container
 	docker-compose up neo
 

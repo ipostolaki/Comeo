@@ -8,7 +8,7 @@ from apps.crowdfunding.models import Campaign
 from apps.registry import graph_interface
 from .forms import EditUserForm, ProfileForm, SignUpForm
 from .models import ComeoUser
-from shared.shortcuts import log
+from shared.shortcuts import log_mail
 
 
 def signup(request):
@@ -31,7 +31,7 @@ def signup(request):
             # create a new Person node in the graph database
             graph_interface.Person.create_person(authenticated_user.id)
 
-            log.info("New user registered: %s", authenticated_user.get_full_name())
+            log_mail.info("New user registered: %s", authenticated_user.get_full_name())
 
             messages.success(request, _('Welcome ') + user.get_short_name() + '!')
             return redirect('profiles:profile')
