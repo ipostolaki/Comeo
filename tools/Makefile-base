@@ -49,6 +49,12 @@ pg-exec:
 # execute bash in the running pg container
 	docker-compose exec pg_database bash
 
+pg-dump:
+	docker-compose exec pg_database bash -c 'pg_dump -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" -f ./dumps/latest.sql'
+
+pg-restore:
+	docker-compose exec pg_database bash -c 'psql -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" -f ./dumps/latest.sql'
+
 neo-run:
 # start existing neo container
 	docker-compose up neo
