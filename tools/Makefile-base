@@ -59,5 +59,9 @@ neo-run:
 # start existing neo container
 	docker-compose up neo
 
+neo-exec:
+# start existing neo container
+	docker-compose exec neo bash
+
 beep:
 	@echo "BEEP Makefile-base is here"

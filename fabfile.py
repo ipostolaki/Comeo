@@ -13,20 +13,20 @@ def deploy():
 
 def pull():
     # Pull updates from the central repo
-    run("cd /home/comeo_lab_env/comeo_project/ && git fetch --all && git reset --hard origin/master")
+    run("cd /home/comeo/ && git fetch --all && git reset --hard origin/master")
 
 
 def start():
     # start all docker-compose services
     # migrations will be applied before django starts up
-    run("cd /home/comeo_lab_env/comeo_project/Docker/lab && make run-detached")
+    run("cd /home/comeo/Docker/lab && make run-detached")
 
 
 def build():
     # Rebuild django container, to install there new pip reqs
-    run("cd /home/comeo_lab_env/comeo_project/Docker/lab && make build")
+    run("cd /home/comeo/Docker/lab && make build")
 
 
 def stop():
     # Stop running containers
-    run("cd /home/comeo_lab_env/comeo_project/Docker/lab && make stop")
+    run("cd /home/comeo/Docker/lab && make stop")
