@@ -7,7 +7,7 @@ ALLOWED_HOSTS = ["localhost"]
 
 STATIC_URL = '/static/'
 
-INSTALLED_APPS += ('debug_toolbar', 'django_extensions',)
+INSTALLED_APPS += ('debug_toolbar', 'django_extensions', 'apps.comeo_debug')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'email-dummy/'

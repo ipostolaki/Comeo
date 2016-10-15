@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<ul>
+    <li>
+        <a href="{% url 'comeo_debug:intended500' %}">Intended 500</a>
+    </li>
+    <li>
+        <a href="{% url 'comeo_debug:mail_logger_check' %}">Mail logger check</a>
+    </li>
+</ul>
+{% endblock %}

@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^profile/', include('apps.profiles.urls', namespace="profiles")),
     url(r'^crowdfunding/', include('apps.crowdfunding.urls', namespace="crowdfunding")),
     url(r'^registry/', include('apps.registry.urls', namespace="registry")),
+    url(r'^debug/', include('apps.comeo_debug.urls', namespace="comeo_debug")),
     url(r'^ckeditor/', include('ckeditor.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -13,7 +13,7 @@ def deploy():
 
 def pull():
     # Pull updates from the central repo
-    run("cd /home/comeo/ && git fetch --all && git reset --hard origin/master")
+    run("cd /home/comeo/ && git fetch && git reset --hard origin/master")
 
 
 def start():
