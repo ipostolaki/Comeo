@@ -26,4 +26,16 @@ do
 done
 echo "Neo4j database is ready"
 
+
+python manage.py migrate  # apply migrations, if any
+
+echo "Launching Django now"
+
+echo "
+  _|_|_|    _|_|    _|      _|  _|_|_|_|    _|_|
+_|        _|    _|  _|_|  _|_|  _|        _|    _|
+_|        _|    _|  _|  _|  _|  _|_|_|    _|    _|
+_|        _|    _|  _|      _|  _|        _|    _|
+  _|_|_|    _|_|    _|      _|  _|_|_|_|    _|_|
+                                                    "
 python manage.py runserver 0.0.0.0:80

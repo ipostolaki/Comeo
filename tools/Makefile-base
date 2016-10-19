@@ -1,12 +1,10 @@
 .PHONY: logs
 
-default: build
-
 build:
 	docker-compose build
 
 run:
-	docker-compose stop django  # for restart cases, when already running
+	@docker-compose stop django  # for restart cases, when already running
 	docker-compose up
 
 run-detached:

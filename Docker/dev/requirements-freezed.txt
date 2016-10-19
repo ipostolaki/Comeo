@@ -5,7 +5,6 @@ celery==3.1.23
 Django==1.9.7
 django-bootstrap-form==3.2.1
 django-ckeditor==4.5.1
-django-crispy-forms==1.6.0
 django-debug-toolbar==1.5
 django-extensions==1.6.7
 docopt==0.6.2
@@ -15,14 +14,14 @@ kombu==3.0.35
 livereload==2.4.1
 neomodel==2.0.2
 Pillow==3.2.0
-prompt-toolkit==1.0.7
+prompt-toolkit==1.0.8
 psycopg2==2.6.1
-ptpython==0.35
+ptpython==0.36
 py2neo==2.0.7
 Pygments==2.1.3
 python-dateutil==2.5.3
 pytz==2015.7
 six==1.10.0
-sqlparse==0.2.0
-tornado==4.4.1
+sqlparse==0.2.1
+tornado==4.4.2
 wcwidth==0.1.7

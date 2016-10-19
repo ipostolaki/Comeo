@@ -13,5 +13,6 @@ dump.rdb
 fabfile.py
 */ignore
 *.env
+!dev.env
 *.log
 static_collected/
