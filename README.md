@@ -7,7 +7,7 @@ Comeo is a crowdfunding and cooperation platform featuring network of people, th
 
 ## Current status
 Basic users management and crowdfunding features are implemented at the moment.
-###### Live beta: [http://lab.comeo.org.md](http://lab.comeo.org.md) (running on Digitalocean Ubuntu VPS)
+###### Live beta: [http://comeo.co](http://comeo.co)
 **Upcoming features:**  
 - Matching of people which may be interested to work on common projects  
 - Visual representation of a project with it's demanded resourses as a graph  
