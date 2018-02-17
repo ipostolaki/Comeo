@@ -1,32 +1,38 @@
 from fabric.api import run, env
 
 
-env.host_string = "root@comeo.org.md"
+env.host_string = "root@comeo.co"
+
+
+def deploy_and_rebuild():
+    _stop()
+    _pull()
+    _build()
+    _start()
 
 
 def deploy():
-    stop()
-    pull()
-    build()
-    start()
+    _stop()
+    _pull()
+    _start()
 
 
-def pull():
+def _pull():
     # Pull updates from the central repo
     run("cd /home/comeo/ && git fetch && git reset --hard origin/master")
 
 
-def start():
+def _start():
     # start all docker-compose services
     # migrations will be applied before django starts up
     run("cd /home/comeo/Docker/lab && make run-detached")
 
 
-def build():
+def _build():
     # Rebuild django container, to install there new pip reqs
     run("cd /home/comeo/Docker/lab && make build")
 
 
-def stop():
+def _stop():
     # Stop running containers
     run("cd /home/comeo/Docker/lab && make stop")
