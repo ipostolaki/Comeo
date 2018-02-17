@@ -94,8 +94,8 @@ AUTH_USER_MODEL = 'profiles.ComeoUser'
 
 
 # Email
-DEFAULT_FROM_EMAIL = 'contact@comeo.org.md'
-SERVER_EMAIL = 'contact@comeo.org.md'
+DEFAULT_FROM_EMAIL = 'info@comeo.co'
+SERVER_EMAIL = 'info@comeo.co'
 
 # Celery
 CELERY_ACCEPT_CONTENT = ['json']
@@ -105,7 +105,7 @@ BROKER_URL = 'amqp://{}:{}@rabbit:5672//'.format(ENV_RABBIT_USER, ENV_RABBIT_PAS
 CELERY_RESULT_BACKEND = BROKER_URL
 
 # Misc
-ADMINS = (('Ilia', 'ilia.ravemd@gmail.com'),)
+ADMINS = (('Ilia Postolaki', 'ilia.ravemd@gmail.com'),)
 
 LOGGING = {
     'version': 1,
