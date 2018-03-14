@@ -33,6 +33,7 @@ PROJECT_APPS = (
     'apps.profiles',
     'apps.crowdfunding',
     'apps.registry',
+    'apps.events',
 )
 
 INSTALLED_APPS = (

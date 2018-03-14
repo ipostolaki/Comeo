@@ -7,11 +7,12 @@ RUN apt-get update && apt-get -y install netcat
 
 # Base dependencies
 RUN pip install django==1.9.7
-RUN pip install psycopg2==2.6.1
+RUN pip install psycopg2==2.7.4
 RUN pip install celery==3.1.23
 RUN pip install django-bootstrap-form==3.2.1
 RUN pip install django-ckeditor==4.5.1
 RUN pip install Pillow==3.2.0
+RUN pip install django-smtp-ssl==1.0
 
 # Registry app dependencies
 RUN pip install neomodel==2.0.2

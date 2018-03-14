@@ -1,0 +1,155 @@
+{% extends 'base/base.html' %}
+{% load bootstrap %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="row">
+
+    <div class="col-sm-4">
+        <h5>Mock event #01</h5>
+            <!--<img style="height:249px" src="{{ campaign.image_main.url }}" class="img-responsive">-->
+            <img src="{% static 'base/images/event-poster.jpg' %}" class="img-responsive">
+    </div>
+
+
+
+
+
+    <div class="col-sm-7">
+        <h5>Buy a ticket</h5>
+              <p class="lead">{% trans 'Price' %}: 10 euro</p>
+
+        <form action="{% url 'events:event_details' %}" method="post">
+            {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+
+
+            <p>Your contact details</p>
+            {{ event_payment_form|bootstrap }}
+                </div>
+                </div>
+
+        <!--begin options row-->
+        <div class="form-group">
+
+            <p class="lead">Pay with cryptocurrency</p>
+
+
+
+
+              <label style="margin-right:25px">
+                <input type="radio" name="currencyOptions" value="LTCT" data-toggle="radio" checked="">
+             LTC testnet
+              <img src="{% static 'base/images/currencies_logos/LTCT.png' %}" width="50px" height="50px" class="img-responsive">
+            </label>
+
+              <label style="margin-right:25px">
+                <input type="radio" name="currencyOptions" value="ETH" data-toggle="radio">
+             Ethereum
+              <img src="{% static 'base/images/currencies_logos/ETH.png' %}" width="50px" height="50px" class="img-responsive">
+            </label>
+
+
+              <label style="margin-right:25px">
+                <input type="radio" name="currencyOptions" value="LTC" data-toggle="radio">
+             Litecoin
+              <img src="{% static 'base/images/currencies_logos/LTC.png' %}" width="50px" height="50px" class="img-responsive">
+            </label>
+
+
+
+              <label style="margin-right:25px">
+                <input type="radio" name="currencyOptions" value="BTC" data-toggle="radio">
+             Bitcoin
+              <img src="{% static 'base/images/currencies_logos/BTC.png' %}" width="50px" height="50px" class="img-responsive">
+            </label>
+
+              <label style="margin-right:25px">
+                <input type="radio" name="currencyOptions" value="BCH" data-toggle="radio">
+             Bitcoin Cash
+              <img src="{% static 'base/images/currencies_logos/BCH.png' %}" width="55px" height="50px" class="img-responsive">
+            </label>
+
+              <label style="margin-right:25px">
+                <input type="radio" name="currencyOptions" value="DASH" data-toggle="radio">
+             Dash
+              <img src="{% static 'base/images/currencies_logos/DASH.png' %}" width="50px" height="50px" class="img-responsive">
+            </label>
+
+
+
+
+            <br>
+            <br>
+           <button type="submit" class="btn btn-primary">{% trans 'Proceed to payment' %}</button>
+
+            </form>
+      </div>        <!--end options-->
+
+  </div>
+    <!--end right column-->
+
+
+
+
+
+
+
+
+
+<!--</div>-->
+<!-- Row closed-->
+
+
+
+
+
+
+<!--<div class="container">-->
+
+
+
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+        <!--</div>-->
+
+
+            <!--<form action="https://www.coinpayments.net/index.php" method="post">-->
+
+            <!---->    <!--{{ event_payment_form|bootstrap }}-->
+
+                <!--<input type="hidden" name="cmd" value="_pay">-->
+                <!--<input type="hidden" name="reset" value="1">-->
+                <!--<input type="hidden" name="merchant" value="81e0ede41184c9a5c5550e9ebcb7843f">-->
+                <!--<input type="hidden" name="item_name" value="Ticket for Mock event 001">-->
+                <!--<input type="hidden" name="first_name" value="first name">-->
+                <!--<input type="hidden" name="currency" value="EUR">-->
+                <!--<input type="hidden" name="amountf" value="10">-->
+                <!--<input type="hidden" name="quantity" value="1">-->
+
+                <!--<input type="hidden" name="allow_quantity" value="0">-->
+
+                <!--<input type="hidden" name="allow_currency" value="1">-->
+                <!--<input type="hidden" name="allow_currencies" value="LTCT,ETH,BTC,DASH">-->
+                <!--<input type="hidden" name="cstyle" value="grid2">-->
+
+                <!--<input type="hidden" name="want_shipping" value="0">-->
+                <!--<input type="hidden" name="ipn_url" value="comeo.co/coinpayments-webhook">-->
+                <!--<input type="hidden" name="allow_extra" value="0">-->
+
+
+
+
+{% endblock %}

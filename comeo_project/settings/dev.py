@@ -9,8 +9,15 @@ STATIC_URL = '/static/'
 
 INSTALLED_APPS += ('debug_toolbar', 'django_extensions', 'apps.comeo_debug')
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = 'email-dummy/'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'email-dummy/'
+
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'info@comeo.co'
+EMAIL_HOST_PASSWORD = ENV_EMAIL_HOST_PASSWORD
+
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/"
 CKEDITOR_IMAGE_BACKEND = "pillow"

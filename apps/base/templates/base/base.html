@@ -59,8 +59,13 @@
         <div class="collapse navbar-collapse" id="the-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#"></a></li>
-                <li class={% nav_active request 'crowdfunding:campaigns_public' %}>
-                <a href="{% url 'crowdfunding:campaigns_public' %}">{% trans 'Projects' %}</a></li>
+                <!--<li class={% nav_active request 'crowdfunding:campaigns_public' %}>-->
+                <!--<a href="{% url 'crowdfunding:campaigns_public' %}">{% trans 'Projects' %}</a></li>-->
+                <li class={% nav_active request 'events:events_public' %}>
+                    <a href="{% url 'events:events_public' %}">{% trans 'Events' %}</a>
+                </li>
+                <!--<li><a href="">{% trans 'Tickets for coins' %}</a></li>-->
+                <!--<li><a href="">{% trans 'About' %}</a></li>-->
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

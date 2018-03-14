@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load staticfiles %}
+{% load i18n %}
+
+    <!--<p class="lead">Events listing</p>-->
+    <p class="lead text-center" style="margin-top:-20px">Events listing</p>
+
+<div class="container">
+
+
+    <div class="col-md-3">
+
+    <div class="camp-headline" style="min-height:60px">
+            <h6>Mock event #01</h6>
+    </div>
+
+    <div class="camp-image"  style="min-height:192px">
+        <a href="{% url 'events:event_details' %}">
+            <img src="{% static 'base/images/event-poster.jpg' %}" class="img-responsive">
+        </a>
+    </div>
+
+    <div class="camp-desc" style="min-height:100px; margin-top:10px;">
+        <p style="max-height:150px; overflow:hidden;">This is a demo event. You can use it to pay for a ticket via cryptocurrency.</p>
+    </div>
+
+    <a class="btn btn-xs btn-primary" style="display:inline" href="{% url 'events:event_details' %}">{% trans 'View more' %}</a>
+
+    <br>
+    <br>
+</div>
+
+</div>
+
+
+
+{% endblock %}

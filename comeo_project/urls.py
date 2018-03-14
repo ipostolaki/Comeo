@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^', include('apps.base.urls', namespace="base")),
     url(r'^profile/', include('apps.profiles.urls', namespace="profiles")),
     url(r'^crowdfunding/', include('apps.crowdfunding.urls', namespace="crowdfunding")),
+    url(r'^events/', include('apps.events.urls', namespace="events")),
+
     url(r'^registry/', include('apps.registry.urls', namespace="registry")),
     url(r'^debug/', include('apps.comeo_debug.urls', namespace="comeo_debug")),
     url(r'^ckeditor/', include('ckeditor.urls')),
