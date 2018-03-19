@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+{% load bootstrap %}
+{% load i18n %}
+{% block extra_head %}
+<script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+<link href="{% static 'base/vendor/kickdrop/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+    {% block content-container-fluid %}
+
+    <p class="lead text-center" style="">Tickets & Coins</p>
+
+            <div class="row events-row" style="">
+                <div class="col-md-2 col-md-push-1 col-xs-push-2">
+                    <!--empty-->
+                </div>
+                <div class="col-md-7" style="margin-left:60px;">
+                    <h3 style="display:inline-block; margin-left:-20px;">Sell and buy tickets via cryptocurrencies</h3>
+                    <p class="row-lead">
+                        Top cryptocurrencies are supported. No more manual transfers and confirmations hassle.
+                    </p>
+                    <div class="row-content">
+                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/ETH.png' %}" data-toggle="tooltip" data-placement="top"
+                        title="Ethereum">
+                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/BTC.png' %}" data-toggle="tooltip" data-placement="top"
+                        title="Bitcoin">
+                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/BCH.png' %}" data-toggle="tooltip" data-placement="top"
+                        title="Bitcoin Cash">
+                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/LTC.png' %}" data-toggle="tooltip" data-placement="top"
+                        title="Litecoin">
+                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/DASH.png' %}" data-toggle="tooltip" data-placement="top"
+                        title="Dash">
+                      <img class="cryptologo" style="float:inherit" src="{% static 'base/images/currencies_logos/DCR.png' %}" data-toggle="tooltip" data-placement="top"
+                        title="Decred">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row projects-row" style="">
+                <div class="col-md-6  col-md-push-4 col-xs-push-4" style="margin-left:50px;">
+
+                    <br>
+                    <div class="lead row" style="">Got coins? Get tickets!
+
+                        <a href="{% url 'events:events_public' %}"><button type="button" class="btn btn-lg btn-info" >See demo</button></a>
+
+                        </div>
+                </div>
+            </div>
+
+
+
+
+{% endblock %}

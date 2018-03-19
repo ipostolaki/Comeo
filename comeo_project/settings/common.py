@@ -13,6 +13,11 @@ ENV_RABBIT_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS')
 ENV_EMAIL_HOST_PASSWORD = os.environ.get('SECRET_EMAIL_HOST_PASSWORD')
 OUTSIDE = os.environ.get('OUTSIDE')
 
+COINPAYMENTS_API_KEY = os.environ.get('SENSITIVE_COINPAYMENTS_API_KEY')
+COINPAYMENTS_API_SECRET = os.environ.get('SENSITIVE_COINPAYMENTS_API_SECRET') or ''
+COINPAYMENTS_IPN_URL = os.environ.get('COINPAYMENTS_IPN_URL')
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

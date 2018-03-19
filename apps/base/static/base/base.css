@@ -66,3 +66,27 @@
 .navbar {
     opacity:0.90;
 }
+
+/* TICO landing page */
+
+.cryptologo-float {
+    float:left;
+    width:70px;
+    height:70px;
+}
+
+.cryptologo {
+    float:left;
+    width:90px;
+    height:90px;
+    margin-right:30px;
+}
+
+
+.base-content-container-fluid {
+    margin-top:85px;
+}
+
+.base-content {
+}
+

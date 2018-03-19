@@ -51,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/"><img class="logo" src="{% static 'base/images/logo.png' %}"
+          <a href="{% url 'base:future' %}"><img class="logo" src="{% static 'base/images/logo.png' %}"
                            style="width:174px; height:53px"></a>
         </div>
 
@@ -64,14 +64,17 @@
                 <li class={% nav_active request 'events:events_public' %}>
                     <a href="{% url 'events:events_public' %}">{% trans 'Events' %}</a>
                 </li>
-                <!--<li><a href="">{% trans 'Tickets for coins' %}</a></li>-->
+
+                <li class={% nav_active request 'events:tico_landing' %}>
+                    <a href="{% url 'events:tico_landing' %}">{% trans 'Tickets' %}</a>
+                </li>
+
                 <!--<li><a href="">{% trans 'About' %}</a></li>-->
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 {% if user.profile.photo %}
-                <li><img class='image' src="{{ user.profile.photo.url }}" style="width:auto; height:53px;"></li>
                 {% else %}
                 <li><img class='image' src="{% static 'base/images/avatar_placeholder.png' %}" style="width:auto; height:53px;"></li>
                 {% endif %}
@@ -99,47 +102,12 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
-
-        <!-- language selector -->
-        <div class="row text-right" style="margin-bottom:10px; padding-top:80px">
-            <div class="col-md-11">
-                <form class="form-inline" id="changeLangForm" action="{% url 'base:set_language'%}" method="post">
-                    {% csrf_token %}
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                       <div class="radio-inline" style="margin-right:-20px;">
-                            <label class="radio" onclick="changeLangSubmit()">
-                                <input type="radio" name="language" id="optionsRadios" value="{{ language.code }}"
-                                       data-toggle="radio" {% if language.code == LANGUAGE_CODE %} checked="" {% endif %}
-                                       class="custom-radio">
-                                    <span class="icons">
-                                        <span class="icon-unchecked"></span>
-                                        <span class="icon-checked"></span>
-                                    </span>
-                                    {{ language.code|title }}
-                            </label>
-                        </div>
-                    {% endfor %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}">
-                </form>
-            </div>
-        </div>
-
-        <script>
-            <!--language selector UI: whole area of radio button behave like a link on click-->
-            function changeLangSubmit() {
-                $("#changeLangForm").submit();  // go to django i18n.set_language redirect
-            }
-        </script>
-    
+    <div class="container-fluid base-content-container-fluid">
         {% block content-container-fluid %}
         {% endblock %}
     </div>
 
-    <div class="container">
+    <div class="container base-content">
         {% block content %}{% endblock %}
     </div>
 

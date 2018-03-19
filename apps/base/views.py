@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def home(request):
-    return render(request, 'base/index.html')
+    return redirect('events:tico_landing')
+
+
+def future(request):
+    return render(request, 'base/future.html')

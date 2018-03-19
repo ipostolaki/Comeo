@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
+from django.conf import settings
 
 from apps.events.forms import EventPaymentForm
 from shared.shortcuts import log
@@ -9,9 +10,15 @@ from shared.shortcuts import log
 from apps.events.pyCoinPayments.pyCoinPayments import CryptoPayments
 
 
-API_KEY     = 'cc111306d9ddaa67de94652a99d9a6b56b850535e18887efe957cc4dc1b85ffb'
-API_SECRET  = b'aefb1CeC3aa9b7CB104da05Ed9048CE138f021075CdB8B27D15fD504869b18B0'
-IPN_URL = 'https://my.webhookrelay.com/v1/webhooks/1185df80-c62d-41cb-944f-acb37ea04beb'
+
+coinpayments_api_key_string = settings.COINPAYMENTS_API_SECRET
+API_KEY = settings.COINPAYMENTS_API_KEY
+API_SECRET = bytes(coinpayments_api_key_string, 'utf-8')
+IPN_URL = settings.COINPAYMENTS_IPN_URL
+
+
+def tico_landing(request):
+    return render(request, 'events/tico_landing.html')
 
 
 def events_public(request):
@@ -70,7 +77,7 @@ def process_payment(currency, first_name, last_name, email):
 @csrf_exempt
 def coinpayments_ipn(request):
     log.info('Received webhook data from coinpayments')
-    log.info(request)
+    log.debug(request)
     # request.POST['txn_id']
 
     email = request.POST.get('email')
