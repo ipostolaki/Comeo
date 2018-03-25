@@ -11,8 +11,8 @@ secret.py
 *.pyc
 dump.rdb
 fabfile.py
-*/ignore
+*ignore/
 *.env
-!dev.env
+!template.env
 *.log
 static_collected/
