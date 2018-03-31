@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 from apps.crowdfunding.models import Campaign
 from apps.registry import graph_interface
@@ -27,9 +28,16 @@ def signup(request):
                                               password=sign_up_form.cleaned_data['password'])
             if authenticated_user:
                 login(request, authenticated_user)
+            try:
+                # create a new Person node in the graph database
+                graph_interface.Person.create_person(authenticated_user.id)
+            except:
+                if 'light' in settings.OUTSIDE:
+                    pass
+                else:
+                    raise
 
-            # create a new Person node in the graph database
-            graph_interface.Person.create_person(authenticated_user.id)
+
 
             log_mail.info("New user registered: %s", authenticated_user.get_full_name())
 

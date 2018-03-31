@@ -111,6 +111,7 @@ BROKER_URL = 'amqp://{}:{}@rabbit:5672//'.format(ENV_RABBIT_USER, ENV_RABBIT_PAS
 CELERY_RESULT_BACKEND = BROKER_URL
 
 # Misc
+# TODO: move to the env vars
 ADMINS = (('Ilia Postolaki', 'ilia.ravemd@gmail.com'),)
 
 LOGGING = {

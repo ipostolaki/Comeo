@@ -1,0 +1,33 @@
+version: '2'
+
+volumes:
+    pgdata:
+    pglogs:
+
+services:
+    django:
+        build:
+            context: ./../../
+            dockerfile: ./Docker/dev/Dockerfile-dev
+        volumes:
+            - ./../../:/comeo_project
+        working_dir: /comeo_project
+        command: bash -c ". ./Docker/dev-light/run_django.sh"
+        ports:
+            - 80:80
+            - 35729:35729  # livereload tool
+        depends_on:
+            - pg_database
+        env_file: ./dev-light.env
+
+    pg_database:
+        image: postgres:9.5.3
+        # secret strings are in the file
+        env_file: ./dev-light.env
+        volumes:
+            # override postgres image Dockerfile data volume
+            - pgdata:/var/lib/postgresql/data
+            - pglogs:/var/log/postgresql
+        ports:
+            # expose ports to the docker host for debug purposes
+            - 5432:5432
