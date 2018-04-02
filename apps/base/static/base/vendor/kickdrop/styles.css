@@ -1,38 +1,9 @@
-.events-row {
-    background-color: #ffe699;
-}
-
 .row:hover > div > .icon {
     -webkit-animation: icon-animate 1.7s steps(47);
     -moz-animation: icon-animate 1.7s steps(47) infinite;
     animation: icon-animate 1.7s steps(47) infinite;
     animation-iteration-count: 1;
 }
-
-.projects-row {
-    background-color: #ccd9ff;
-}
-
-.resources-row {
-    background-color: #ff9b99;
-}
-
-.groups-row {
-    background-color: #ccf2ff;
-}
-
-.row-content {
-    margin-left: -15px;
-    margin-bottom: 25px;
-}
-
-.row-lead {
-  margin-bottom: 20px;
-  margin-left: -15px;
-  font-weight: 300;
-  line-height: 1.4;
-}
-
 
 @-webkit-keyframes icon-animate {
   from {

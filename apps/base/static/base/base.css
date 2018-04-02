@@ -29,10 +29,6 @@
     background-color:aquamarine;
 }
 
-.thintext {
-    font-weight: 400;
-}
-
 .panel-default > .panel-heading {
   background-color: #eff0f2;
 }
@@ -46,40 +42,17 @@
     font-weight: 400;
 }
 
-
-/*
-.vertical-center-row{
-    display: table-cell;
-    vertical-align: middle;
-}
-*/
-
-/*.navbar {
+/* .navbar {
     background: rgba(0,0,0,0);
     background-color: yellow;
   }
 
 .logo {
 	opacity:0.8;
-}*/
+} */
 
 .navbar {
     opacity:0.90;
-}
-
-/* TICO landing page */
-
-.cryptologo-float {
-    float:left;
-    width:70px;
-    height:70px;
-}
-
-.cryptologo {
-    float:left;
-    width:90px;
-    height:90px;
-    margin-right:30px;
 }
 
 
@@ -90,3 +63,30 @@
 .base-content {
 }
 
+/* Common styles */
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.colored-row-a {
+    background-color: #ccd9ff;
+}
+
+.colored-row-b {
+    background-color: #ff9b99;
+}
+
+.colored-row-c {
+    background-color: #ccf2ff;
+}
+
+.colored-row-d {
+    background-color: #ffe699;
+}
+
+.thintext-title {
+    font-weight: 300;
+    line-height: 1.4;
+}

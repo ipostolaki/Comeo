@@ -4,59 +4,68 @@
 {% load bootstrap %}
 {% load i18n %}
 {% block extra_head %}
+
+<style>
+    .cryptologo {
+        float:left;
+        width:90px;
+        height:90px;
+        margin-right:30px;
+        margin-top:15px;
+    }
+
+    .row-lead {
+        margin-bottom: 20px;
+        font-weight: 300;
+        line-height: 1.4;
+    }
+</style>
+
 <script>
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
-<link href="{% static 'base/vendor/kickdrop/styles.css' %}" rel="stylesheet">
+
 {% endblock %}
 
-    {% block content-container-fluid %}
+{% block content-container-fluid %}
 
-    <p class="lead text-center" style="">Tickets & Coins</p>
+<p class="lead text-center">Tickets & Coins</p>
 
-            <div class="row events-row" style="">
-                <div class="col-md-2 col-md-push-1 col-xs-push-2">
-                    <!--empty-->
-                </div>
-                <div class="col-md-7" style="margin-left:60px;">
-                    <h3 style="display:inline-block; margin-left:-20px;">Sell and buy tickets via cryptocurrencies</h3>
-                    <p class="row-lead">
-                        Top cryptocurrencies are supported. No more manual transfers and confirmations hassle.
-                    </p>
-                    <div class="row-content">
-                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/ETH.png' %}" data-toggle="tooltip" data-placement="top"
-                        title="Ethereum">
-                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/BTC.png' %}" data-toggle="tooltip" data-placement="top"
-                        title="Bitcoin">
-                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/BCH.png' %}" data-toggle="tooltip" data-placement="top"
-                        title="Bitcoin Cash">
-                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/LTC.png' %}" data-toggle="tooltip" data-placement="top"
-                        title="Litecoin">
-                      <img class="cryptologo" src="{% static 'base/images/currencies_logos/DASH.png' %}" data-toggle="tooltip" data-placement="top"
-                        title="Dash">
-                      <img class="cryptologo" style="float:inherit" src="{% static 'base/images/currencies_logos/DCR.png' %}" data-toggle="tooltip" data-placement="top"
-                        title="Decred">
+<div class="row colored-row-d">
+    
+    <div class="col-lg-7 col-centered">
+        <h3>Sell and buy tickets via cryptocurrency</h3>
+        <p class="thintext-title text-center" style="margin-bottom: 0px">Top cryptocurrencies are supported</p>
+        
+        <img class="cryptologo" src="{% static 'base/images/currencies_logos/ETH.png' %}" data-toggle="tooltip" data-placement="top"
+        title="Ethereum">
+        <img class="cryptologo" src="{% static 'base/images/currencies_logos/BTC.png' %}" data-toggle="tooltip" data-placement="top"
+        title="Bitcoin">
+        <img class="cryptologo" src="{% static 'base/images/currencies_logos/BCH.png' %}" data-toggle="tooltip" data-placement="top"
+        title="Bitcoin Cash">
+        <img class="cryptologo" src="{% static 'base/images/currencies_logos/LTC.png' %}" data-toggle="tooltip" data-placement="top"
+        title="Litecoin">
+        <img class="cryptologo" src="{% static 'base/images/currencies_logos/DASH.png' %}" data-toggle="tooltip" data-placement="top"
+        title="Dash">
+        <img class="cryptologo" style="float:inherit" src="{% static 'base/images/currencies_logos/DCR.png' %}" data-toggle="tooltip" data-placement="top"
+        title="Decred">
 
-                    </div>
-                </div>
-            </div>
+        <p class="thintext-title text-center" style="margin-top: 20px">No more hassle with email driven transactions to pay for your entrance</p>
 
+    </div>
+</div>
 
-            <div class="row projects-row" style="">
-                <div class="col-md-6  col-md-push-4 col-xs-push-4" style="margin-left:50px;">
-
-                    <br>
-                    <div class="lead row" style="">Got coins? Get tickets!
-
-                        <a href="{% url 'events:events_public' %}"><button type="button" class="btn btn-lg btn-info" >See demo</button></a>
-
-                        </div>
-                </div>
-            </div>
-
-
-
+<div class="row colored-row-a" style="padding: 20px 0 20px 0;">
+    <div class="col-lg-5 col-centered" style="">
+        <div class="text-center">
+            <p class="lead" style="margin-bottom:10px;">Got coins? Get tickets!</p>
+            <a href="{% url 'events:events_public' %}">
+                <button type="button" class="btn btn-lg btn-info" style="">See demo</button>
+            </a>
+    </div>
+    </div>
+</div>
 
 {% endblock %}

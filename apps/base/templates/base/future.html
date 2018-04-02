@@ -9,13 +9,29 @@
       $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
+
 <link href="{% static 'base/vendor/kickdrop/styles.css' %}" rel="stylesheet">
+
+<style>
+    .row-content {
+        margin-left: -15px;
+        margin-bottom: 25px;
+    }
+
+    .row-lead {
+        margin-bottom: 20px;
+        margin-left: -15px;
+        font-weight: 300;
+        line-height: 1.4;
+    }
+</style>
+
 {% endblock %}
 
 {% block content-container-fluid %}
     <p class="lead text-center" style="">{% trans 'Headline' %}</p>
 
-            <div class="row events-row">
+            <div class="row colored-row-d">
                 <div class="col-md-3 col-md-push-1 col-xs-push-2">
                     <div class="icon map"></div>
                 </div>
@@ -36,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="row projects-row">
+            <div class="row colored-row-a">
                 <div class="col-md-3 col-md-push-1 col-xs-push-2">
                     <div class="icon love"></div>
                 </div>
@@ -55,7 +71,7 @@
             </div>
 
 
-            <div class="row resources-row">
+            <div class="row colored-row-b">
                 <div class="col-md-3 col-md-push-1 col-xs-push-2">
                     <div class="icon search"></div>
                 </div>
@@ -74,7 +90,7 @@
             </div>
 
 
-            <!--<div class="row groups-row">-->
+            <!--<div class="row colored-row-c">-->
                 <!--<div class="col-md-3 col-md-push-1 col-xs-push-2">-->
                     <!--<div class="icon chat"></div>-->
                 <!--</div>-->
