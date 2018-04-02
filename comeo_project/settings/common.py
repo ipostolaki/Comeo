@@ -87,8 +87,8 @@ LANGUAGES = (
 LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'comeo_project/locale'),)
 
 
-LOGIN_URL = 'profiles:login'
-LOGIN_REDIRECT_URL = 'profiles:profile'
+LOGIN_URL = 'profiles:settings'
+LOGIN_REDIRECT_URL = 'profiles:settings'
 
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
