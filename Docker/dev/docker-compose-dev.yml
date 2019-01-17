@@ -45,7 +45,7 @@ services:
         env_file: dev.env
 
     celery:
-        image: comeodev_django  # this image have celery pip installed inside
+        image: comeo_dev_django  # this image have celery pip installed inside
         depends_on:
             - django  # django service image need to be built first
             - rabbit
