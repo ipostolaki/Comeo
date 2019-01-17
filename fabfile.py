@@ -19,7 +19,7 @@ def deploy():
 
 def _pull():
     # Pull updates from the central repo
-    run("cd /home/comeo/ && git fetch && git reset --hard origin/master")
+    run("cd /home/comeo/ && git fetch && git reset --hard origin/tico")
 
 
 def _start():
