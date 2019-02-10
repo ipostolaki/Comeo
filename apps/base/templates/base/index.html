@@ -13,14 +13,15 @@
 {% endblock %}
 
 {% block content-container-fluid %}
-    <p class="lead text-center" style="margin-top:-20px">{% trans 'Headline' %}</p>
+    <p class="lead text-center" style="margin-top:-20px">Cooperation and crowdfunding platform for local projects and events</p>
+    {% comment %} {% trans 'Headline' %} {% endcomment %}
 
             <div class="row projects-row">
                 <div class="col-md-3 col-md-push-1 col-xs-push-2">
                     <div class="icon love"></div>
                 </div>
                 <div class="col-md-6" style="margin-left:50px;">
-                    <h3 style="display:inline-block; margin-left:-20px;">{% trans 'Projects' %}</h3>
+                    <h3 style="display:inline-block; margin-left:-16px;">{% trans 'Projects' %}</h3>
                     <div class="row-lead">
                         {% trans 'Projects_description_title' %}
                     </div>
@@ -39,7 +40,7 @@
                     <div class="icon search"></div>
                 </div>
                 <div class="col-md-6" style="margin-left:50px;">
-                    <h3 style="display:inline-block; margin-left:-20px;">{% trans 'Resources' %}</h3>
+                    <h3 style="display:inline-block; margin-left:-16px;">{% trans 'Resources' %}</h3>
                     <div class="row-lead">
                         {% trans 'index_resourses_title' %}
                     </div>
@@ -57,7 +58,7 @@
                     <div class="icon map"></div>
                 </div>
                 <div class="col-md-6" style="margin-left:50px;">
-                    <h3 style="display:inline-block; margin-left:-20px;">{% trans 'Events' %}</h3>
+                    <h3 style="display:inline-block; margin-left:-16px;">{% trans 'Events' %}</h3>
                     <p class="row-lead">
                         {% trans 'Events_description_title' %}
                     </p>
@@ -73,14 +74,41 @@
                 </div>
             </div>
 
-            <div class="row groups-row">
+            <div class="row">
                 <div class="col-md-3 col-md-push-1 col-xs-push-2">
-                    <div class="icon chat"></div>
+                    <div class="icon chat" style="margin-top:125px;"></div>
                 </div>
                 <div class="col-md-7" style="margin-left:50px;">
-                    <h3 style="display:inline-block; margin-left:-20px;">{% trans 'Open source' %}</h3>
+                    <h3 style="display:inline-block; margin-left:-16px;">{% trans 'Agreements' %}</h3>
                     <div class="row-lead">
-                        {% trans 'Comeo is an open source project, licensed under AGPL version 3.' %}
+                        {% trans 'Create transparent agreements to distribute money and resources among project participants.' %}
+                </div>
+                    <div style="max-width:720px;">
+                        <img class="img-responsive" style="" src="{% static 'base/images/income-flow.png' %}">
+                    </div>
+                    <br>
+                    <div class="row-content">
+                        {% blocktrans %}
+                            Project participants can create shared agreements to see how collected resources should be used. 
+                            This allows to see who gets what, how much of it, and why. 
+                            Agreements can be edited using an easy to use visual tool. 
+                            Distribution of resources is secured by blockchain technology and smart contracts, thus it is safe to use and trust this platform.
+                            <br>
+                        {% endblocktrans %}
+                            <br>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row groups-row">
+                <div class="col-md-3 col-md-push-1 col-xs-push-2">
+                    <div class="icon cogs"></div>
+                </div>
+                <div class="col-md-7" style="margin-left:50px;">
+                    <h3 style="display:inline-block; margin-left:-16px;">{% trans 'Open source' %}</h3>
+                    <div class="row-lead">
+                        {% trans 'Comeo is a licensed open source project, everyone can see the code.' %}
                     </div>
                     <p><img src="{% static 'base/images/agplv3.png' %}"></p>
                     <div class="row-content">
@@ -95,28 +123,8 @@
                             </button>
                             <img style="margin-left: 10px; height: 51px"  src="{% static 'base/images/octocat.png' %}">
                         </a>
-                        
                     </div>
                 </div>
             </div>
-
-
-            <!--<div class="row groups-row">-->
-                <!--<div class="col-md-3 col-md-push-1 col-xs-push-2">-->
-                    <!--<div class="icon chat"></div>-->
-                <!--</div>-->
-                <!--<div class="col-md-6" style="margin-left:50px;">-->
-                    <!--<h3 style="display:inline-block; margin-left:-20px;">{% trans 'Groups' %}</h3>-->
-                    <!--<div class="row-lead">-->
-                        <!--{% trans 'index_groups_title' %}-->
-                    <!--</div>-->
-                    <!--<div class="row-content">-->
-                        <!--{% trans 'index_groups_content' %}-->
-                        <!--&nbsp&nbsp&nbsp&nbsp<button type="button" class="btn btn-lg btn-info"-->
-                        <!--data-toggle="tooltip" data-placement="top" title="{% trans 'Coming_soon' %}">-->
-                        <!--{% trans 'index_groups_read_more' %}</button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
 
 {% endblock %}

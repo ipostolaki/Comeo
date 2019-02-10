@@ -73,8 +73,8 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGES = (
-    ('ru', _('Russian')),
-    ('ro', _('Romanian')),
+    # ('ru', _('Russian')),
+    # ('ro', _('Romanian')),
     ('en', _('English')),
 )
 
